@@ -1,0 +1,145 @@
+;; handy list of oxy-wells to play with
+
+(def bad-oxy-wells [])
+
+;; these are the "good ones"
+(def oxy-wells
+  [{:field "COLLIE", :lease "BRAMI", :well "45-02", :cmpl "H"}
+   {:field "COLLIE", :lease "MHPR", :well "001", :cmpl "H"}
+   {:field "COLLIE", :lease "MHPR", :well "002", :cmpl "H"}
+   {:field "COLLIE", :lease "WRC", :well "151", :cmpl "V"}
+   {:field "EAST WOLFBERRY", :lease "BARNETT", :well "2128", :cmpl "A"}
+   {:field "EAST WOLFBERRY", :lease "GUITAR",  :well "HENDRIX 1",  :cmpl "B"}
+   {:field "EAST WOLFBERRY",  :lease "GUITAR",  :well "HENDRIX 3",  :cmpl "B"}
+   {:field "EAST WOLFBERRY", :lease "MARCO", :well "1601", :cmpl "BU2"}
+   {:field "EAST WOLFBERRY", :lease "MAY", :well "1105", :cmpl "WA"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1111", :cmpl "HB"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1401", :cmpl "A"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1401", :cmpl "BL"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1401", :cmpl "CL"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1402", :cmpl "BL"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1402", :cmpl "CU"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1402", :cmpl "L"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1404", :cmpl "A"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1404", :cmpl "BU"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1406", :cmpl "A"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1406", :cmpl "BU"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1407", :cmpl "BU"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1408", :cmpl "A"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1408", :cmpl "BL"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1409", :cmpl "A"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1409", :cmpl "BU"}
+   {:field "EAST WOLFBERRY", :lease "MERCHAN", :well "1411", :cmpl "HB"}
+   {:field "MB 139", :lease "MB 139", :well "916", :cmpl "L"}
+   {:field "MB 139", :lease "MB 139", :well "SER4516H", :cmpl "L"}
+   {:field "NEW MEXICO", :lease "CC", :well "15-003", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CC", :well "15-005", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CC", :well "16-006", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CC", :well "16-008", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CC", :well "16-010", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CC", :well "16-012", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CC", :well "17-001", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CC", :well "22-002", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CC", :well "23-002", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CC", :well "27-004", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CC", :well "28-06", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CPRHD", :well "18-2", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CPRHD", :well "18-3", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CPRHD", :well "18-4", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CPRHD", :well "18-5", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CYPRES", :well "33-07", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CYPRES", :well "34-10", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "CYPRES", :well "34-11", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "DVN", :well "6-2", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "DVN", :well "8-03", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "DVN", :well "8-04", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "FOXGLV", :well "29-04", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "FOXGLV", :well "29-05", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "FOXGLV", :well "29-06", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "FOXGLV", :well "29-07", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "GOVT AC", :well "13-05", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "GOVT AC", :well "5 H", :cmpl "A"}
+   {:field "NEW MEXICO", :lease "HAROUN", :well "9-3", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "IVORE", :well "35-03", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "PCHS", :well "19FED-2", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "RIDGE", :well "7-1", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "RIDGE", :well "7-2", :cmpl "H"}
+   {:field "NEW MEXICO", :lease "STATE", :well "CV-2", :cmpl "H"}
+   {:field "WEST WOLFBERRY", :lease "DRRU", :well "4613", :cmpl "B"}
+   {:field "WEST WOLFBERRY",  :lease "MAYBEE",  :well "139-916",  :cmpl "DL"}
+   {:field "WEST WOLFBERRY",  :lease "MAYBEE",  :well "SER4516H",  :cmpl "L"}
+   {:field "WEST WOLFBERRY", :lease "SAU", :well "0320", :cmpl "LH"}
+   {:field "WEST WOLFBERRY", :lease "SERAPHI", :well "4516", :cmpl "A"}
+   {:field "WEST WOLFBERRY", :lease "SERAPHI", :well "4521", :cmpl "A"}
+   {:field "WEST WOLFBERRY", :lease "SOUTH C", :well "2221", :cmpl "B"}
+   {:field "WEST WOLFBERRY", :lease "SOUTH C", :well "2223", :cmpl "B"}
+   {:field "WEST WOLFBERRY", :lease "SOUTH C", :well "2224", :cmpl "B"}
+   {:field "WEST WOLFBERRY", :lease "SOUTH C", :well "2226", :cmpl "B"}
+   {:field "WEST WOLFBERRY", :lease "SOUTH C", :well "2342", :cmpl "A"}
+   {:field "WEST WOLFBERRY", :lease "SOUTH C", :well "2601", :cmpl "DL"}
+   {:field "WEST WOLFBERRY", :lease "SOUTH C", :well "2816", :cmpl "AH"}
+   {:field "WEST WOLFBERRY", :lease "SOUTH C", :well "2823", :cmpl "AH"}
+   {:field "WEST WOLFBERRY", :lease "SOUTH C", :well "2844", :cmpl "SH"}
+   {:field "WEST WOLFBERRY", :lease "SOUTH C", :well "2847", :cmpl "SH"}
+   {:field "WEST WOLFBERRY", :lease "SOUTH C", :well "2848", :cmpl "MH"}
+   {:field "WEST WOLFBERRY", :lease "SOUTH C", :well "3525", :cmpl "S"}
+   {:field "WEST WOLFBERRY", :lease "WARHAWK", :well "1921", :cmpl "A"}
+   {:field "WEST WOLFBERRY", :lease "WARHAWK", :well "1922", :cmpl "B"}
+   {:field "WOLFBONE", :lease "ANNAK", :well "23-11", :cmpl "H"}
+   {:field "WOLFBONE", :lease "ANNAK", :well "23-16", :cmpl "H"}
+   {:field "WOLFBONE", :lease "ANNAK", :well "23-17", :cmpl "H"}
+   {:field "WOLFBONE", :lease "ANNAK", :well "23-5", :cmpl "H"}
+   {:field "WOLFBONE", :lease "ANNAK", :well "23-6", :cmpl "H"}
+   {:field "WOLFBONE", :lease "BL", :well "1005", :cmpl "H"}
+   {:field "WOLFBONE", :lease "BUZZARD", :well "09", :cmpl "H"}
+   {:field "WOLFBONE", :lease "BUZZARD", :well "10", :cmpl "H"}
+   {:field "WOLFBONE", :lease "BUZZARD", :well "11", :cmpl "H"}
+   {:field "WOLFBONE", :lease "BUZZARD", :well "13", :cmpl "H"}
+   {:field "WOLFBONE", :lease "BUZZARD", :well "14", :cmpl "H"}
+   {:field "WOLFBONE", :lease "CM", :well "41-3", :cmpl "L"}
+   {:field "WOLFBONE", :lease "CM", :well "5-5", :cmpl "H"}
+   {:field "WOLFBONE", :lease "CM", :well "5-6", :cmpl "H"}
+   {:field "WOLFBONE", :lease "CM", :well "51-11-2", :cmpl "H"}
+   {:field "WOLFBONE", :lease "CM", :well "7-1", :cmpl "H"}
+   {:field "WOLFBONE", :lease "CM", :well "7-2", :cmpl "H"}
+   {:field "WOLFBONE", :lease "CM", :well "7-3", :cmpl "L"}
+   {:field "WOLFBONE", :lease "EAGLE", :well "28-5", :cmpl "H"}
+   {:field "WOLFBONE", :lease "EAGLE", :well "28-6", :cmpl "H"}
+   {:field "WOLFBONE", :lease "EAGLE", :well "28-7", :cmpl "H"}
+   {:field "WOLFBONE", :lease "EAGLE", :well "28-8", :cmpl "H"}
+   {:field "WOLFBONE", :lease "GIGI", :well "12-3", :cmpl "H"}
+   {:field "WOLFBONE", :lease "GIGI", :well "12-4", :cmpl "H"}
+   {:field "WOLFBONE", :lease "GLOBE", :well "1-1", :cmpl "H"}
+   {:field "WOLFBONE", :lease "GORILLA", :well "20-4", :cmpl "H"}
+   {:field "WOLFBONE", :lease "GRANADA", :well "11-5", :cmpl "H"}
+   {:field "WOLFBONE", :lease "GRANADA", :well "11-6", :cmpl "H"}
+   {:field "WOLFBONE", :lease "HOUSER", :well "36-5", :cmpl "H"}
+   {:field "WOLFBONE", :lease "HOUSER", :well "36-7", :cmpl "H"}
+   {:field "WOLFBONE", :lease "JANEY", :well "24-1", :cmpl "H"}
+   {:field "WOLFBONE", :lease "LENOX", :well "2-12", :cmpl "H"}
+   {:field "WOLFBONE", :lease "LENOX", :well "2-13", :cmpl "H"}
+   {:field "WOLFBONE", :lease "LENOX", :well "2-14", :cmpl "H"}
+   {:field "WOLFBONE", :lease "LENOX", :well "2-15", :cmpl "H"}
+   {:field "WOLFBONE", :lease "LESLIE", :well "11-11", :cmpl "H"}
+   {:field "WOLFBONE", :lease "LESLIE", :well "11-12", :cmpl "H"}
+   {:field "WOLFBONE", :lease "LESLIE", :well "11-3", :cmpl "H"}
+   {:field "WOLFBONE", :lease "LESLIE", :well "11-4", :cmpl "H"}
+   {:field "WOLFBONE", :lease "LESLIE", :well "11H", :cmpl "H"}
+   {:field "WOLFBONE", :lease "MAJESTI", :well "12-01", :cmpl "V"}
+   {:field "WOLFBONE", :lease "MAJESTI", :well "12-02", :cmpl "V"}
+   {:field "WOLFBONE", :lease "MARINSK", :well " 8-1", :cmpl "L"}
+   {:field "WOLFBONE", :lease "MARINSK", :well " 8-3", :cmpl "L"}
+   {:field "WOLFBONE", :lease "PEREGRI", :well "27-5", :cmpl "H"}
+   {:field "WOLFBONE", :lease "PEREGRI", :well "27-6", :cmpl "H"}
+   {:field "WOLFBONE", :lease "PEREGRI", :well "27-7", :cmpl "H"}
+   {:field "WOLFBONE", :lease "PEREGRI", :well "27-8", :cmpl "H"}
+   {:field "WOLFBONE", :lease "PEREGRI", :well "27-9", :cmpl "H"}
+   {:field "WOLFBONE", :lease "PERRY", :well "18-5", :cmpl "H"}
+   {:field "WOLFBONE", :lease "TOTSY", :well "205", :cmpl "H"}
+   {:field "WOLFBONE", :lease "TOTSY", :well "206", :cmpl "H"}
+   {:field "WOLFBONE", :lease "VANGUAR", :well "3-12", :cmpl "H"}
+   {:field "WOLFBONE", :lease "VANGUAR", :well "3-13", :cmpl "H"}
+   {:field "WOLFBONE", :lease "VANGUAR", :well "3-14", :cmpl "H"}
+   {:field "WOLFBONE", :lease "VANGUAR", :well "3-15", :cmpl "H"}
+   ])
+

@@ -1,0 +1,4 @@
+<configuration debug="false">
+  <logger name="Tao2" level="INFO"/>
+  <root level="INFO"/>
+</configuration>

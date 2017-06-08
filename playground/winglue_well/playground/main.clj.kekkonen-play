@@ -1,0 +1,48 @@
+(ns winglue-well.playground.main
+  (:gen-class)
+  (:require [kekkonen.cqrs :refer :all]
+            [plumbing.core :refer [defnk]]
+            [org.httpkit.server :as server]
+            [ring.middleware.reload :as reload]
+            [ring.middleware.stacktrace :as stktrace]
+            [winglue-well.schema :as wgs]
+            [winglue-well.config :as config]
+            [winglue-well.glcalcs-proxy :as glcalcs-proxy]
+            ))
+
+(defnk ^:command echo-pizza
+  "Echos a pizza"
+  {:responses {:default {:schema Pizza}}}
+  [data :- Pizza]
+  (success data))
+
+(defnk ^:query get-a-well
+  "gets a well"
+  [data :- WellIdentity]
+  (success 42))
+
+(defnk ^:query ping []
+  (success {:ping "pong"}))
+
+(def app
+  (cqrs-api
+    {:swagger {:ui "/"
+               :spec "/swagger.json"
+               :data {:info {:title "AppSmiths WinGLUE/Tao2 API"}}}
+     :core {:handlers
+            {:api {:winglue   [#'get-a-well]
+                   :pizza     #'echo-pizza
+                   :example  #'ping}}
+            :context {:counter (atom 0)}}}))
+
+(defn -main [& args]
+  (do (config/init)
+      (println "Selected Config: " @config/tao2-cfg)
+      (glcalcs-proxy/init))
+  (let [port (or (:server-port @config/tao2-cfg) 3000)]
+    (println (format "Starting server on port: %d" port))
+    (server/run-server
+     (-> #'app
+         (reload/wrap-reload)
+         (stktrace/wrap-stacktrace-web)) {:port port :join? false})
+    (glcalcs-proxy/destroy)))

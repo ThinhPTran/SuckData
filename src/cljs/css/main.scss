@@ -1,0 +1,29 @@
+@charset 'UTF-8';
+
+// 1. Abstracts
+
+// 2. Base
+@import 'base/colors';
+
+// 3. Vendor
+@import 'vendor/bootstrap',
+'vendor/font-awesome',
+'vendor/AdminLTE',
+'vendor/animate',
+'vendor/slider',
+'vendor/datatables';
+
+// 4. Vencor Extensions
+@import 'vendors-extensions/AdminLTEext';
+
+// 4. Layout
+@import 'layout/center';
+
+// 5. Components
+@import 'components/tubingpipe',
+'components/general';
+
+// 6. Pages
+
+// 7. Themes
+@import 'themes/skin-blue';

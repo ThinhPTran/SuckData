@@ -1,0 +1,115 @@
+.valve {
+  fill: darken($gray, 30%);
+  stroke-width: 1px;
+  stroke: $black;
+}
+
+.valveTube {
+  fill: darken($gray, 30%);
+  stroke: $black;
+  stroke-width: 1;
+}
+
+.valveBox {
+  fill: darken($gray, 30%);
+  stroke: $black;
+  stroke-width: 1;
+}
+
+.valve-closed {
+  fill: $red;
+}
+
+.valve-open {
+  fill: $green;
+}
+
+.valve-back-check {
+  fill: $orange;
+}
+
+.valve-unknown {
+  fill: $black;
+}
+
+.valve-transition {
+  fill: $purple;
+}
+
+.valve-dummy {
+  fill: $fuchsia;
+}
+
+.valveIndicatorText {
+  text-anchor: middle;
+  font-size: 1.0em;
+}
+
+.tubing-border {
+  fill: darken($gray, 55%);
+}
+
+// Lighter/Darker values computed with:
+// http://www.w3schools.com/colors/colors_picker.asp
+// color of gas in pipe
+.tubing-pipe-gas-primary-stop {
+  stop-color: $lightBlue;
+}
+
+.tubing-pipe-gas-secondary-stop {
+  stop-color: darken($lightBlue, 25%);
+}
+
+// Color of liquid in pipe
+.tubing-pipe-liquid-primary-stop {
+  stop-color: $green; // Green from AdminLTE.js
+}
+
+.tubing-pipe-liquid-secondary-stop {
+  stop-color: darken($green, 10%); // 3 stops darker
+}
+
+// color of empty pipe
+.tubing-pipe-primary-stop {
+  stop-color: darken($gray, 15%);
+}
+
+.tubing-pipe-secondary-stop{
+  stop-color: darken($gray, 30%);
+}
+
+// Color of gas in regimes
+.gas-primary-stop {
+  stop-color: lighten($lightBlue, 0%);
+}
+
+.gas-secondary-stop {
+  stop-color: lighten($lightBlue, 40%);
+}
+
+#tubingpipetooltip {
+  position: absolute;
+  width: 300px;
+  height: auto;
+  padding: 10px;
+  background-color: white;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  -webkit-box-shadow: 4px 4px 10px rgba(0,0,0,0.4);
+  -moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+  pointer-events: none;
+  z-index: 1000;
+}
+
+#tubingpipetooltip.hidden {
+  display: none;
+}
+
+#tubingpipetooltip p {
+margin: 0;
+font-family: sans-serif;
+font-size: 16px;
+line-height: 20px;
+}

@@ -1,0 +1,19 @@
+.center-on-page{
+	width:300px;
+	height:200px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:-100px 0 0 -150px;
+}
+
+.vertical-center{
+	min-height: 100%;  /* Fallback for browsers that do NOT support vh*/
+	min-height: 100vh; /* These two lines are counted as one */
+	display: flex;
+	align-items: center;
+}
+
+.center-container{
+	position: relative;
+}
