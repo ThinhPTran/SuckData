@@ -35,6 +35,7 @@
                  [cljsjs/d3 "3.5.16-0"]
                  [secretary "1.2.3"]
                  [binaryage/devtools "0.8.3"]
+                 [durable-atom "0.0.3"]
                  [cljsjs/bootstrap "3.3.6-1"]
                  [cljsjs/bootstrap-slider "7.0.1-0"]
                  [cljsjs/highcharts "5.0.4-0"]

@@ -47,14 +47,14 @@
     (let [change (or (nth (diff old-state new-state) 1)
                      nil)
           changekeys (keys change)]
-      (when (some? changekeys))
-      (println "connected-uids: " @connected-uids)
+      ;(when (some? changekeys))
+      ;(println "connected-uids: " @connected-uids)
       ;(println "change: " change)
-      ;(pp/pprint (str @mydb/app-state))
-      (doseq [uid (:any @connected-uids)]
-        (if (some? changekeys)
-          (doseq [k changekeys]
-            (channel-send! uid [:db/changeAppState {k (k @mydb/app-state)}]))))))
+      (println (str @mydb/app-state))))
+      ;(doseq [uid (:any @connected-uids)]
+      ;  (if (some? changekeys)
+      ;    (doseq [k changekeys]
+      ;      (channel-send! uid [:db/changeAppState {k (k @mydb/app-state)}]))))))
 
 (add-watch mydb/app-state :watcher app-state-change-handler)
 

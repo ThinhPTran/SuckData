@@ -6,9 +6,13 @@
             [winglue-well.calcs :as calcs]
             [clojure.pprint :as pp]
             [clojure.data :as da :refer [diff]]
+            [durable-atom.core :refer [durable-atom]]
             [winglue-well.database.core :as wgdb]))
 
 (def app-state (atom {}))
+(def persist-atom (durable-atom "/home/debtao/Datastore/glue.dat"))
+
+(reset! persist-atom {:wells []})
 
 (defn initinfo []
   (let [alldsn (@app-state :all-dsn)]
@@ -141,33 +145,33 @@
           (swap! app-state assoc-in [:welldoc :cal-wt] cal-wt)
           (swap! app-state assoc-in [:welldoc :uncal-wt] uncal-wt))))))
 
-(defn get-flowing-gradient-survey-hist-map []
-  (println "Get :flowing-gradient-survey-hist-map ")
-  (when (refstr? (:flowing-gradient-survey-hist-map (:welldoc @app-state)))
-    (swap! app-state assoc-in [:welldoc :flowing-gradient-survey-hist-map (first (keys (:flowing-gradient-survey-hist-map  (:welldoc @app-state))))] (realize-refstr (first (vals (:flowing-gradient-survey-hist-map  (:welldoc @app-state))))))))
-
-(defn get-reservoir-survey-hist-map []
-  (println "Get :reservoir-survey-hist-map  ")
-  (when (refstr? (:reservoir-survey-hist-map (:welldoc @app-state)))
-    (swap! app-state assoc-in [:welldoc :reservoir-survey-hist-map  (first (keys (:reservoir-survey-hist-map   (:welldoc @app-state))))] (realize-refstr (first (vals (:reservoir-survey-hist-map   (:welldoc @app-state))))))))
-
-(defn get-scada-survey-hist-map []
-  (println "Get :scada-survey-hist-map ")
-  (when (refstr? (:scada-survey-hist-map (:welldoc @app-state)))
-    (swap! app-state assoc-in [:welldoc :scada-survey-hist-map  (first (keys (:scada-survey-hist-map   (:welldoc @app-state))))] (realize-refstr (first (vals (:scada-survey-hist-map   (:welldoc @app-state))))))))
-
-(defn get-mandrel-survey-hist-map []
-  (println "Get :mandrel-survey-hist-map ")
-  (when (refstr? (:mandrel-survey-hist-map (:welldoc @app-state)))
-    (swap! app-state assoc-in [:welldoc :mandrel-survey-hist-map  (first (keys (:mandrel-survey-hist-map   (:welldoc @app-state))))] (realize-refstr (first (vals (:mandrel-survey-hist-map   (:welldoc @app-state))))))))
+;(defn get-flowing-gradient-survey-hist-map []
+;  (println "Get :flowing-gradient-survey-hist-map ")
+;  (when (refstr? (:flowing-gradient-survey-hist-map (:welldoc @app-state)))
+;    (swap! app-state assoc-in [:welldoc :flowing-gradient-survey-hist-map (first (keys (:flowing-gradient-survey-hist-map  (:welldoc @app-state))))] (realize-refstr (first (vals (:flowing-gradient-survey-hist-map  (:welldoc @app-state))))))))
+;
+;(defn get-reservoir-survey-hist-map []
+;  (println "Get :reservoir-survey-hist-map  ")
+;  (when (refstr? (:reservoir-survey-hist-map (:welldoc @app-state)))
+;    (swap! app-state assoc-in [:welldoc :reservoir-survey-hist-map  (first (keys (:reservoir-survey-hist-map   (:welldoc @app-state))))] (realize-refstr (first (vals (:reservoir-survey-hist-map   (:welldoc @app-state))))))))
+;
+;(defn get-scada-survey-hist-map []
+;  (println "Get :scada-survey-hist-map ")
+;  (when (refstr? (:scada-survey-hist-map (:welldoc @app-state)))
+;    (swap! app-state assoc-in [:welldoc :scada-survey-hist-map  (first (keys (:scada-survey-hist-map   (:welldoc @app-state))))] (realize-refstr (first (vals (:scada-survey-hist-map   (:welldoc @app-state))))))))
+;
+;(defn get-mandrel-survey-hist-map []
+;  (println "Get :mandrel-survey-hist-map ")
+;  (when (refstr? (:mandrel-survey-hist-map (:welldoc @app-state)))
+;    (swap! app-state assoc-in [:welldoc :mandrel-survey-hist-map  (first (keys (:mandrel-survey-hist-map   (:welldoc @app-state))))] (realize-refstr (first (vals (:mandrel-survey-hist-map   (:welldoc @app-state))))))))
 
 (defn get-profile-depth []
   (println "Get :profile-depth ")
-  (let [wellid {:dsn (:current-dsn @app-state)
-                :field (:field (:current-well @app-state))
-                :lease (:lease (:current-well @app-state))
-                :well (:well (:current-well @app-state))
-                :cmpl (:cmpl (:current-well @app-state))}
+  (let [wellid {:dsn (first (keys (:dsn @app-state)))
+                :field (:field (:well @app-state))
+                :lease (:lease (:well @app-state))
+                :well (:well (:well @app-state))
+                :cmpl (:cmpl (:well @app-state))}
         welldoc (wgdb/get-well wellid)
         welldb (wgdb/delay-loadify-well welldoc)
         out (calcs/calc-wellbore welldb)]
@@ -177,11 +181,11 @@
 
 (defn get-equilibrium-depth-profile []
   (println "Get equilibrium depth profile ")
-  (let [wellid {:dsn (:current-dsn @app-state)
-                :field (:field (:current-well @app-state))
-                :lease (:lease (:current-well @app-state))
-                :well (:well (:current-well @app-state))
-                :cmpl (:cmpl (:current-well @app-state))}
+  (let [wellid {:dsn (first (keys (:dsn @app-state)))
+                :field (:field (:well @app-state))
+                :lease (:lease (:well @app-state))
+                :well (:well (:well @app-state))
+                :cmpl (:cmpl (:well @app-state))}
         welldoc (wgdb/get-well wellid)
         welldb (wgdb/delay-loadify-well welldoc)
         out (calcs/calc-eq-curves welldb)]
@@ -190,11 +194,11 @@
 
 (defn get-fbhp-profile []
   (println "Get equilibrium depth profile ")
-  (let [wellid {:dsn (:current-dsn @app-state)
-                :field (:field (:current-well @app-state))
-                :lease (:lease (:current-well @app-state))
-                :well (:well (:current-well @app-state))
-                :cmpl (:cmpl (:current-well @app-state))}
+  (let [wellid {:dsn (first (keys (:dsn @app-state)))
+                :field (:field (:well @app-state))
+                :lease (:lease (:well @app-state))
+                :well (:well (:well @app-state))
+                :cmpl (:cmpl (:well @app-state))}
         welldoc (wgdb/get-well wellid)
         welldb (wgdb/delay-loadify-well welldoc)
         out (calcs/calc-inflow-outflow welldb)]
@@ -204,11 +208,11 @@
 
 (defn get-calced-injection-rate-profile []
   (println "Get calced injection rate profile ")
-  (let [wellid {:dsn (:current-dsn @app-state)
-                :field (:field (:current-well @app-state))
-                :lease (:lease (:current-well @app-state))
-                :well (:well (:current-well @app-state))
-                :cmpl (:cmpl (:current-well @app-state))}
+  (let [wellid {:dsn (first (keys (:dsn @app-state)))
+                :field (:field (:well @app-state))
+                :lease (:lease (:well @app-state))
+                :well (:well (:well @app-state))
+                :cmpl (:cmpl (:well @app-state))}
         welldoc (wgdb/get-well wellid)
         welldb (wgdb/delay-loadify-well welldoc)
         out (calcs/calc-lgr-curves welldb)]
@@ -256,15 +260,57 @@
   (get-scada-survey)
   (get-mandrel-survey-map)
   (get-welltest-hist-map)
-  (get-flowing-gradient-survey-hist-map)
-  (get-reservoir-survey-hist-map)
-  (get-scada-survey-hist-map)
-  (get-mandrel-survey-hist-map)
+  ;(get-flowing-gradient-survey-hist-map)
+  ;(get-reservoir-survey-hist-map)
+  ;(get-scada-survey-hist-map)
+  ;(get-mandrel-survey-hist-map)
   (get-profile-depth)
   (get-equilibrium-depth-profile)
   (get-fbhp-profile)
   (get-injection-rate-profile)
   (get-calced-injection-rate-profile))
+
+(defn suck-well [dsn well]
+  (reset! app-state {})
+  (swap! app-state assoc :dsn dsn)
+  (swap! app-state assoc :well well)
+  (let [dsn (first (keys (:dsn @app-state)))
+        field (:field (:well @app-state))
+        lease (:lease (:well @app-state))
+        well (:well (:well @app-state))
+        cmpl (:cmpl (:well @app-state))]
+    (swap! app-state assoc :welldoc (dbcore/get-well {:dsn dsn
+                                                      :field field
+                                                      :lease lease
+                                                      :well well
+                                                      :cmpl cmpl}))
+    (get-well-mstr-map)
+    (get-modl-ctrl-map)
+    (get-lgas-props-map)
+    (get-rsvr-map)
+    (get-dsvy-map)
+    (get-flow-line-map)
+    (get-inj-mech-map)
+    (get-prod-mech-map)
+    (get-lgas-perf-settings-map)
+    (get-alt-temps-map)
+    (get-stored-lgas-response-map)
+    (get-welltest-map)
+    (get-flowing-gradient-survey-map)
+    (get-reservoir-survey)
+    (get-scada-survey)
+    (get-mandrel-survey-map)
+    (get-welltest-hist-map)
+    ;(get-flowing-gradient-survey-hist-map)
+    ;(get-reservoir-survey-hist-map)
+    ;(get-scada-survey-hist-map)
+    ;(get-mandrel-survey-hist-map)
+    (get-profile-depth)
+    (get-equilibrium-depth-profile)
+    (get-fbhp-profile)
+    (get-injection-rate-profile)
+    (get-calced-injection-rate-profile)
+    (swap! persist-atom update-in [:wells] #(conj % @app-state))))
 
 (defn pick-first-well []
   (swap! app-state assoc :current-well (first (:all-well @app-state)))
@@ -292,11 +338,26 @@
   (get-reservoir-survey)
   (get-scada-survey)
   (get-mandrel-survey-map)
-  (get-welltest-hist-map)
-  (get-flowing-gradient-survey-hist-map)
-  (get-reservoir-survey-hist-map)
-  (get-scada-survey-hist-map)
-  (get-mandrel-survey-hist-map))
+  (get-welltest-hist-map))
+  ;(get-flowing-gradient-survey-hist-map)
+  ;(get-reservoir-survey-hist-map)
+  ;(get-scada-survey-hist-map)
+  ;(get-mandrel-survey-hist-map))
+
+(defn suckdata []
+  (let [alldsn (config/get-data-sources @config/tao2-cfg)
+        currentdsn alldsn
+        allwell (->> (dbcore/get-matching-wells (first (keys currentdsn)) {:select-set #{:field :lease :well :cmpl}
+                                                                           :where-map {}})
+                     (vec)
+                     (map vec)
+                     (map #(zipmap [:field :lease :well :cmpl] %)))]
+    (println (str "alldsn: " alldsn))
+    (println (str "currentdsn: " currentdsn))
+    (println (pr-str "allwell: " allwell))
+    (doseq [currentwell allwell]
+      (suck-well currentdsn currentwell))))
+
 
 
 

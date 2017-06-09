@@ -3,7 +3,7 @@
             [winglue-well.db :as mydb]))
 
 (defn set-selected-datasource [dsn]
-  ;(.log js/console (str "set-selected-datasource: " dsn))
+  (.log js/console (str "set-selected-datasource: " dsn))
   ;(se/changeState [:current-dsn] dsn))
   (se/sendAction :pickdsn dsn))
 

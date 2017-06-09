@@ -531,6 +531,8 @@
       (handler/site)
       (wrap-request-logging)))
 
+
+
 (defn -main [& args]
   (println (format "===================================\nTao2 Version : %s\n===================================\n" (utils/tao2-version)))
   (config/load-config!)
@@ -538,9 +540,15 @@
   (config/set-db-connections (wgdb/get-data-source-revs))
   (sys/ws-message-router)
   (glcalcs-proxy/init)
-  (let [port (or (:server-port @config/tao2-cfg) 3000)]
-    (println (format "Starting server on port: %d\n" port))
-    (println "Selected Config");
-    (pp/pprint @config/tao2-cfg)
-    (run-server wrapped-app {:ip "192.168.1.3" :port port :join? false}))
+  ;(let [port (or (:server-port @config/tao2-cfg) 3000)]
+  ;  (println (format "Starting server on port: %d\n" port))
+  ;  (println "Selected Config");
+  ;  (pp/pprint @config/tao2-cfg)
+  ;  (run-server wrapped-app {:ip "192.168.1.3" :port port :join? false}))
+  (mydb/suckdata)
+  (let [wells (:wells @mydb/persist-atom)
+        dsn (map #(:dsn %) wells)
+        wellinfo (map #(:well %) wells)]
+    (println (str "dsn: " (pr-str dsn)))
+    (println (str "well: " (pr-str wellinfo))))
   (glcalcs-proxy/destroy))
