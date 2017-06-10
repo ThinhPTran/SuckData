@@ -24,5 +24,5 @@
 (defn init-states []
   (set-window-size)
   (mainpagehandler/set-main-page-option)
-  (mainpagehandler/set-main-page-content :wellsim))
+  (mainpagehandler/set-main-page-content :dataanalysis))
 

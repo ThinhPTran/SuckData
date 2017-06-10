@@ -3,7 +3,7 @@
             [winglue-well.pages.mainpage.subs :as mainpagesubs]
             [winglue-well.pages.mainpage.handlers :as mainpagehandlers]
             [winglue-well.pages.welloverview.welloverview :refer [WellOverview]]
-            [winglue-well.pages.wellsim.wellsim :refer [WellSim]]
+            [winglue-well.pages.dataanalysis.dataanalysis :refer [DataAnalysis]]
             [clojure.string :as str]
             [reagent.core :as reagent]))
 
@@ -53,9 +53,9 @@
        [:i.fa.fa-tachometer]
        [:span "Well Overview"]]
       [:a {:href "#"
-           :onClick #(mainpagehandlers/set-main-page-content :wellsim)}
+           :onClick #(mainpagehandlers/set-main-page-content :dataanalysis)}
        [:i.fa.fa-laptop]
-       [:span "Well Simulator"]]]]]])
+       [:span "Data Analysis"]]]]]])
 
 (defn- RightSidebar
   "Right sidebar (control sidebar) from AdminLTE html template"
@@ -108,7 +108,7 @@
                                 "content-wrapper-no-sidebar")])}
       (cond
         (= :welloverview content) [WellOverview]
-        (= :wellsim content) [WellSim])]
+        (= :dataanalysis content) [DataAnalysis])]
 
      ;; Footer
      (when (:footer mainpageoption)

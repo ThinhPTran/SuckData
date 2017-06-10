@@ -8,7 +8,6 @@
 
 (ns winglue-well.config.core
   (:require  [clojure.java.io :as io]
-             [winglue-well.log :as log]
              [clojure.spec :as s])
   (:import   [java.io PushbackReader])
   (:import   [java.io File])
@@ -151,13 +150,6 @@
   "trys for config from JAR resources"
   []
   (io/resource cfg-base))
-
-(defn init-logging
-  "Use settings from tao2-config.clj to configure the logger."
-  [cfg]
-  (if-let [log-file (:log-file cfg)] (log/add-log-file log-file))
-  (if-let [log-level (:log-level cfg)] (log/set-log-level! log-level))
-  (if-let [log-console (:log-console cfg)] (log/add-log-console)))
 
 (defn set-db-connections
   [data-sources]

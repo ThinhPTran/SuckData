@@ -80,7 +80,6 @@
 ;; Handle init message
 (defn init-handler [{:keys [wsid]}]
   (mydb/initinfo)
-  ;(mydb/pick-first-well)
   (doseq [k (keys @mydb/app-state)]
     (channel-send! wsid [:db/changeAppState {k (k @mydb/app-state)}])))
 
