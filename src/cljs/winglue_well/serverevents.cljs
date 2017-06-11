@@ -77,10 +77,18 @@
    (case msgType
          :db/changeWellState (do
                               ;(.log js/console (str "data: " data))
-                              (swap! mydb/well-state assoc (first (keys data)) (first (vals data))))
+                              (let [k (first (keys data))
+                                    val (first (vals data))
+                                    oldval (k @mydb/well-state)]
+                                (when (not= val oldval)
+                                  (swap! mydb/well-state assoc (first (keys data)) (first (vals data))))))
          :db/changeFieldState (do
                                 ;(.log js/console (str "data: " data))
-                                (swap! mydb/field-state assoc (first (keys data)) (first (vals data))))
+                                (let [k (first (keys data))
+                                      val (first (vals data))
+                                      oldval (k @mydb/field-state)]
+                                  (when (not= val oldval)
+                                    (swap! mydb/field-state assoc (first (keys data)) (first (vals data))))))
          (do
            (.log js/console "Unmatched application event")
            (.log js/console "Received message: \n")

@@ -42,29 +42,16 @@
 
 ;; App-state change handler
 (defn well-state-change-handler [key atom old-state new-state]
-  ;(when (not= old-state new-state)
-    (println "-- Well-state Changed --")
-    (let [change (or (nth (diff old-state new-state) 1)
-                     nil)
-          changekeys (keys change)]
-      ;(when (some? changekeys))
-      ;(println "connected-uids: " @connected-uids)
-      ;(println "change: " change)
-      ;(println (str @mydb/app-state))
-      (doseq [uid (:any @connected-uids)]
-        (if (some? changekeys)
-          (doseq [k changekeys]
-            (channel-send! uid [:db/changeWellState {k (k @mydb/well-state)}]))))))
+  (println "-- Well-state Changed --")
+  (doseq [uid (:any @connected-uids)]
+    (doseq [k (keys @mydb/well-state)]
+      (channel-send! uid [:db/changeWellState {k (k @mydb/well-state)}]))))
 
 (defn field-state-change-handler [key atom old-state new-state]
   (println "-- Field-state Changed --")
-  (let [change (or (nth (diff old-state new-state) 1)
-                   nil)
-        changeKeys (keys change)]
-    (doseq [uid (:any @connected-uids)]
-      (if (some? changeKeys)
-        (doseq [k changeKeys]
-          (channel-send! uid [:db/changeFieldState {k (k @mydb/field-state)}]))))))
+  (doseq [uid (:any @connected-uids)]
+    (doseq [k (keys @mydb/field-state)]
+      (channel-send! uid [:db/changeFieldState {k (k @mydb/field-state)}]))))
 
 (add-watch mydb/well-state :well-watcher well-state-change-handler)
 (add-watch mydb/field-state :field-watcher field-state-change-handler)
