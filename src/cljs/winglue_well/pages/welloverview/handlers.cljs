@@ -9,6 +9,7 @@
 
 (defn set-selected-well [well]
   (.log js/console (str "well: " well))
+  ;(swap! mydb/app-state :welldoc {})
   (se/sendAction :pickwell well))
 
 (defn set-open-well-selector [in]

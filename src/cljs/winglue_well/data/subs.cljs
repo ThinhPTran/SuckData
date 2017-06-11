@@ -2,40 +2,40 @@
   (:require [winglue-well.db :as mydb]))
 
 (defn get-welltest []
-  (get-in @mydb/app-state [:welldoc :welltest-map]))
+  (get-in @mydb/well-state [:welldoc :welltest-map]))
 
 (defn get-welltest-hist []
-  (get-in @mydb/app-state [:welldoc :welltest-hist-map]))
+  (get-in @mydb/well-state [:welldoc :welltest-hist-map]))
 
 (defn get-depth-profile []
-  (get-in @mydb/app-state [:welldoc :depth-profile-map]))
+  (get-in @mydb/well-state [:welldoc :depth-profile-map]))
 
 (defn get-equilibrium-profile []
-  (get-in @mydb/app-state [:welldoc :equilibrium-map]))
+  (get-in @mydb/well-state [:welldoc :equilibrium-map]))
 
 (defn get-outflow-curve []
-  (get-in @mydb/app-state [:welldoc :outflow-map]))
+  (get-in @mydb/well-state [:welldoc :outflow-map]))
 
 (defn get-inflow-curve []
-  (get-in @mydb/app-state [:welldoc :ipr-curve-map]))
+  (get-in @mydb/well-state [:welldoc :ipr-curve-map]))
 
 (defn get-mandrel-survey []
-  (get-in @mydb/app-state [:welldoc :mandrel-survey-map]))
+  (get-in @mydb/well-state [:welldoc :mandrel-survey-map]))
 
 (defn get-stored-lgas-response []
-  (get-in @mydb/app-state [:welldoc :stored-lgas-response-map]))
+  (get-in @mydb/well-state [:welldoc :stored-lgas-response-map]))
 
 (defn get-calced-lgas-response []
-  (get-in @mydb/app-state [:welldoc :calced-lgr-curves-map]))
+  (get-in @mydb/well-state [:welldoc :calced-lgr-curves-map]))
 
 (defn get-lgas-response []
-  (get-in @mydb/app-state [:welldoc :lgr-curves-map]))
+  (get-in @mydb/well-state [:welldoc :lgr-curves-map]))
 
 (defn get-cal-wt []
-  (get-in @mydb/app-state [:welldoc :cal-wt]))
+  (get-in @mydb/well-state [:welldoc :cal-wt]))
 
 (defn get-uncal-wt []
-  (get-in @mydb/app-state [:welldoc :uncal-wt]))
+  (get-in @mydb/well-state [:welldoc :uncal-wt]))
 
 
 

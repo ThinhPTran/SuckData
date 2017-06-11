@@ -17,9 +17,9 @@
 
 (defn init-routes []
   (defroute "/" []
-    (swap! mydb/app-state assoc :current-page :home))
+            (swap! mydb/well-state assoc :current-page :home))
 
   (defroute "*" []
-    (swap! mydb/app-state assoc :current-page :page404))
+            (swap! mydb/well-state assoc :current-page :page404))
 
   (hook-browser-navigation!))

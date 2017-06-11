@@ -3,19 +3,19 @@
 
 (defn get-datasources
   []
-  (get-in @mydb/app-state [:all-dsn]))
+  (get-in @mydb/well-state [:all-dsn]))
 
 (defn get-selected-datasource
   []
-  (get-in @mydb/app-state [:current-dsn]))
+  (get-in @mydb/well-state [:current-dsn]))
 
 (defn get-all-well
   []
-  (get-in @mydb/app-state [:all-well]))
+  (get-in @mydb/well-state [:all-well]))
 
 (defn get-selected-well
   []
-  (get-in @mydb/app-state [:current-well]))
+  (get-in @mydb/well-state [:current-well]))
 
 (defn get-is-open-wellselector
   []
@@ -23,7 +23,7 @@
 
 (defn get-well-doc
   []
-  (get-in @mydb/app-state [:welldoc]))
+  (get-in @mydb/well-state [:welldoc]))
 
 (defn get-dvsp-config
   []

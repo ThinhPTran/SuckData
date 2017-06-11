@@ -41,22 +41,33 @@
 ;; Messages handler
 
 ;; App-state change handler
-(defn app-state-change-handler [key atom old-state new-state]
+(defn well-state-change-handler [key atom old-state new-state]
   ;(when (not= old-state new-state)
-    (println "-- Atom Changed --")
+    (println "-- Well-state Changed --")
     (let [change (or (nth (diff old-state new-state) 1)
                      nil)
           changekeys (keys change)]
       ;(when (some? changekeys))
       ;(println "connected-uids: " @connected-uids)
       ;(println "change: " change)
-      (println (str @mydb/app-state))))
-      ;(doseq [uid (:any @connected-uids)]
-      ;  (if (some? changekeys)
-      ;    (doseq [k changekeys]
-      ;      (channel-send! uid [:db/changeAppState {k (k @mydb/app-state)}]))))))
+      ;(println (str @mydb/app-state))
+      (doseq [uid (:any @connected-uids)]
+        (if (some? changekeys)
+          (doseq [k changekeys]
+            (channel-send! uid [:db/changeWellState {k (k @mydb/well-state)}]))))))
 
-(add-watch mydb/app-state :watcher app-state-change-handler)
+(defn field-state-change-handler [key atom old-state new-state]
+  (println "-- Field-state Changed --")
+  (let [change (or (nth (diff old-state new-state) 1)
+                   nil)
+        changeKeys (keys change)]
+    (doseq [uid (:any @connected-uids)]
+      (if (some? changeKeys)
+        (doseq [k changeKeys]
+          (channel-send! uid [:db/changeFieldState {k (k @mydb/field-state)}]))))))
+
+(add-watch mydb/well-state :well-watcher well-state-change-handler)
+(add-watch mydb/field-state :field-watcher field-state-change-handler)
 
 ;; After login, please init the session app-state
 (defn login-handler
@@ -80,11 +91,13 @@
 ;; Handle init message
 (defn init-handler [{:keys [wsid]}]
   (mydb/initinfo)
-  (doseq [k (keys @mydb/app-state)]
-    (channel-send! wsid [:db/changeAppState {k (k @mydb/app-state)}])))
+  (doseq [k (keys @mydb/well-state)]
+    (channel-send! wsid [:db/changeWellState {k (k @mydb/well-state)}]))
+  (doseq [k (keys @mydb/field-state)]
+    (channel-send! wsid [:db/changeFieldState {k (k @mydb/field-state)}])))
 
-(defn changeState [{:keys [path data]}]
-  (swap! mydb/app-state assoc-in path data))
+(defn changeWellState [{:keys [path data]}]
+  (swap! mydb/well-state assoc-in path data))
 
 (defn- ws-msg-handler []
   (fn [{:keys [event] :as msg} _]
@@ -92,7 +105,7 @@
       (case id
         :db/init (init-handler data)
         :db/action (action-processing data)
-        :db/changeAppState (changeState data)
+        :db/changeWellState (changeWellState data)
         (log/info "Unmatched event: " id " data: " data)))))
 
 (defn ws-message-router []

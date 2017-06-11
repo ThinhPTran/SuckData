@@ -224,7 +224,7 @@
     (if (some? datasources)
       (if (= 1 (count datasources))
         (do
-          (overviewhandlers/set-selected-datasource (key (first datasources)))
+          (overviewhandlers/set-selected-datasource (first (keys (first datasources))))
           [:div])
         [:div {:style {:margin-bottom "15px"}}
          [:label "Data Source"]

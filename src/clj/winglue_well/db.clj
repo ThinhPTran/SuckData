@@ -5,7 +5,9 @@
             [clojure.data :as da :refer [diff]]
             [durable-atom.core :refer [durable-atom]]))
 
-(def app-state (atom {}))
+(def well-state (atom {}))
+(def field-state (atom {}))
+
 (def persist-atom (durable-atom "/home/debtao/Datastore/glue.dat"))
 
 (defn initinfo []
@@ -15,14 +17,36 @@
                     (distinct)
                     (vec))]
     (println (str "initinfo: "))
-    (println (str "dsnset: " (pr-str dsnset)))
-    (println (str "app-state: " @app-state))))
+    ;(println (str "dsnset: " (pr-str dsnset)))
+    ;(println (str "app-state: " @app-state))
+    (swap! well-state assoc :all-dsn dsnset)))
 
 (defn pick-dsn [dsn]
-  (println (str "pick-dsn: " dsn)))
+  (println (str "pick-dsn: " dsn))
+  (swap! well-state assoc :current-dsn dsn)
+  (let [wellset (->> @persist-atom
+                     (:wells)
+                     (map #(:well %))
+                     (vec))]
+    ;(println (str "wellset: " (pr-str wellset)))
+    (swap! well-state assoc :all-well wellset)))
 
 (defn pick-well [well]
-  (println (str "pick-well: " well)))
+  (let [dsn (:current-dsn @well-state)
+        welldata (->> @persist-atom
+                      (:wells)
+                      (filter #(and (= dsn (first (keys (:dsn %))))
+                                    (= well (:well %)))))
+        fielddata (->> @persist-atom
+                       (:wells)
+                       (filter #(and (= dsn (first (keys (:dsn %))))
+                                     (= (:field well) (:field (:well %))))))
+        welldoc (:welldoc (first welldata))]
+    (println (str "pick-well: " well))
+    ;(println (str "welldata: " (pr-str welldata)))
+    (swap! well-state assoc :current-well well)
+    (swap! well-state assoc :welldoc welldoc)
+    (swap! field-state assoc :wells fielddata)))
 
 
 

@@ -7,7 +7,7 @@
 
 (defn main-panel []
   "The main reagent component"
-  (let [current-page (:current-page @mydb/app-state)]
+  (let [current-page (:current-page @mydb/well-state)]
     (cond
       (= :home current-page) [MainPage]
       (= :page404 current-page) [Page404]

@@ -6,5 +6,6 @@
 (defn DataAnalysis
   "Data Analysis Page"
   []
-  (let [data @mydb/app-state]
-    [:div (str data)]))
+  (let [data @mydb/well-state
+        wells (:wells @mydb/field-state)]
+    [:div (str "Number of wells: " (count wells))]))

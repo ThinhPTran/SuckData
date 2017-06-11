@@ -151,4 +151,5 @@
                                            :color  "#00ff00"
                                            :tooltip qvsi-scatter-tooltip}}}}}))
 
-(defonce app-state (reagent/atom {}))
+(defonce well-state (reagent/atom {}))
+(defonce field-state (reagent/atom {}))

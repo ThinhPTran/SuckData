@@ -2,4 +2,4 @@
   (:require [winglue-well.db :as mydb]))
 
 (defn get-window-focus []
-  (get-in @mydb/app-state [:window :focus]))
+  (get-in @mydb/well-state [:window :focus]))
