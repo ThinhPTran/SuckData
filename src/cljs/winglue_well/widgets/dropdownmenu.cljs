@@ -13,4 +13,4 @@
 
    ^{:key :select-none} [:option {:value nil} ""] ;; display nothing by default
    (for [item item-map]
-     ^{:key item} [:option {:value (key item)} (val item)])])
+     ^{:key item} [:option {:value (first (keys item))} (first (vals item))])])

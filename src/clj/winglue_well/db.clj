@@ -15,17 +15,25 @@
                     (:wells)
                     (map #(:dsn %))
                     (distinct)
-                    (vec))]
+                    (vec))
+        firstdsn (first dsnset)
+        wellset (->> @persist-atom
+                     (:wells)
+                     (map #(:well %))
+                     (vec))]
     (println (str "initinfo: "))
-    ;(println (str "dsnset: " (pr-str dsnset)))
+    (println (str "dsnset: " (pr-str dsnset)))
+    (println (str "there is: " (count wellset) " wells."))
     ;(println (str "app-state: " @app-state))
-    (swap! well-state assoc :all-dsn dsnset)))
+    (swap! well-state assoc :all-dsn dsnset)
+    (swap! well-state assoc :current-dsn firstdsn)))
 
 (defn pick-dsn [dsn]
   (println (str "pick-dsn: " dsn))
   (swap! well-state assoc :current-dsn dsn)
   (let [wellset (->> @persist-atom
                      (:wells)
+                     (filter #(= (first (keys (:dsn %))) dsn))
                      (map #(:well %))
                      (vec))]
     ;(println (str "wellset: " (pr-str wellset)))
