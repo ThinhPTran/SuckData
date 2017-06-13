@@ -132,8 +132,9 @@
         outflow-curve (datasubs/get-outflow-curve)
         welltest-hist-map (datasubs/get-welltest-hist)
         welltest-list (vals welltest-hist-map)
-        cal-wt (filter #(com-utils/wtest-is-calibrated %) welltest-list)
-        uncal-wt (filter #(not (com-utils/wtest-is-calibrated %)) welltest-list)
+        cal-wt (take 5 (filter #(com-utils/wtest-is-calibrated %) (sort-by :welltest-date > welltest-list)))
+        Ncalwt (count cal-wt)
+        uncal-wt (take (- 5 Ncalwt) (filter #(not (com-utils/wtest-is-calibrated %)) (sort-by :welltest-date > welltest-list)))
         chart-config (highchart/prep-chart-config
                        pvsq-config
                        {:meas_inflow_liquid_rate
@@ -163,7 +164,7 @@
                  (some? (:est-fbhp (first uncal-wt))))
              (some? chart-config))
       [:div
-       [:div (str "welltest-list: " welltest-list)]
+       ;[:div (str "welltest-list: " welltest-list)]
        ;[:div (str "cal-wt: " cal-wt)]
        ;[:div (str "uncal-wt: " uncal-wt)]
        [HighChart chart-config]]
@@ -173,8 +174,9 @@
   (let [lg-response (datasubs/get-lgas-response)
         welltest-hist-map (datasubs/get-welltest-hist)
         welltest-list (vals welltest-hist-map)
-        cal-wt (filter #(com-utils/wtest-is-calibrated %) welltest-list)
-        uncal-wt (filter #(not (com-utils/wtest-is-calibrated %)) welltest-list)
+        cal-wt (take 5 (filter #(com-utils/wtest-is-calibrated %) (sort-by :welltest-date welltest-list)))
+        Ncalwt (count cal-wt)
+        uncal-wt (take (- 5 Ncalwt) (filter #(not (com-utils/wtest-is-calibrated %)) (sort-by :welltest-date welltest-list)))
         chart-config (highchart/prep-chart-config
                        qvsi-config
                        {:lg-resp (table-utils/map-table-to-array
@@ -292,7 +294,6 @@
              [:div.col-sm-10
               [WellTable selected-data-source selected-well]]
              [ContentMsg "Select a Well"])])])]))
-
 
 (defn Content
   "Well Overview Page meant to be used as a content page in the AdminLTE template"
