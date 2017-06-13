@@ -62,8 +62,8 @@
     [:div
      {:ref (fn [mydiv]
              (when (some? mydiv)
-               (js/tubingpipe mydiv options)
-               (.log js/console (str "nodiv"))))}]))
+               (js/tubingpipe mydiv options)))}]))
+               ;(.log js/console (str "nodiv"))))}]))
 
 
 

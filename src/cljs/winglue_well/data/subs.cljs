@@ -10,6 +10,23 @@
 (defn get-depth-profile []
   (get-in @mydb/well-state [:welldoc :depth-profile-map]))
 
+(defn get-depth-profile-of-well [well]
+  (let [welldata (->> @mydb/field-state
+                      (:wells)
+                      (filter #(= well (:well %))))
+        welldoc (:welldoc (first welldata))
+        depth-profile (:depth-profile-map welldoc)]
+    depth-profile))
+
+(defn get-valve-map-of-well [well]
+  (let [welldata (->> @mydb/field-state
+                      (:wells)
+                      (filter #(= well (:well %))))
+        welldoc (:welldoc (first welldata))
+        depth-profile (:depth-profile-map welldoc)
+        valve-map (:valves-status-map depth-profile)]
+    valve-map))
+
 (defn get-equilibrium-profile []
   (get-in @mydb/well-state [:welldoc :equilibrium-map]))
 
@@ -36,6 +53,5 @@
 
 (defn get-uncal-wt []
   (get-in @mydb/well-state [:welldoc :uncal-wt]))
-
 
 

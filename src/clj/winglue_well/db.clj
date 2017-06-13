@@ -8,7 +8,7 @@
 (def well-state (atom {}))
 (def field-state (atom {}))
 
-(def persist-atom (durable-atom "/home/debtao/Datastore/glue.dat"))
+(def persist-atom (durable-atom "/home/debtao/Datastore/glue27wells.dat"))
 
 (defn initinfo []
   (let [dsnset (->> @persist-atom

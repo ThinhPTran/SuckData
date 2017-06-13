@@ -4,7 +4,14 @@
 
 (defn set-selected-well [well]
   (let [rawwell well
-        cleanwell (dissoc rawwell :glstatus)]
+        cleanwell (dissoc rawwell :glstatus)
+        welldata (->> @mydb/field-state
+                      (:wells)
+                      (filter #(= well (:well %))))
+        welldoc (:welldoc (first welldata))]
     (.log js/console (str "well: " cleanwell))
+    (.log js/console (str "welldoc: " welldoc))
     (swap! mydb/well-state assoc :current-well cleanwell)
-    (se/sendAction :pickwell cleanwell)))
+    (if (some? welldoc)
+      (swap! mydb/well-state assoc :welldoc welldoc)
+      (se/sendAction :pickwell cleanwell))))

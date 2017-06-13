@@ -80,7 +80,7 @@
   (let [depth-profile (datasubs/get-depth-profile)
         mandrel-survey (datasubs/get-mandrel-survey)
         valves-map (:valves-status-map depth-profile)]
-    (.log js/console "GLVTable!!!!!")
+    ;(.log js/console "GLVTable!!!!!")
     (if (and (some? depth-profile)
              (some? mandrel-survey)
              (some? valves-map))

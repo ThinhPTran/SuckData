@@ -56,7 +56,7 @@
 
 (defn WellSelector [data-source on-select-fn]
   (let [well-list (dataanalsubs/get-all-well-status)]
-    [:div (str "well-list: " well-list)
+    [:div
      (if (some? well-list)
        [DataTable
         {:data well-list
@@ -64,11 +64,11 @@
                     :data :well}
                    {:title "Completion"
                     :searchable false
-                    :data :cmpl}]
-                   ;{:title "GL status"
-                   ; :searchable false
-                   ; :data :glstatus
-                   ; :render dataanalsubs/render-GL-status}]
+                    :data :cmpl}
+                   {:title "GL status"
+                    :searchable false
+                    :data :glstatus
+                    :render dataanalsubs/render-GL-status}]
          :deferRender true
          :select "single"}
         {:select (fn [e dt type index]
