@@ -2,7 +2,9 @@
   (:require [winglue-well.db :as mydb]
             [clojure.set :refer [rename-keys]]
             [winglue-well.pages.welloverview.subs :as overviewsubs]
+            [winglue-well.pages.dataanalysis.subs :as dataanalsubs]
             [winglue-well.pages.welloverview.handlers :as overviewhandlers]
+            [winglue-well.pages.dataanalysis.handlers :as dataanalhandlers]
             [winglue-well.widgets.datatable :refer [DataTable]]
             [winglue-well.widgets.loadingoverlay :refer [LoadingOverlay]]
             [winglue-well.components.glvtable :refer [GLVTable]]
@@ -53,21 +55,20 @@
       [LoadingOverlay])))
 
 (defn WellSelector [data-source on-select-fn]
-  (let [well-list (overviewsubs/get-all-well)]
-    (.log js/console (str "well-list: " well-list))
-    [:div
+  (let [well-list (dataanalsubs/get-all-well-status)]
+    [:div (str "well-list: " well-list)
      (if (some? well-list)
        [DataTable
         {:data well-list
-         :columns [{:title "Field"
-                    :data :field}
-                   {:title "Lease"
-                    :data :lease}
-                   {:title "Well"
+         :columns [{:title "Well"
                     :data :well}
                    {:title "Completion"
                     :searchable false
                     :data :cmpl}]
+                   ;{:title "GL status"
+                   ; :searchable false
+                   ; :data :glstatus
+                   ; :render dataanalsubs/render-GL-status}]
          :deferRender true
          :select "single"}
         {:select (fn [e dt type index]
@@ -78,7 +79,8 @@
                                      (rename-keys {"field" :field
                                                    "lease" :lease
                                                    "well" :well
-                                                   "cmpl" :cmpl}))))}]
+                                                   "cmpl" :cmpl
+                                                   "glstatus" :glstatus}))))}]
        [LoadingOverlay])]))
 
 (defn WellPicker []
@@ -96,7 +98,7 @@
            :with-border true}}
          [WellSelector selected-data-source
           #(do
-             (overviewhandlers/set-selected-well %))]]])]))
+             (dataanalhandlers/set-selected-well %))]]])]))
 
 (defn DVSPChart [data-source well dvsp-config]
   (let [depth-profile (datasubs/get-depth-profile)
