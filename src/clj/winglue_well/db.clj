@@ -42,7 +42,8 @@
                        (:wells))]
     ;(println (str "wellset: " (pr-str wellset)))
     (swap! well-state assoc :all-well wellset)
-    (swap! field-state assoc :wells fielddata)))
+    (if (nil? (:wells @field-state))
+      (swap! field-state assoc :wells fielddata))))
 
 (defn pick-well [well]
   (let [dsn (:current-dsn @well-state)

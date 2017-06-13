@@ -30,7 +30,6 @@
 
 (defn WellSelector [data-source on-select-fn]
   (let [well-list (overviewsubs/get-all-well)]
-    ;(.log js/console (str "well-list: " well-list))
     [:div
      (if (some? well-list)
        [DataTable
