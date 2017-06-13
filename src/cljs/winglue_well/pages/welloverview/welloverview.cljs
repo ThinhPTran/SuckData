@@ -130,9 +130,10 @@
 (defn PVSQChart [datasource well pvsq-config]
   (let [inflow-curve (datasubs/get-inflow-curve)
         outflow-curve (datasubs/get-outflow-curve)
-        welltest-list (datasubs/get-welltest-hist)
-        cal-wt (datasubs/get-cal-wt)
-        uncal-wt (datasubs/get-uncal-wt)
+        welltest-hist-map (datasubs/get-welltest-hist)
+        welltest-list (vals welltest-hist-map)
+        cal-wt (filter #(com-utils/wtest-is-calibrated %) welltest-list)
+        uncal-wt (filter #(not (com-utils/wtest-is-calibrated %)) welltest-list)
         chart-config (highchart/prep-chart-config
                        pvsq-config
                        {:meas_inflow_liquid_rate
@@ -140,29 +141,29 @@
                           inflow-curve :liquid-rate-list :fbhp-list)}
                        {:meas_outflow_liquid_rate
                         (sort-by first (table-utils/map-table-to-array
-                                         outflow-curve :liquid-rate-list :fbhp-list))})]
-                       ;{:well-tests (vec
-                       ;               (for [welltest welltest-list]
-                       ;                 (-> welltest
-                       ;                     (select-keys [:calib-liquid-rate :est-fbhp :welltest-date])
-                       ;                     (update-in [:welltest-date] rformat/format-iso-date)
-                       ;                     (rename-keys {:calib-liquid-rate :x, :est-fbhp :y
-                       ;                                   :welltest-date :name}))))})]
-                       ;{:uncal-well-tests (vec
-                       ;                     (for [welltest uncal-wt]
-                       ;                       (-> welltest
-                       ;                           (select-keys [:calib-liquid-rate :est-fbhp :welltest-date])
-                       ;                           (update-in [:welltest-date] rformat/format-iso-date)
-                       ;                           (rename-keys {:calib-liquid-rate :x, :est-fbhp :y
-                       ;                                         :welltest-date :name}))))})]
+                                         outflow-curve :liquid-rate-list :fbhp-list))}
+                       {:well-tests (vec
+                                      (for [welltest cal-wt]
+                                        (-> welltest
+                                            (select-keys [:calib-liquid-rate :est-fbhp :welltest-date])
+                                            (update-in [:welltest-date] rformat/format-iso-date)
+                                            (rename-keys {:calib-liquid-rate :x, :est-fbhp :y
+                                                          :welltest-date :name}))))}
+                       {:uncal-well-tests (vec
+                                            (for [welltest uncal-wt]
+                                              (-> welltest
+                                                  (select-keys [:calib-liquid-rate :est-fbhp :welltest-date])
+                                                  (update-in [:welltest-date] rformat/format-iso-date)
+                                                  (rename-keys {:calib-liquid-rate :x, :est-fbhp :y
+                                                                :welltest-date :name}))))})]
     (if (and (some? inflow-curve)
              (some? outflow-curve)
-             ;(some? (:est-fbhp (first (vals welltest-list))))
-             ;(or (some? (:est-fbhp (first cal-wt)))
-             ;    (some? (:est-fbhp (first uncal-wt))))
+             (some? (:est-fbhp (first welltest-list)))
+             (or (some? (:est-fbhp (first cal-wt)))
+                 (some? (:est-fbhp (first uncal-wt))))
              (some? chart-config))
       [:div
-       ;[:div (str "welltest-list: " welltest-list)]
+       [:div (str "welltest-list: " welltest-list)]
        ;[:div (str "cal-wt: " cal-wt)]
        ;[:div (str "uncal-wt: " uncal-wt)]
        [HighChart chart-config]]
@@ -170,33 +171,34 @@
 
 (defn QVSIChart [datasource well qvsi-config]
   (let [lg-response (datasubs/get-lgas-response)
-        welltest-list (datasubs/get-welltest-hist)
-        cal-wt (datasubs/get-cal-wt)
-        uncal-wt (datasubs/get-uncal-wt)
+        welltest-hist-map (datasubs/get-welltest-hist)
+        welltest-list (vals welltest-hist-map)
+        cal-wt (filter #(com-utils/wtest-is-calibrated %) welltest-list)
+        uncal-wt (filter #(not (com-utils/wtest-is-calibrated %)) welltest-list)
         chart-config (highchart/prep-chart-config
                        qvsi-config
                        {:lg-resp (table-utils/map-table-to-array
                                    lg-response
-                                   :lift-gas-rate-list :calib-oil-rate-list)})]
-                       ;{:wellotests (vec
-                       ;               (for [welltest welltest-list]
-                       ;                 (-> welltest
-                       ;                     (select-keys [:calib-lift-gas-rate :calib-oil-rate :welltest-date])
-                       ;                     (update-in [:welltest-date] rformat/format-iso-date)
-                       ;                     (rename-keys {:calib-oil-rate :y, :calib-lift-gas-rate :x
-                       ;                                   :welltest-date :name}))))})]
-                       ;{:uncal-wellotests (vec
-                       ;                     (for [welltest uncal-wt]
-                       ;                       (-> welltest
-                       ;                           (select-keys [:calib-lift-gas-rate :calib-oil-rate :welltest-date])
-                       ;                           (update-in [:welltest-date] rformat/format-iso-date)
-                       ;                           (rename-keys {:calib-oil-rate :y, :calib-lift-gas-rate :x
-                       ;                                         :welltest-date :name}))))})]
+                                   :lift-gas-rate-list :calib-oil-rate-list)}
+                       {:wellotests (vec
+                                      (for [welltest cal-wt]
+                                        (-> welltest
+                                            (select-keys [:calib-lift-gas-rate :calib-oil-rate :welltest-date])
+                                            (update-in [:welltest-date] rformat/format-iso-date)
+                                            (rename-keys {:calib-oil-rate :y, :calib-lift-gas-rate :x
+                                                          :welltest-date :name}))))}
+                       {:uncal-wellotests (vec
+                                            (for [welltest uncal-wt]
+                                              (-> welltest
+                                                  (select-keys [:calib-lift-gas-rate :calib-oil-rate :welltest-date])
+                                                  (update-in [:welltest-date] rformat/format-iso-date)
+                                                  (rename-keys {:calib-oil-rate :y, :calib-lift-gas-rate :x
+                                                                :welltest-date :name}))))})]
 
     (if (and (some? lg-response)
-             (some? (:est-fbhp (first (vals welltest-list))))
-             ;(or (some? (:est-fbhp (first cal-wt)))
-             ;    (some? (:est-fbhp (first uncal-wt))))
+             (some? (:est-fbhp (first welltest-list)))
+             (or (some? (:est-fbhp (first cal-wt)))
+                 (some? (:est-fbhp (first uncal-wt))))
              (some? chart-config))
       [HighChart chart-config]
       [LoadingOverlay])))

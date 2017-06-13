@@ -120,15 +120,14 @@
                                            :color  "#00ff00"
                                            :xAxis 0
                                            :yAxis 0
+                                           :tooltip pvsq-scatter-tooltip}
+                                          :uncal-well-tests
+                                          {:name "Well Test Points (Uncalibrated)"
+                                           :type "scatter"
+                                           :color  "#ff0000"
+                                           :xAxis 0
+                                           :yAxis 0
                                            :tooltip pvsq-scatter-tooltip}}}
-                                          ;:uncal-well-tests
-                                          ;{:name "Well Test Points (Uncalibrated)"
-                                          ; :type "scatter"
-                                          ; :color  "#ff0000"
-                                          ; :xAxis 0
-                                          ; :yAxis 0
-                                          ; :tooltip pvsq-scatter-tooltip}}}
-
                           :qvsi {:id "qvsi"
                                  :title  {:text "Production vs Injection"}
                                  :xAxis  {:title {:text "Injection (MCF/day)"}
@@ -140,11 +139,11 @@
                                            :lineWidth 3
                                            :tooltip qvsi-tooltip
                                            :marker {:enabled false}}
-                                          ;:uncal-wellotests
-                                          ;{:name "Well Test Oil Points (Uncalibrated)"
-                                          ; :type "scatter"
-                                          ; :color  "#ff0000"
-                                          ; :tooltip qvsi-scatter-tooltip}
+                                          :uncal-wellotests
+                                          {:name "Well Test Oil Points (Uncalibrated)"
+                                           :type "scatter"
+                                           :color  "#ff0000"
+                                           :tooltip qvsi-scatter-tooltip}
                                           :wellotests
                                           {:name "Well Test Oil Points (Calibrated)"
                                            :type "scatter"
