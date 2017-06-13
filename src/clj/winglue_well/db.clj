@@ -20,7 +20,9 @@
         wellset (->> @persist-atom
                      (:wells)
                      (map #(:well %))
-                     (vec))]
+                     (vec))
+        fielddata (->> @persist-atom
+                       (:wells))]
     (println (str "initinfo: "))
     (println (str "dsnset: " (pr-str dsnset)))
     (println (str "there is: " (count wellset) " wells."))
@@ -35,9 +37,12 @@
                      (:wells)
                      (filter #(= (first (keys (:dsn %))) dsn))
                      (map #(:well %))
-                     (vec))]
+                     (vec))
+        fielddata (->> @persist-atom
+                       (:wells))]
     ;(println (str "wellset: " (pr-str wellset)))
-    (swap! well-state assoc :all-well wellset)))
+    (swap! well-state assoc :all-well wellset)
+    (swap! field-state assoc :wells fielddata)))
 
 (defn pick-well [well]
   (let [dsn (:current-dsn @well-state)
@@ -45,16 +50,12 @@
                       (:wells)
                       (filter #(and (= dsn (first (keys (:dsn %))))
                                     (= well (:well %)))))
-        fielddata (->> @persist-atom
-                       (:wells)
-                       (filter #(and (= dsn (first (keys (:dsn %))))
-                                     (= (:field well) (:field (:well %))))))
+
         welldoc (:welldoc (first welldata))]
     (println (str "pick-well: " well))
     ;(println (str "welldata: " (pr-str welldata)))
     (swap! well-state assoc :current-well well)
-    (swap! well-state assoc :welldoc welldoc)
-    (swap! field-state assoc :wells fielddata)))
+    (swap! well-state assoc :welldoc welldoc)))
 
 
 
