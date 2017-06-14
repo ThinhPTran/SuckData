@@ -230,6 +230,26 @@
          {:select (fn [e dt type index])}]
         [LoadingOverlay])]]))
 
+(defn OilrateInf []
+  (let [welltest-hist-map (datasubs/get-welltest-hist)
+        welltest-list (vals welltest-hist-map)
+        indata (vec (map (fn [in] [(com-utils/getUTCtime (:welltest-date in)) (js/parseFloat (rformat/format-dec (:calib-oil-rate in) 2))])
+                         (sort-by :welltest-date > welltest-list)))
+        chart-config {:chart {:type "spline"}
+                      :title {:text "Oil rate vs. time"}
+                      :xAxis {:type "datetime"
+                              :labels {:format "{value:%Y-%m-%d}"}
+                              :title {:text "Date"}}
+                      :yAxis {:title {:text "Oil rate (bbq/day)"}}
+                      :series [{:name "Oil rate"
+                                :data indata}]}]
+    [:div
+     [BoxContainer
+      {:header
+       {:title "Oil rate vs. time"
+        :with-border true}}
+      [HighChart chart-config]]]))
+
 (defn DataAnalysis
   "Data Analysis Page"
   []
@@ -250,6 +270,9 @@
           [SelectedWellInf]]
          [BoxContainer
           [DVSPChart]]]]
+       [:div.row
+        [:div.col-sm-12.col-md-12
+         [OilrateInf]]]
        [:div.row
         [:div.col-sm-12.col-md-12
          [WellTestInfos]]]

@@ -1,5 +1,13 @@
 (ns winglue-well.utils.common
-  (:require [winglue-well.utils.format :as rformat]))
+  (:import [goog.date.DateTime])
+  (:require [winglue-well.utils.format :as rformat]
+            [goog.date :as gdate]
+            [goog.string :as gstring]
+            [goog.string.format]))
+
+(defn getUTCtime [StringDate]
+  (let [date (gdate/fromIsoString StringDate)]
+    (.getTime date)))
 
 (defn decode-valve-status
   [v]

@@ -39,10 +39,14 @@
                      (map #(:well %))
                      (vec))
         fielddata (->> @persist-atom
-                       (:wells))]
+                       (:wells))
+        currentdata (first fielddata)
+        currentwell (:well currentdata)
+        currentwelldoc (:welldoc currentdata)]
     ;(println (str "wellset: " (pr-str wellset)))
     (swap! well-state assoc :all-well wellset)
-    (swap! field-state assoc :all-well wellset)
+    (swap! well-state assoc :current-well currentwell)
+    (swap! well-state assoc :welldoc currentwelldoc)
     (if (nil? (:wells @field-state))
       (swap! field-state assoc :wells fielddata))))
 
