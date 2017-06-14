@@ -27,8 +27,8 @@
     (println (str "dsnset: " (pr-str dsnset)))
     (println (str "there is: " (count wellset) " wells."))
     ;(println (str "app-state: " @app-state))
-    (swap! well-state assoc :all-dsn dsnset)
-    (swap! well-state assoc :current-dsn firstdsn)))
+    (swap! well-state assoc :all-dsn dsnset)))
+    ;(swap! well-state assoc :current-dsn firstdsn)))
 
 (defn pick-dsn [dsn]
   (println (str "pick-dsn: " dsn))
@@ -42,6 +42,7 @@
                        (:wells))]
     ;(println (str "wellset: " (pr-str wellset)))
     (swap! well-state assoc :all-well wellset)
+    (swap! field-state assoc :all-well wellset)
     (if (nil? (:wells @field-state))
       (swap! field-state assoc :wells fielddata))))
 

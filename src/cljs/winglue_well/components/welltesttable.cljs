@@ -86,8 +86,6 @@
   "Component that displays well test information"
   (let [well-test (datasubs/get-welltest)
         welltest-date (:welltest-date well-test)]
-    ;(.log js/console "WellTestInfo")
-    ;(.log js/console (str "well-test: " well-test))
     (if (and (some? well-test) (some? welltest-date))
       [:div
        [WellTestTable well-test]

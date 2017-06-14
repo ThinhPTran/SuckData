@@ -22,7 +22,7 @@
 
 (defn get-all-well-status
   []
-  (let [in-welllist (get-in @mydb/well-state [:all-well])
+  (let [in-welllist (get-in @mydb/field-state [:all-well])
         out-welllist (map #(cal-glstatus %) in-welllist)]
     out-welllist))
 

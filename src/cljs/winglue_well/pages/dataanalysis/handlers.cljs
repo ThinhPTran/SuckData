@@ -7,11 +7,11 @@
         cleanwell (dissoc rawwell :glstatus)
         welldata (->> @mydb/field-state
                       (:wells)
-                      (filter #(= well (:well %))))
+                      (filter #(= cleanwell (:well %))))
         welldoc (:welldoc (first welldata))]
     (.log js/console (str "well: " cleanwell))
-    (.log js/console (str "welldoc: " welldoc))
+    ;(.log js/console (str "welldoc: " welldoc))
     (swap! mydb/well-state assoc :current-well cleanwell)
     (if (some? welldoc)
-      (swap! mydb/well-state assoc :welldoc welldoc)
-      (se/sendAction :pickwell cleanwell))))
+      (swap! mydb/well-state assoc :welldoc welldoc))))
+      ;(se/sendAction :pickwell cleanwell))))

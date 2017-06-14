@@ -322,7 +322,7 @@
          [:div.col-md-12
           [BoxContainer {:header {:title "Gas Lift Valves"}
                          :table-responsive true}
-           [GLVTable datasource well]]]]])]))
+           [GLVTable]]]]])]))
 
 (defn WellOverview
   "Well Overview Page meant to be used as a content page in the AdminLTE template"

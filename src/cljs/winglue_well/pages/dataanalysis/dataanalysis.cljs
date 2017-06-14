@@ -5,6 +5,7 @@
             [winglue-well.pages.dataanalysis.subs :as dataanalsubs]
             [winglue-well.pages.welloverview.handlers :as overviewhandlers]
             [winglue-well.pages.dataanalysis.handlers :as dataanalhandlers]
+            [winglue-well.data.subs :as datasubs]
             [winglue-well.widgets.datatable :refer [DataTable]]
             [winglue-well.widgets.loadingoverlay :refer [LoadingOverlay]]
             [winglue-well.components.glvtable :refer [GLVTable]]
@@ -19,6 +20,7 @@
             [winglue-well.utils.interpolator :as i-util]
             [winglue-well.utils.common :as com-utils]
             [winglue-well.data.subs :as datasubs]
+            [winglue-well.utils.format :as rformat]
             [reagent.core :as reagent]))
 
 (defn ContentMsg
@@ -38,9 +40,6 @@
   "Data Source selector for the well picker"
   (let [datasources (overviewsubs/get-datasources)
         selected-data-source (overviewsubs/get-selected-datasource)]
-    ;(.log js/console (str "datasources: " datasources))
-    ;(.log js/console (str "selected-dsn: " selected-data-source))
-    ;; Don't show the data-source selector if only 1 data source available;;
     (if (some? datasources)
       (if (= 1 (count datasources))
         (do
@@ -83,9 +82,17 @@
                                                    "glstatus" :glstatus}))))}]
        [LoadingOverlay])]))
 
-(defn WellPicker []
+(defn SelectedWellInf []
   (let [selected-well (overviewsubs/get-selected-well)
-        selected-data-source (overviewsubs/get-selected-datasource)]
+        field (:field selected-well)
+        lease (:lease selected-well)
+        well (:well selected-well)
+        cmpl (:cmpl selected-well)]
+    [:div
+     [:p (str " Field: " field " Lease: " lease " Well: " well " Cmpl: " cmpl)]]))
+
+(defn WellPicker []
+  (let [selected-data-source (overviewsubs/get-selected-datasource)]
     [:div
      [DataSourceDropdown]
      (if (nil? selected-data-source)
@@ -100,8 +107,11 @@
           #(do
              (dataanalhandlers/set-selected-well %))]]])]))
 
-(defn DVSPChart [data-source well dvsp-config]
-  (let [depth-profile (datasubs/get-depth-profile)
+(defn DVSPChart []
+  (let [data-source (overviewsubs/get-selected-datasource)
+        well (overviewsubs/get-selected-well)
+        dvsp-config (overviewsubs/get-dvsp-config)
+        depth-profile (datasubs/get-depth-profile)
         equilibrium-profile (datasubs/get-equilibrium-profile)
         ppm-curve (:production-string-depth-profile-map depth-profile)
         ipm-curve (:injection-string-depth-profile-map depth-profile)
@@ -135,7 +145,7 @@
                                               filtered-valve-map :close-press-list :vert-depth-list)}
                              {:vpc-bfp (table-utils/map-table-to-array
                                          filtered-valve-map :vpc-begin-flow-list :vert-depth-list)})
-                           {:chart {:height 645}}
+                           {:chart {:height 500}}
                            {:yAxis {:plotLines plot-lines
                                     :max max-depth}})
                          ;; There's no way to turn plotlines off/on so we have a dummy series and remove/add the
@@ -156,7 +166,7 @@
        [:div.col-xs-3.col-sm-2
         (if (and (some? max-depth)
                  (some? depth-profile))
-          [TubingPipe data-source well {:max-depth max-depth}]
+          [TubingPipe data-source well {:max-depth max-depth :height 480}]
           [LoadingOverlay])]
        [:div.col-xs-9.col-sm-10
         (if (and  (some? depth-profile)
@@ -170,15 +180,61 @@
           [LoadingOverlay])]]
       [LoadingOverlay])))
 
+(defn WellTestInfos []
+  (let [welltest-hist-map (datasubs/get-welltest-hist)
+        welltest-list (vals welltest-hist-map)
+        indata (map (fn [in] {:welltest-date (rformat/format-iso-date (:welltest-date in))
+                              :calib-oil-rate (rformat/format-dec (:calib-oil-rate in) 2)
+                              :calib-water-rate (rformat/format-dec (:calib-water-rate in) 2)
+                              :calib-liquid-rate (rformat/format-dec (:calib-liquid-rate in) 2)
+                              :calib-wc (rformat/format-dec (:calib-wc in) 2)
+                              :calib-total-gas (rformat/format-dec (:calib-total-gas in) 2)
+                              :calib-flowing-tubing-press (rformat/format-dec (:calib-flowing-tubing-press in) 2)
+                              :calib-casing-head-press (rformat/format-dec (:calib-casing-head-press in) 2)
+                              :est-fbhp (rformat/format-dec (:est-fbhp in) 2)
+                              :calib-lift-gas-rate (rformat/format-dec (:calib-lift-gas-rate in) 2)
+                              :calib-total-glr (rformat/format-dec (:calib-total-glr in) 2)
+                              :calib-formation-gas-rate (:calib-formation-gas-rate in) })(sort-by :welltest-date > welltest-list))]
+    [:div
+     [BoxContainer
+      {:header
+       {:title "Well Test Infos"
+        :with-border true}}
+      (if (> (count indata) 1)
+        [DataTable
+         {:data indata
+          :columns [{:title "Date"
+                     :data :welltest-date}
+                    {:title "Oil (bbl/day)"
+                     :data :calib-oil-rate}
+                    {:title "Water (bbl/day)"
+                     :data :calib-water-rate}
+                    {:title "Total liquid (bbl/day)"
+                     :data :calib-liquid-rate}
+                    {:title "Watercut (%)"
+                     :data :calib-wc}
+                    {:title "Total Gas (MCF/data)"
+                     :data :calib-total-gas}
+                    {:title "Tubing Press. (psig)"
+                     :data :calib-flowing-tubing-press}
+                    {:title "Casing Press. (psig)"
+                     :data :calib-casing-head-press}
+                    {:title "Stored FBHP (psig)"
+                     :data :est-fbhp}
+                    {:title "Gas LG (MCF/data)"
+                     :data :calib-lift-gas-rate}
+                    {:title "Total GL Rate (MCF/day)"
+                     :data :calib-total-glr}]
+          :deferRender true
+          :select "single"}
+         {:select (fn [e dt type index])}]
+        [LoadingOverlay])]]))
+
 (defn DataAnalysis
   "Data Analysis Page"
   []
-  (let [selected-data-source (overviewsubs/get-selected-datasource)
-        selected-well (overviewsubs/get-selected-well)
-        well-doc (overviewsubs/get-well-doc)
-        dvsp-config (overviewsubs/get-dvsp-config)
-        pvsq-config (overviewsubs/get-pvsq-config)
-        qvsi-config (overviewsubs/get-qvsi-config)]
+  (let []
+    (.log js/console "Data Analysis Page!!!")
     [:div
      [BoxContainer {:solidBox true}
       [:div
@@ -188,13 +244,21 @@
          [WellPicker]]
         [:div.col-sm-6.col-md-6
          [BoxContainer
-          [DVSPChart selected-data-source selected-well dvsp-config]]]]
+          {:header
+           {:title "Selected Well"
+            :with-border true}}
+          [SelectedWellInf]]
+         [BoxContainer
+          [DVSPChart]]]]
        [:div.row
-        [:div.col-md-12
-         [BoxContainer {:table-responsive true}
-          [WellTestInfo]]]]
+        [:div.col-sm-12.col-md-12
+         [WellTestInfos]]]
+       ;[:div.row
+       ; [:div.col-md-12
+       ;  [BoxContainer {:table-responsive true}
+       ;   [WellTestInfo]]]]
        [:div.row
         [:div.col-md-12
          [BoxContainer {:header {:title "Gas Lift Valves"}
                         :table-responsive true}
-          [GLVTable selected-data-source selected-well]]]]]]]))
+          [GLVTable]]]]]]]))

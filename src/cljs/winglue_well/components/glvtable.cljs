@@ -3,6 +3,7 @@
             [goog.string :as gstring]
             [goog.string.format]
             [winglue-well.data.subs :as datasubs]
+            [winglue-well.pages.welloverview.subs :as overviewsubs]
             [winglue-well.widgets.loadingoverlay :refer [LoadingOverlay]]))
 
 (def key-mapping
@@ -77,7 +78,9 @@
 (defn GLVTable
   "Gas Lift Valves Table"
   [data-source well]
-  (let [depth-profile (datasubs/get-depth-profile)
+  (let [data-source (overviewsubs/get-selected-datasource)
+        well (overviewsubs/get-selected-well)
+        depth-profile (datasubs/get-depth-profile)
         mandrel-survey (datasubs/get-mandrel-survey)
         valves-map (:valves-status-map depth-profile)]
     ;(.log js/console "GLVTable!!!!!")
