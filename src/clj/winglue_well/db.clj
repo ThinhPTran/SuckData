@@ -39,7 +39,10 @@
                      (map #(:well %))
                      (vec))
         fielddata (->> @persist-atom
-                       (:wells))
+                       (:wells)
+                       (mapv (fn [in] {:dsn (:dsn in)
+                                       :well (:well in)
+                                       :welldoc {:depth-profile-map (:depth-profile-map (:welldoc in))}})))
         currentdata (first fielddata)
         currentwell (:well currentdata)
         currentwelldoc (:welldoc currentdata)]
