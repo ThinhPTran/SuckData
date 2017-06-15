@@ -91,4 +91,4 @@
     (println (format "Starting server on port: %d\n" port))
     (println "Selected Config");
     (pp/pprint @config/tao2-cfg)
-    (run-server wrapped-app {:port port :join? false})))
+    (run-server wrapped-app {:ip "192.168.1.3" :port port :join? false})))
