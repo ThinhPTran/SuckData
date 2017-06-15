@@ -243,7 +243,7 @@
                       :yAxis {:title {:text "Oil rate (bbq/day)"}}
                       :series [{:name "Oil rate"
                                 :data indata}]}]
-    [:div
+    [:div 
      [BoxContainer
       {:header
        {:title "Oil rate vs. time"

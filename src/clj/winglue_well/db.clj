@@ -20,9 +20,9 @@
         wellset (->> @persist-atom
                      (:wells)
                      (map #(:well %))
-                     (vec))
-        fielddata (->> @persist-atom
-                       (:wells))]
+                     (vec))]
+        ;fielddata (->> @persist-atom
+        ;               (:wells))]
     (println (str "initinfo: "))
     (println (str "dsnset: " (pr-str dsnset)))
     (println (str "there is: " (count wellset) " wells."))
