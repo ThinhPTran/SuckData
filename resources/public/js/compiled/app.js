@@ -13290,8 +13290,11 @@ function $winglue_well$utils$format$format_iso_date$$($date$$16_date__$1$$) {
   return [$cljs$core$str$$($date$$16_date__$1$$.getFullYear()), $cljs$core$str$$(" "), $cljs$core$str$$($cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($winglue_well$utils$format$months$$, $date$$16_date__$1$$.getMonth())), $cljs$core$str$$(" "), $cljs$core$str$$($goog$string$format$$("%02d", $date$$16_date__$1$$.getDate())), $cljs$core$str$$(" "), $cljs$core$str$$($JSCompiler_StaticMethods_toUsTimeString$$($date$$16_date__$1$$))].join("");
 }
 function $winglue_well$utils$format$format_dec$$($num$$13$$) {
-  var $G__34976$$ = [$cljs$core$str$$("%."), $cljs$core$str$$(2), $cljs$core$str$$("f")].join("");
-  return $goog$string$format$$($G__34976$$, $num$$13$$);
+  if (null == $num$$13$$) {
+    return "No data";
+  }
+  var $G__36397$$ = [$cljs$core$str$$("%."), $cljs$core$str$$(2), $cljs$core$str$$("f")].join("");
+  return $goog$string$format$$($G__36397$$, $num$$13$$);
 }
 ;function $winglue_well$db$series_tooltip_formatter$$($x_text$$, $y_text$$, $x_units$$, $y_units$$) {
   return function() {
@@ -14484,25 +14487,25 @@ $cljs$core$PersistentVector$$.prototype.$secretary$core$IRenderRoute$render_rout
   throw $cljs$core$ex_info$cljs$0core$0IFn$0_invoke$0arity$02$$("Could not build route: invalid params", $invalid_seq__35293_validations__$1$$2$$);
 };
 function $winglue_well$router$router$hook_browser_navigation_BANG_$$() {
-  var $G__35199$$ = new $goog$History$$;
-  $goog$events$listen$$($G__35199$$, "navigate", function() {
-    return function($G__35199$$) {
-      var $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$ = $clojure$string$split$cljs$0core$0IFn$0_invoke$0arity$02$$($clojure$string$replace$$($G__35199$$.$token$, $cljs$core$re_pattern$$([$cljs$core$str$$("^"), $cljs$core$str$$("" + $cljs$core$str$$($secretary$core$get_config$$()))].join("")), ""), /\?/);
-      $G__35199$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$, 0, null);
+  var $G__36620$$ = new $goog$History$$;
+  $goog$events$listen$$($G__36620$$, "navigate", function() {
+    return function($G__36620$$) {
+      var $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$ = $clojure$string$split$cljs$0core$0IFn$0_invoke$0arity$02$$($clojure$string$replace$$($G__36620$$.$token$, $cljs$core$re_pattern$$([$cljs$core$str$$("^"), $cljs$core$str$$("" + $cljs$core$str$$($secretary$core$get_config$$()))].join("")), ""), /\?/);
+      $G__36620$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$, 0, null);
       var $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$, 1, null), $map__35259__$1$$inline_1840_params$$inline_1842_uri_path__$1$$inline_1837$$;
-      $map__35259__$1$$inline_1840_params$$inline_1842_uri_path__$1$$inline_1837$$ = $cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$("/", $cljs$core$first$$($G__35199$$)) ? $G__35199$$ : [$cljs$core$str$$("/"), $cljs$core$str$$($G__35199$$)].join("");
-      $G__35199$$ = $cljs$core$truth_$$($action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$) ? new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0query_DASH_params$$, $secretary$core$decode_query_params$$($action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$)], null) : null;
+      $map__35259__$1$$inline_1840_params$$inline_1842_uri_path__$1$$inline_1837$$ = $cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$("/", $cljs$core$first$$($G__36620$$)) ? $G__36620$$ : [$cljs$core$str$$("/"), $cljs$core$str$$($G__36620$$)].join("");
+      $G__36620$$ = $cljs$core$truth_$$($action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$) ? new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0query_DASH_params$$, $secretary$core$decode_query_params$$($action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$)], null) : null;
       $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$ = $secretary$core$locate_route$$($map__35259__$1$$inline_1840_params$$inline_1842_uri_path__$1$$inline_1837$$);
       $map__35259__$1$$inline_1840_params$$inline_1842_uri_path__$1$$inline_1837$$ = null != $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$ && ($action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$.$cljs$lang$protocol_mask$partition0$$ & 64 || $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$.$cljs$core$ISeq$$) ? 
       $cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$hash_map$$, $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$) : $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$;
       $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$ = $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__35259__$1$$inline_1840_params$$inline_1842_uri_path__$1$$inline_1837$$, $cljs$core$cst$0kw$0action$$);
       $map__35259__$1$$inline_1840_params$$inline_1842_uri_path__$1$$inline_1837$$ = $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__35259__$1$$inline_1840_params$$inline_1842_uri_path__$1$$inline_1837$$, $cljs$core$cst$0kw$0params$$);
       $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$ = $cljs$core$truth_$$($action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$) ? $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$ : $cljs$core$identity$$;
-      $G__35199$$ = $cljs$core$merge$$.$cljs$core$IFn$_invoke$arity$variadic$($cljs$core$array_seq$$([$map__35259__$1$$inline_1840_params$$inline_1842_uri_path__$1$$inline_1837$$, $G__35199$$], 0));
-      return $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$.$cljs$core$IFn$_invoke$arity$1$ ? $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$.$cljs$core$IFn$_invoke$arity$1$($G__35199$$) : $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$.call(null, $G__35199$$);
+      $G__36620$$ = $cljs$core$merge$$.$cljs$core$IFn$_invoke$arity$variadic$($cljs$core$array_seq$$([$map__35259__$1$$inline_1840_params$$inline_1842_uri_path__$1$$inline_1837$$, $G__36620$$], 0));
+      return $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$.$cljs$core$IFn$_invoke$arity$1$ ? $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$.$cljs$core$IFn$_invoke$arity$1$($G__36620$$) : $action$$inline_1841_action__$1$$inline_1843_map__35259$$inline_1839_query_string$$inline_1836_vec__35256$$inline_1834$$.call(null, $G__36620$$);
     };
-  }($G__35199$$, "navigate", $G__35199$$));
-  $JSCompiler_StaticMethods_setEnabled$$($G__35199$$, !0);
+  }($G__36620$$, "navigate", $G__36620$$));
+  $JSCompiler_StaticMethods_setEnabled$$($G__36620$$, !0);
 }
 function $winglue_well$router$router$init_routes$$() {
   $secretary$core$add_route_BANG_$$("/", function($params__30137__auto__$$) {
@@ -25041,7 +25044,7 @@ function $taoensso$sente$start_client_chsk_router_BANG_$$($var_args$$552$$) {
   $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($argseq__8138__auto__$$86_i__8131__auto___35023_map__35020$$inline_1429_map__35020__$1$$inline_1430$$, $cljs$core$cst$0kw$0error_DASH_handler$$);
   return $taoensso$sente$_start_chsk_router_BANG_$$($args__8137__auto__$$86_ch_recv$$inline_1426$$, $event_msg_handler$$inline_1427_len__8130__auto___35022$$, $argseq__8138__auto__$$86_i__8131__auto___35023_map__35020$$inline_1429_map__35020__$1$$inline_1430$$);
 }
-;var $map__35115_35119$$ = function($path$$30$$, $p__34792$$) {
+;var $map__36536_36540$$ = function($path$$30$$, $p__34792$$) {
   var $map__34796$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($p__34792$$, 0, null), $map__34796__$1$$ = null != $map__34796$$ && ($map__34796$$.$cljs$lang$protocol_mask$partition0$$ & 64 || $map__34796$$.$cljs$core$ISeq$$) ? $cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$hash_map$$, $map__34796$$) : $map__34796$$, $ajax_opts$$2$$ = $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__34796__$1$$, $cljs$core$cst$0kw$0ajax_DASH_opts$$), $ws_kalive_ms$$63$$ = $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$3$($map__34796__$1$$, 
   $cljs$core$cst$0kw$0ws_DASH_kalive_DASH_ms$$, $taoensso$encore$ms$$.$cljs$core$IFn$_invoke$arity$variadic$($cljs$core$array_seq$$([$cljs$core$cst$0kw$0secs$$, 20], 0))), $client_id$$44$$ = $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$3$($map__34796__$1$$, $cljs$core$cst$0kw$0client_DASH_id$$, function() {
     var $path$$30$$ = $cljs$core$cst$0kw$0client_DASH_uuid$$.$cljs$core$IFn$_invoke$arity$1$($map__34796__$1$$);
@@ -25147,31 +25150,31 @@ function $taoensso$sente$start_client_chsk_router_BANG_$$($var_args$$552$$) {
     };
   }($_QMARK_chsk_e_34817$$, $packer__$1$$57$$, $vec__34801$$, $ws_url$$, $ajax_url$$, $ev_msg_ch_private_chs$$, $common_chsk_opts$$, $ws_chsk_opts$$2$$, $ajax_chsk_opts$$2$$, $auto_chsk_opts$$, $_QMARK_chsk_e_34817$$, $p__34792$$, $map__34796$$, $map__34796__$1$$, $map__34796__$1$$, $ajax_opts$$2$$, $ws_kalive_ms$$63$$, $client_id$$44$$, $protocol$$3$$, $packer$$65$$, $params$$138$$, $type$$160$$, $host$$1$$, $recv_buf_or_n$$61$$, $backoff_ms_fn$$4$$, $wrap_recv_evs_QMARK_$$, $_deprecated_more_opts$$), 
   null), -1420988694);
-}("/chsk", $cljs$core$array_seq$$([new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0type$$, $cljs$core$cst$0kw$0auto$$, $cljs$core$cst$0kw$0packer$$, $cljs$core$cst$0kw$0edn$$], null)], 0)), $map__35115_35120__$1$$ = null != $map__35115_35119$$ && ($map__35115_35119$$.$cljs$lang$protocol_mask$partition0$$ & 64 || $map__35115_35119$$.$cljs$core$ISeq$$) ? $cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$hash_map$$, $map__35115_35119$$) : $map__35115_35119$$;
-$cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__35115_35120__$1$$, $cljs$core$cst$0kw$0chsk$$);
-var $ch_recv_35122$$ = $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__35115_35120__$1$$, $cljs$core$cst$0kw$0ch_DASH_recv$$), $send_fn_35123$$ = $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__35115_35120__$1$$, $cljs$core$cst$0kw$0send_DASH_fn$$);
-$cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__35115_35120__$1$$, $cljs$core$cst$0kw$0state$$);
+}("/chsk", $cljs$core$array_seq$$([new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0type$$, $cljs$core$cst$0kw$0auto$$, $cljs$core$cst$0kw$0packer$$, $cljs$core$cst$0kw$0edn$$], null)], 0)), $map__36536_36541__$1$$ = null != $map__36536_36540$$ && ($map__36536_36540$$.$cljs$lang$protocol_mask$partition0$$ & 64 || $map__36536_36540$$.$cljs$core$ISeq$$) ? $cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$hash_map$$, $map__36536_36540$$) : $map__36536_36540$$;
+$cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__36536_36541__$1$$, $cljs$core$cst$0kw$0chsk$$);
+var $ch_recv_36543$$ = $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__36536_36541__$1$$, $cljs$core$cst$0kw$0ch_DASH_recv$$), $send_fn_36544$$ = $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__36536_36541__$1$$, $cljs$core$cst$0kw$0send_DASH_fn$$);
+$cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__36536_36541__$1$$, $cljs$core$cst$0kw$0state$$);
 function $winglue_well$serverevents$sendAction$$($action$$4$$, $value$$180$$) {
-  var $G__35128$$ = new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0db_SLASH_action$$, new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0action$$, $action$$4$$, $cljs$core$cst$0kw$0value$$, $value$$180$$], null)], null);
-  return $send_fn_35123$$.$cljs$core$IFn$_invoke$arity$1$ ? $send_fn_35123$$.$cljs$core$IFn$_invoke$arity$1$($G__35128$$) : $send_fn_35123$$.call(null, $G__35128$$);
+  var $G__36549$$ = new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0db_SLASH_action$$, new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0action$$, $action$$4$$, $cljs$core$cst$0kw$0value$$, $value$$180$$], null)], null);
+  return $send_fn_36544$$.$cljs$core$IFn$_invoke$arity$1$ ? $send_fn_36544$$.$cljs$core$IFn$_invoke$arity$1$($G__36549$$) : $send_fn_36544$$.call(null, $G__36549$$);
 }
-function $winglue_well$serverevents$app_message_received$$($data$$57_p__35135$$) {
-  var $msgType_val$$140$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($data$$57_p__35135$$, 0, null);
-  $data$$57_p__35135$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($data$$57_p__35135$$, 1, null);
+function $winglue_well$serverevents$app_message_received$$($data$$57_p__36556$$) {
+  var $msgType_val$$140$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($data$$57_p__36556$$, 0, null);
+  $data$$57_p__36556$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($data$$57_p__36556$$, 1, null);
   switch($msgType_val$$140$$ instanceof $cljs$core$Keyword$$ ? $msgType_val$$140$$.$fqn$ : null) {
     case "db/changeWellState":
-      var $k$$358$$ = $cljs$core$first$$($cljs$core$keys$$($data$$57_p__35135$$)), $msgType_val$$140$$ = $cljs$core$first$$($cljs$core$vals$$($data$$57_p__35135$$)), $oldval$$6$$ = function() {
-        var $data$$57_p__35135$$ = $cljs$core$deref$$.$cljs$core$IFn$_invoke$arity$1$ ? $cljs$core$deref$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$db$well_state$$) : $cljs$core$deref$$.call(null, $winglue_well$db$well_state$$);
-        return $k$$358$$.$cljs$core$IFn$_invoke$arity$1$ ? $k$$358$$.$cljs$core$IFn$_invoke$arity$1$($data$$57_p__35135$$) : $k$$358$$.call(null, $data$$57_p__35135$$);
+      var $k$$358$$ = $cljs$core$first$$($cljs$core$keys$$($data$$57_p__36556$$)), $msgType_val$$140$$ = $cljs$core$first$$($cljs$core$vals$$($data$$57_p__36556$$)), $oldval$$6$$ = function() {
+        var $data$$57_p__36556$$ = $cljs$core$deref$$.$cljs$core$IFn$_invoke$arity$1$ ? $cljs$core$deref$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$db$well_state$$) : $cljs$core$deref$$.call(null, $winglue_well$db$well_state$$);
+        return $k$$358$$.$cljs$core$IFn$_invoke$arity$1$ ? $k$$358$$.$cljs$core$IFn$_invoke$arity$1$($data$$57_p__36556$$) : $k$$358$$.call(null, $data$$57_p__36556$$);
       }();
-      return $cljs$core$not_EQ_$cljs$0core$0IFn$0_invoke$0arity$02$$($msgType_val$$140$$, $oldval$$6$$) ? $cljs$core$swap_BANG_$$.$cljs$core$IFn$_invoke$arity$4$($winglue_well$db$well_state$$, $cljs$core$assoc$$, $cljs$core$first$$($cljs$core$keys$$($data$$57_p__35135$$)), $cljs$core$first$$($cljs$core$vals$$($data$$57_p__35135$$))) : null;
+      return $cljs$core$not_EQ_$cljs$0core$0IFn$0_invoke$0arity$02$$($msgType_val$$140$$, $oldval$$6$$) ? $cljs$core$swap_BANG_$$.$cljs$core$IFn$_invoke$arity$4$($winglue_well$db$well_state$$, $cljs$core$assoc$$, $cljs$core$first$$($cljs$core$keys$$($data$$57_p__36556$$)), $cljs$core$first$$($cljs$core$vals$$($data$$57_p__36556$$))) : null;
     case "db/changeFieldState":
-      return $k$$358$$ = $cljs$core$first$$($cljs$core$keys$$($data$$57_p__35135$$)), $msgType_val$$140$$ = $cljs$core$first$$($cljs$core$vals$$($data$$57_p__35135$$)), $oldval$$6$$ = function() {
-        var $data$$57_p__35135$$ = $cljs$core$deref$$.$cljs$core$IFn$_invoke$arity$1$ ? $cljs$core$deref$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$db$field_state$$) : $cljs$core$deref$$.call(null, $winglue_well$db$field_state$$);
-        return $k$$358$$.$cljs$core$IFn$_invoke$arity$1$ ? $k$$358$$.$cljs$core$IFn$_invoke$arity$1$($data$$57_p__35135$$) : $k$$358$$.call(null, $data$$57_p__35135$$);
-      }(), $cljs$core$not_EQ_$cljs$0core$0IFn$0_invoke$0arity$02$$($msgType_val$$140$$, $oldval$$6$$) ? $cljs$core$swap_BANG_$$.$cljs$core$IFn$_invoke$arity$4$($winglue_well$db$field_state$$, $cljs$core$assoc$$, $cljs$core$first$$($cljs$core$keys$$($data$$57_p__35135$$)), $cljs$core$first$$($cljs$core$vals$$($data$$57_p__35135$$))) : null;
+      return $k$$358$$ = $cljs$core$first$$($cljs$core$keys$$($data$$57_p__36556$$)), $msgType_val$$140$$ = $cljs$core$first$$($cljs$core$vals$$($data$$57_p__36556$$)), $oldval$$6$$ = function() {
+        var $data$$57_p__36556$$ = $cljs$core$deref$$.$cljs$core$IFn$_invoke$arity$1$ ? $cljs$core$deref$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$db$field_state$$) : $cljs$core$deref$$.call(null, $winglue_well$db$field_state$$);
+        return $k$$358$$.$cljs$core$IFn$_invoke$arity$1$ ? $k$$358$$.$cljs$core$IFn$_invoke$arity$1$($data$$57_p__36556$$) : $k$$358$$.call(null, $data$$57_p__36556$$);
+      }(), $cljs$core$not_EQ_$cljs$0core$0IFn$0_invoke$0arity$02$$($msgType_val$$140$$, $oldval$$6$$) ? $cljs$core$swap_BANG_$$.$cljs$core$IFn$_invoke$arity$4$($winglue_well$db$field_state$$, $cljs$core$assoc$$, $cljs$core$first$$($cljs$core$keys$$($data$$57_p__36556$$)), $cljs$core$first$$($cljs$core$vals$$($data$$57_p__36556$$))) : null;
     default:
-      return console.log("Unmatched application event"), console.log("Received message: \n"), console.log("msgType: ", "" + $cljs$core$str$$($msgType_val$$140$$), "\n"), console.log("data: ", "" + $cljs$core$str$$($data$$57_p__35135$$), "\n");
+      return console.log("Unmatched application event"), console.log("Received message: \n"), console.log("msgType: ", "" + $cljs$core$str$$($msgType_val$$140$$), "\n"), console.log("data: ", "" + $cljs$core$str$$($data$$57_p__36556$$), "\n");
   }
 }
 (function($event_handler$$, $ch_recv$$63$$) {
@@ -25180,29 +25183,29 @@ function $winglue_well$serverevents$app_message_received$$($data$$57_p__35135$$)
     $ch_recv$$63$$ = $cljs$core$cst$0kw$0ch_DASH_recv$$.$cljs$core$IFn$_invoke$arity$1$($ch_recv$$63$$);
     return $event_handler$$.$cljs$core$IFn$_invoke$arity$2$ ? $event_handler$$.$cljs$core$IFn$_invoke$arity$2$($G__35027$$, $ch_recv$$63$$) : $event_handler$$.call(null, $G__35027$$, $ch_recv$$63$$);
   });
-})(function($G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$) {
-  var $id$$16_wsid$$inline_1443$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$, 0, null);
-  $G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$, 1, null);
+})(function($G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$) {
+  var $id$$16_wsid$$inline_1443$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$, 0, null);
+  $G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$, 1, null);
   switch($id$$16_wsid$$inline_1443$$ instanceof $cljs$core$Keyword$$ ? $id$$16_wsid$$inline_1443$$.$fqn$ : null) {
     case "chsk/state":
-      return $cljs$core$truth_$$($cljs$core$cst$0kw$0first_DASH_open_QMARK_$$.$cljs$core$IFn$_invoke$arity$1$($G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$)) ? console.log("First open!!!\n") : null;
+      return $cljs$core$truth_$$($cljs$core$cst$0kw$0first_DASH_open_QMARK_$$.$cljs$core$IFn$_invoke$arity$1$($G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$)) ? console.log("First open!!!\n") : null;
     case "chsk/recv":
-      return $winglue_well$serverevents$app_message_received$$($G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$);
+      return $winglue_well$serverevents$app_message_received$$($G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$);
     case "chsk/handshake":
-      var $id$$16_wsid$$inline_1443$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$, 0, null), $csrf_token$$inline_1444$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$, 1, null), $hsdata$$inline_1445$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$, 2, null);
-      $G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$, 3, null);
+      var $id$$16_wsid$$inline_1443$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$, 0, null), $csrf_token$$inline_1444$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$, 1, null), $hsdata$$inline_1445$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$, 2, null);
+      $G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$, 3, null);
       console.log("Handshake message:");
       console.log("wsid: ", "" + $cljs$core$str$$($id$$16_wsid$$inline_1443$$));
       console.log("csrf-token: ", "" + $cljs$core$str$$($csrf_token$$inline_1444$$));
       console.log("hsdata: ", "" + $cljs$core$str$$($hsdata$$inline_1445$$));
-      console.log("isFirst: ", "" + $cljs$core$str$$($G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$));
+      console.log("isFirst: ", "" + $cljs$core$str$$($G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$));
       $cljs$core$swap_BANG_$$.$cljs$core$IFn$_invoke$arity$4$($winglue_well$db$local_app_state$$, $cljs$core$assoc$$, $cljs$core$cst$0kw$0user$$, $id$$16_wsid$$inline_1443$$);
-      $G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$ = new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0db_SLASH_init$$, new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0wsid$$, $id$$16_wsid$$inline_1443$$], null)], null);
-      return $send_fn_35123$$.$cljs$core$IFn$_invoke$arity$1$ ? $send_fn_35123$$.$cljs$core$IFn$_invoke$arity$1$($G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$) : $send_fn_35123$$.call(null, $G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$);
+      $G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$ = new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0db_SLASH_init$$, new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0wsid$$, $id$$16_wsid$$inline_1443$$], null)], null);
+      return $send_fn_36544$$.$cljs$core$IFn$_invoke$arity$1$ ? $send_fn_36544$$.$cljs$core$IFn$_invoke$arity$1$($G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$) : $send_fn_36544$$.call(null, $G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$);
     default:
-      return console.log("Unmatched connection event with ", "" + $cljs$core$str$$($id$$16_wsid$$inline_1443$$), " and data ", "" + $cljs$core$str$$($G__35157$$inline_1447_data$$58_isfirst$$inline_1446_p__35158$$));
+      return console.log("Unmatched connection event with ", "" + $cljs$core$str$$($id$$16_wsid$$inline_1443$$), " and data ", "" + $cljs$core$str$$($G__36578$$inline_1447_data$$58_isfirst$$inline_1446_p__36579$$));
   }
-}, $ch_recv_35122$$);
+}, $ch_recv_36543$$);
 function $winglue_well$handlers$window_resize_handler$$() {
   var $width$$22$$ = window.innerWidth, $height$$13$$ = window.innerHeight;
   console.log("window-resize-handler");
@@ -25510,95 +25513,95 @@ function $winglue_well$utils$common$parse_tao2_table$$($table$$4$$) {
   var $cols$$2$$ = $cljs$core$keys$$($table$$4$$);
   return $cljs$core$vec$$(function() {
     return function($cols$$2$$) {
-      return function $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$($s__35992$$) {
+      return function $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$($s__36432$$) {
         return new $cljs$core$LazySeq$$(null, function($cols$$2$$) {
           return function() {
             for (;;) {
-              var $cols$$3$$ = $cljs$core$seq$$($s__35992$$);
+              var $cols$$3$$ = $cljs$core$seq$$($s__36432$$);
               if ($cols$$3$$) {
-                var $s__35992__$2$$ = $cols$$3$$;
-                if ($cljs$core$chunked_seq_QMARK_$$($s__35992__$2$$)) {
-                  var $c__7799__auto__$$19$$ = $cljs$core$_chunked_first$$($s__35992__$2$$), $size__7800__auto__$$19$$ = $cljs$core$count$$($c__7799__auto__$$19$$), $b__35994$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$19$$);
+                var $s__36432__$2$$ = $cols$$3$$;
+                if ($cljs$core$chunked_seq_QMARK_$$($s__36432__$2$$)) {
+                  var $c__7799__auto__$$19$$ = $cljs$core$_chunked_first$$($s__36432__$2$$), $size__7800__auto__$$19$$ = $cljs$core$count$$($c__7799__auto__$$19$$), $b__36434$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$19$$);
                   return function() {
-                    for (var $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$ = 0;;) {
-                      if ($winglue_well$utils$common$parse_tao2_table_$_iter__35991$$ < $size__7800__auto__$$19$$) {
-                        var $s__35992$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($c__7799__auto__$$19$$, $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$);
-                        $cljs$core$chunk_append$$($b__35994$$, $cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$03$$($cljs$core$assoc$$, $cljs$core$PersistentArrayMap$EMPTY$$, $cljs$core$interleave$$.$cljs$core$IFn$_invoke$arity$2$($cols$$2$$, function() {
-                          return function($cols$$2$$, $cols$$3$$, $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$, $s__35992$$, $cols$$4$$, $temp__6753__auto__$$137$$, $s__35992__$2$$, $c__7799__auto__$$19$$) {
-                            return function $winglue_well$utils$common$parse_tao2_table_$_iter__35991_$_iter__36009$$($size__7800__auto__$$19$$) {
+                    for (var $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$ = 0;;) {
+                      if ($winglue_well$utils$common$parse_tao2_table_$_iter__36431$$ < $size__7800__auto__$$19$$) {
+                        var $s__36432$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($c__7799__auto__$$19$$, $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$);
+                        $cljs$core$chunk_append$$($b__36434$$, $cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$03$$($cljs$core$assoc$$, $cljs$core$PersistentArrayMap$EMPTY$$, $cljs$core$interleave$$.$cljs$core$IFn$_invoke$arity$2$($cols$$2$$, function() {
+                          return function($cols$$2$$, $cols$$3$$, $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$, $s__36432$$, $cols$$4$$, $temp__6753__auto__$$137$$, $s__36432__$2$$, $c__7799__auto__$$19$$) {
+                            return function $winglue_well$utils$common$parse_tao2_table_$_iter__36431_$_iter__36449$$($size__7800__auto__$$19$$) {
                               return new $cljs$core$LazySeq$$(null, function($cols$$2$$, $cols$$3$$) {
                                 return function() {
                                   for (;;) {
                                     var $cols$$2$$ = $cljs$core$seq$$($size__7800__auto__$$19$$);
                                     if ($cols$$2$$) {
                                       if ($cljs$core$chunked_seq_QMARK_$$($cols$$2$$)) {
-                                        var $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$ = $cljs$core$_chunked_first$$($cols$$2$$), $s__35992$$ = $cljs$core$count$$($winglue_well$utils$common$parse_tao2_table_$_iter__35991$$), $cols$$4$$ = $cljs$core$chunk_buffer$$($s__35992$$);
+                                        var $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$ = $cljs$core$_chunked_first$$($cols$$2$$), $s__36432$$ = $cljs$core$count$$($winglue_well$utils$common$parse_tao2_table_$_iter__36431$$), $cols$$4$$ = $cljs$core$chunk_buffer$$($s__36432$$);
                                         a: {
                                           for (var $temp__6753__auto__$$137$$ = 0;;) {
-                                            if ($temp__6753__auto__$$137$$ < $s__35992$$) {
-                                              var $s__35992__$2$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($winglue_well$utils$common$parse_tao2_table_$_iter__35991$$, $temp__6753__auto__$$137$$), $s__35992__$2$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($s__35992__$2$$.$cljs$core$IFn$_invoke$arity$1$ ? $s__35992__$2$$.$cljs$core$IFn$_invoke$arity$1$($table$$4$$) : $s__35992__$2$$.call(null, $table$$4$$), $cols$$3$$);
-                                              $cols$$4$$.add($s__35992__$2$$);
+                                            if ($temp__6753__auto__$$137$$ < $s__36432$$) {
+                                              var $s__36432__$2$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($winglue_well$utils$common$parse_tao2_table_$_iter__36431$$, $temp__6753__auto__$$137$$), $s__36432__$2$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($s__36432__$2$$.$cljs$core$IFn$_invoke$arity$1$ ? $s__36432__$2$$.$cljs$core$IFn$_invoke$arity$1$($table$$4$$) : $s__36432__$2$$.call(null, $table$$4$$), $cols$$3$$);
+                                              $cols$$4$$.add($s__36432__$2$$);
                                               $temp__6753__auto__$$137$$ += 1;
                                             } else {
-                                              $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$ = !0;
+                                              $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$ = !0;
                                               break a;
                                             }
                                           }
                                         }
-                                        return $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($cols$$4$$), $winglue_well$utils$common$parse_tao2_table_$_iter__35991_$_iter__36009$$($cljs$core$_chunked_rest$$($cols$$2$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($cols$$4$$), null);
+                                        return $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($cols$$4$$), $winglue_well$utils$common$parse_tao2_table_$_iter__36431_$_iter__36449$$($cljs$core$_chunked_rest$$($cols$$2$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($cols$$4$$), null);
                                       }
                                       $cols$$4$$ = $cljs$core$first$$($cols$$2$$);
-                                      return $cljs$core$cons$$($cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($cols$$4$$.$cljs$core$IFn$_invoke$arity$1$ ? $cols$$4$$.$cljs$core$IFn$_invoke$arity$1$($table$$4$$) : $cols$$4$$.call(null, $table$$4$$), $cols$$3$$), $winglue_well$utils$common$parse_tao2_table_$_iter__35991_$_iter__36009$$($cljs$core$rest$$($cols$$2$$)));
+                                      return $cljs$core$cons$$($cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($cols$$4$$.$cljs$core$IFn$_invoke$arity$1$ ? $cols$$4$$.$cljs$core$IFn$_invoke$arity$1$($table$$4$$) : $cols$$4$$.call(null, $table$$4$$), $cols$$3$$), $winglue_well$utils$common$parse_tao2_table_$_iter__36431_$_iter__36449$$($cljs$core$rest$$($cols$$2$$)));
                                     }
                                     return null;
                                   }
                                 };
-                              }($cols$$2$$, $cols$$3$$, $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$, $s__35992$$, $cols$$4$$, $temp__6753__auto__$$137$$, $s__35992__$2$$, $c__7799__auto__$$19$$), null, null);
+                              }($cols$$2$$, $cols$$3$$, $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$, $s__36432$$, $cols$$4$$, $temp__6753__auto__$$137$$, $s__36432__$2$$, $c__7799__auto__$$19$$), null, null);
                             };
-                          }($winglue_well$utils$common$parse_tao2_table_$_iter__35991$$, $s__35992$$, $c__7799__auto__$$19$$, $size__7800__auto__$$19$$, $b__35994$$, $s__35992__$2$$, $cols$$3$$, $cols$$2$$)($cols$$2$$);
+                          }($winglue_well$utils$common$parse_tao2_table_$_iter__36431$$, $s__36432$$, $c__7799__auto__$$19$$, $size__7800__auto__$$19$$, $b__36434$$, $s__36432__$2$$, $cols$$3$$, $cols$$2$$)($cols$$2$$);
                         }())));
-                        $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$ += 1;
+                        $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$ += 1;
                       } else {
                         return !0;
                       }
                     }
-                  }() ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__35994$$), $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$($cljs$core$_chunked_rest$$($s__35992__$2$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__35994$$), null);
+                  }() ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36434$$), $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$($cljs$core$_chunked_rest$$($s__36432__$2$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36434$$), null);
                 }
-                var $idx$$54$$ = $cljs$core$first$$($s__35992__$2$$);
+                var $idx$$54$$ = $cljs$core$first$$($s__36432__$2$$);
                 return $cljs$core$cons$$($cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$03$$($cljs$core$assoc$$, $cljs$core$PersistentArrayMap$EMPTY$$, $cljs$core$interleave$$.$cljs$core$IFn$_invoke$arity$2$($cols$$2$$, function() {
-                  return function($cols$$2$$, $cols$$3$$, $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$, $s__35992$$) {
-                    return function $winglue_well$utils$common$parse_tao2_table_$_iter__35991_$_iter__36015$$($cols$$4$$) {
+                  return function($cols$$2$$, $cols$$3$$, $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$, $s__36432$$) {
+                    return function $winglue_well$utils$common$parse_tao2_table_$_iter__36431_$_iter__36455$$($cols$$4$$) {
                       return new $cljs$core$LazySeq$$(null, function($cols$$2$$) {
                         return function() {
                           for (;;) {
                             var $cols$$3$$ = $cljs$core$seq$$($cols$$4$$);
                             if ($cols$$3$$) {
                               if ($cljs$core$chunked_seq_QMARK_$$($cols$$3$$)) {
-                                var $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$ = $cljs$core$_chunked_first$$($cols$$3$$), $s__35992$$ = $cljs$core$count$$($winglue_well$utils$common$parse_tao2_table_$_iter__35991$$), $temp__6753__auto__$$137$$ = $cljs$core$chunk_buffer$$($s__35992$$);
+                                var $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$ = $cljs$core$_chunked_first$$($cols$$3$$), $s__36432$$ = $cljs$core$count$$($winglue_well$utils$common$parse_tao2_table_$_iter__36431$$), $temp__6753__auto__$$137$$ = $cljs$core$chunk_buffer$$($s__36432$$);
                                 a: {
-                                  for (var $s__35992__$2$$ = 0;;) {
-                                    if ($s__35992__$2$$ < $s__35992$$) {
-                                      var $c__7799__auto__$$19$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($winglue_well$utils$common$parse_tao2_table_$_iter__35991$$, $s__35992__$2$$), $c__7799__auto__$$19$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($c__7799__auto__$$19$$.$cljs$core$IFn$_invoke$arity$1$ ? $c__7799__auto__$$19$$.$cljs$core$IFn$_invoke$arity$1$($table$$4$$) : $c__7799__auto__$$19$$.call(null, $table$$4$$), $cols$$2$$);
+                                  for (var $s__36432__$2$$ = 0;;) {
+                                    if ($s__36432__$2$$ < $s__36432$$) {
+                                      var $c__7799__auto__$$19$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($winglue_well$utils$common$parse_tao2_table_$_iter__36431$$, $s__36432__$2$$), $c__7799__auto__$$19$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($c__7799__auto__$$19$$.$cljs$core$IFn$_invoke$arity$1$ ? $c__7799__auto__$$19$$.$cljs$core$IFn$_invoke$arity$1$($table$$4$$) : $c__7799__auto__$$19$$.call(null, $table$$4$$), $cols$$2$$);
                                       $temp__6753__auto__$$137$$.add($c__7799__auto__$$19$$);
-                                      $s__35992__$2$$ += 1;
+                                      $s__36432__$2$$ += 1;
                                     } else {
-                                      $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$ = !0;
+                                      $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$ = !0;
                                       break a;
                                     }
                                   }
                                 }
-                                return $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($temp__6753__auto__$$137$$), $winglue_well$utils$common$parse_tao2_table_$_iter__35991_$_iter__36015$$($cljs$core$_chunked_rest$$($cols$$3$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($temp__6753__auto__$$137$$), null);
+                                return $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($temp__6753__auto__$$137$$), $winglue_well$utils$common$parse_tao2_table_$_iter__36431_$_iter__36455$$($cljs$core$_chunked_rest$$($cols$$3$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($temp__6753__auto__$$137$$), null);
                               }
                               $temp__6753__auto__$$137$$ = $cljs$core$first$$($cols$$3$$);
-                              return $cljs$core$cons$$($cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($temp__6753__auto__$$137$$.$cljs$core$IFn$_invoke$arity$1$ ? $temp__6753__auto__$$137$$.$cljs$core$IFn$_invoke$arity$1$($table$$4$$) : $temp__6753__auto__$$137$$.call(null, $table$$4$$), $cols$$2$$), $winglue_well$utils$common$parse_tao2_table_$_iter__35991_$_iter__36015$$($cljs$core$rest$$($cols$$3$$)));
+                              return $cljs$core$cons$$($cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($temp__6753__auto__$$137$$.$cljs$core$IFn$_invoke$arity$1$ ? $temp__6753__auto__$$137$$.$cljs$core$IFn$_invoke$arity$1$($table$$4$$) : $temp__6753__auto__$$137$$.call(null, $table$$4$$), $cols$$2$$), $winglue_well$utils$common$parse_tao2_table_$_iter__36431_$_iter__36455$$($cljs$core$rest$$($cols$$3$$)));
                             }
                             return null;
                           }
                         };
-                      }($cols$$2$$, $cols$$3$$, $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$, $s__35992$$), null, null);
+                      }($cols$$2$$, $cols$$3$$, $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$, $s__36432$$), null, null);
                     };
-                  }($idx$$54$$, $s__35992__$2$$, $cols$$3$$, $cols$$2$$)($cols$$2$$);
-                }())), $winglue_well$utils$common$parse_tao2_table_$_iter__35991$$($cljs$core$rest$$($s__35992__$2$$)));
+                  }($idx$$54$$, $s__36432__$2$$, $cols$$3$$, $cols$$2$$)($cols$$2$$);
+                }())), $winglue_well$utils$common$parse_tao2_table_$_iter__36431$$($cljs$core$rest$$($s__36432__$2$$)));
               }
               return null;
             }
@@ -25612,8 +25615,8 @@ function $winglue_well$utils$common$decode_flow_regime$$($fr$$) {
   return $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$(new $cljs$core$PersistentVector$$(null, 16, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0liquid$$, $cljs$core$cst$0kw$0bubble$$, $cljs$core$cst$0kw$0slug$$, $cljs$core$cst$0kw$0transiton$$, $cljs$core$cst$0kw$0annular$$, $cljs$core$cst$0kw$0stratified$$, $cljs$core$cst$0kw$0gas$$, $cljs$core$cst$0kw$0unld_DASH_liquid$$, $cljs$core$cst$0kw$0unld_DASH_bubble$$, $cljs$core$cst$0kw$0unld_DASH_slug$$, $cljs$core$cst$0kw$0unld_DASH_transition$$, 
   $cljs$core$cst$0kw$0unld_DASH_annular$$, $cljs$core$cst$0kw$0unld_DASH_stratified$$, $cljs$core$cst$0kw$0unld_DASH_gas$$, $cljs$core$cst$0kw$01ph_DASH_liq$$, $cljs$core$cst$0kw$01ph_DASH_gas$$], null), $fr$$);
 }
-function $winglue_well$utils$common$filter_func$$($p__36024$$, $status_list$$) {
-  var $idx$$60$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($p__36024$$, 0, null), $val$$141$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($p__36024$$, 1, null);
+function $winglue_well$utils$common$filter_func$$($p__36464$$, $status_list$$) {
+  var $idx$$60$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($p__36464$$, 0, null), $val$$141$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($p__36464$$, 1, null);
   return $cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$($cljs$core$cst$0kw$0is_DASH_dummy$$, $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($status_list$$, $idx$$60$$)) ? !1 : $val$$141$$;
 }
 function $winglue_well$utils$common$mandrel_point_formatter$$() {
@@ -25623,56 +25626,56 @@ function $winglue_well$utils$common$filter_dummy_valves_from_valve_map$$($valve_
   var $status_list$$1$$ = $cljs$core$map$$.$cljs$core$IFn$_invoke$arity$2$($winglue_well$utils$common$decode_valve_status$$, $cljs$core$cst$0kw$0status_DASH_list$$.$cljs$core$IFn$_invoke$arity$1$($valve_map$$));
   return $cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$hash_map$$, $cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$concat$$, function() {
     return function($status_list$$1$$) {
-      return function $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36054$$($s__36055$$) {
+      return function $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36494$$($s__36495$$) {
         return new $cljs$core$LazySeq$$(null, function($status_list$$1$$) {
           return function() {
             for (;;) {
-              var $status_list$$2$$ = $cljs$core$seq$$($s__36055$$);
+              var $status_list$$2$$ = $cljs$core$seq$$($s__36495$$);
               if ($status_list$$2$$) {
-                var $s__36055__$2$$ = $status_list$$2$$;
-                if ($cljs$core$chunked_seq_QMARK_$$($s__36055__$2$$)) {
-                  var $c__7799__auto__$$23$$ = $cljs$core$_chunked_first$$($s__36055__$2$$), $size__7800__auto__$$23$$ = $cljs$core$count$$($c__7799__auto__$$23$$), $b__36057$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$23$$);
+                var $s__36495__$2$$ = $status_list$$2$$;
+                if ($cljs$core$chunked_seq_QMARK_$$($s__36495__$2$$)) {
+                  var $c__7799__auto__$$23$$ = $cljs$core$_chunked_first$$($s__36495__$2$$), $size__7800__auto__$$23$$ = $cljs$core$count$$($c__7799__auto__$$23$$), $b__36497$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$23$$);
                   return function() {
-                    for (var $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36054$$ = 0;;) {
-                      if ($winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36054$$ < $size__7800__auto__$$23$$) {
-                        var $s__36055$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($c__7799__auto__$$23$$, $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36054$$), $col$$36$$ = $s__36055$$.$cljs$core$IFn$_invoke$arity$1$ ? $s__36055$$.$cljs$core$IFn$_invoke$arity$1$($valve_map$$) : $s__36055$$.call(null, $valve_map$$);
-                        $cljs$core$chunk_append$$($b__36057$$, new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$s__36055$$, $cljs$core$vec$$($cljs$core$map$$.$cljs$core$IFn$_invoke$arity$2$(function() {
+                    for (var $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36494$$ = 0;;) {
+                      if ($winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36494$$ < $size__7800__auto__$$23$$) {
+                        var $s__36495$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($c__7799__auto__$$23$$, $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36494$$), $col$$36$$ = $s__36495$$.$cljs$core$IFn$_invoke$arity$1$ ? $s__36495$$.$cljs$core$IFn$_invoke$arity$1$($valve_map$$) : $s__36495$$.call(null, $valve_map$$);
+                        $cljs$core$chunk_append$$($b__36497$$, new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$s__36495$$, $cljs$core$vec$$($cljs$core$map$$.$cljs$core$IFn$_invoke$arity$2$(function() {
                           return function($valve_map$$) {
                             $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($valve_map$$, 0, null);
                             return $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($valve_map$$, 1, null);
                           };
-                        }($winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36054$$, $col$$36$$, $s__36055$$, $c__7799__auto__$$23$$, $size__7800__auto__$$23$$, $b__36057$$, $s__36055__$2$$, $status_list$$2$$, $status_list$$1$$), $cljs$core$filter$cljs$0core$0IFn$0_invoke$0arity$02$$(function($valve_map$$, $status_list$$1$$, $status_list$$2$$, $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36054$$, $s__36055$$, $status_list$$3$$, $temp__6753__auto__$$142$$, 
-                        $s__36055__$2$$, $c__7799__auto__$$23$$) {
+                        }($winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36494$$, $col$$36$$, $s__36495$$, $c__7799__auto__$$23$$, $size__7800__auto__$$23$$, $b__36497$$, $s__36495__$2$$, $status_list$$2$$, $status_list$$1$$), $cljs$core$filter$cljs$0core$0IFn$0_invoke$0arity$02$$(function($valve_map$$, $status_list$$1$$, $status_list$$2$$, $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36494$$, $s__36495$$, $status_list$$3$$, $temp__6753__auto__$$142$$, 
+                        $s__36495__$2$$, $c__7799__auto__$$23$$) {
                           return function($valve_map$$) {
                             return $winglue_well$utils$common$filter_func$$($valve_map$$, $c__7799__auto__$$23$$);
                           };
-                        }($winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36054$$, $col$$36$$, $s__36055$$, $c__7799__auto__$$23$$, $size__7800__auto__$$23$$, $b__36057$$, $s__36055__$2$$, $status_list$$2$$, $status_list$$1$$), $cljs$core$map_indexed$cljs$0core$0IFn$0_invoke$0arity$02$$(function() {
+                        }($winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36494$$, $col$$36$$, $s__36495$$, $c__7799__auto__$$23$$, $size__7800__auto__$$23$$, $b__36497$$, $s__36495__$2$$, $status_list$$2$$, $status_list$$1$$), $cljs$core$map_indexed$cljs$0core$0IFn$0_invoke$0arity$02$$(function() {
                           return function($valve_map$$, $status_list$$1$$) {
                             return new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$valve_map$$, $status_list$$1$$], null);
                           };
-                        }($winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36054$$, $col$$36$$, $s__36055$$, $c__7799__auto__$$23$$, $size__7800__auto__$$23$$, $b__36057$$, $s__36055__$2$$, $status_list$$2$$, $status_list$$1$$), $col$$36$$))))], null));
-                        $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36054$$ += 1;
+                        }($winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36494$$, $col$$36$$, $s__36495$$, $c__7799__auto__$$23$$, $size__7800__auto__$$23$$, $b__36497$$, $s__36495__$2$$, $status_list$$2$$, $status_list$$1$$), $col$$36$$))))], null));
+                        $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36494$$ += 1;
                       } else {
                         return !0;
                       }
                     }
-                  }() ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36057$$), $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36054$$($cljs$core$_chunked_rest$$($s__36055__$2$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36057$$), null);
+                  }() ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36497$$), $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36494$$($cljs$core$_chunked_rest$$($s__36495__$2$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36497$$), null);
                 }
-                var $col$$36$$ = $cljs$core$first$$($s__36055__$2$$), $vals$$10$$ = $col$$36$$.$cljs$core$IFn$_invoke$arity$1$ ? $col$$36$$.$cljs$core$IFn$_invoke$arity$1$($valve_map$$) : $col$$36$$.call(null, $valve_map$$);
+                var $col$$36$$ = $cljs$core$first$$($s__36495__$2$$), $vals$$10$$ = $col$$36$$.$cljs$core$IFn$_invoke$arity$1$ ? $col$$36$$.$cljs$core$IFn$_invoke$arity$1$($valve_map$$) : $col$$36$$.call(null, $valve_map$$);
                 return $cljs$core$cons$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$col$$36$$, $cljs$core$vec$$($cljs$core$map$$.$cljs$core$IFn$_invoke$arity$2$(function() {
                   return function($valve_map$$) {
                     $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($valve_map$$, 0, null);
                     return $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($valve_map$$, 1, null);
                   };
-                }($vals$$10$$, $col$$36$$, $s__36055__$2$$, $status_list$$2$$, $status_list$$1$$), $cljs$core$filter$cljs$0core$0IFn$0_invoke$0arity$02$$(function($valve_map$$, $status_list$$1$$, $status_list$$2$$, $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36054$$, $s__36055$$) {
+                }($vals$$10$$, $col$$36$$, $s__36495__$2$$, $status_list$$2$$, $status_list$$1$$), $cljs$core$filter$cljs$0core$0IFn$0_invoke$0arity$02$$(function($valve_map$$, $status_list$$1$$, $status_list$$2$$, $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36494$$, $s__36495$$) {
                   return function($valve_map$$) {
-                    return $winglue_well$utils$common$filter_func$$($valve_map$$, $s__36055$$);
+                    return $winglue_well$utils$common$filter_func$$($valve_map$$, $s__36495$$);
                   };
-                }($vals$$10$$, $col$$36$$, $s__36055__$2$$, $status_list$$2$$, $status_list$$1$$), $cljs$core$map_indexed$cljs$0core$0IFn$0_invoke$0arity$02$$(function() {
+                }($vals$$10$$, $col$$36$$, $s__36495__$2$$, $status_list$$2$$, $status_list$$1$$), $cljs$core$map_indexed$cljs$0core$0IFn$0_invoke$0arity$02$$(function() {
                   return function($valve_map$$, $status_list$$1$$) {
                     return new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$valve_map$$, $status_list$$1$$], null);
                   };
-                }($vals$$10$$, $col$$36$$, $s__36055__$2$$, $status_list$$2$$, $status_list$$1$$), $vals$$10$$))))], null), $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36054$$($cljs$core$rest$$($s__36055__$2$$)));
+                }($vals$$10$$, $col$$36$$, $s__36495__$2$$, $status_list$$2$$, $status_list$$1$$), $vals$$10$$))))], null), $winglue_well$utils$common$filter_dummy_valves_from_valve_map_$_iter__36494$$($cljs$core$rest$$($s__36495__$2$$)));
               }
               return null;
             }
@@ -25687,31 +25690,31 @@ null), new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector
 [$cljs$core$cst$0kw$0calib_DASH_lift_DASH_gas_DASH_rate$$, $cljs$core$cst$0kw$0meas_DASH_lift_DASH_gas_DASH_rate$$], null), new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0calib_DASH_casing_DASH_head_DASH_press$$, $cljs$core$cst$0kw$0meas_DASH_casing_DASH_head_DASH_press$$], null)], null);
 function $winglue_well$utils$common$wtest_is_calibrated$$($wt$$) {
   return !$cljs$core$every_QMARK_$$($cljs$core$identity$$, function() {
-    return function $winglue_well$utils$common$wtest_is_calibrated_$_iter__36085$$($s__36086$$) {
+    return function $winglue_well$utils$common$wtest_is_calibrated_$_iter__36525$$($s__36526$$) {
       return new $cljs$core$LazySeq$$(null, function() {
         for (;;) {
-          var $s__36086__$2_temp__6753__auto__$$149$$ = $cljs$core$seq$$($s__36086$$);
-          if ($s__36086__$2_temp__6753__auto__$$149$$) {
-            if ($cljs$core$chunked_seq_QMARK_$$($s__36086__$2_temp__6753__auto__$$149$$)) {
-              var $JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$ = $cljs$core$_chunked_first$$($s__36086__$2_temp__6753__auto__$$149$$), $size__7800__auto__$$27$$ = $cljs$core$count$$($JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$), $b__36088_x1$$inline_1995$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$27$$);
+          var $s__36526__$2_temp__6753__auto__$$149$$ = $cljs$core$seq$$($s__36526$$);
+          if ($s__36526__$2_temp__6753__auto__$$149$$) {
+            if ($cljs$core$chunked_seq_QMARK_$$($s__36526__$2_temp__6753__auto__$$149$$)) {
+              var $JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$ = $cljs$core$_chunked_first$$($s__36526__$2_temp__6753__auto__$$149$$), $size__7800__auto__$$27$$ = $cljs$core$count$$($JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$), $b__36528_x1$$inline_1995$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$27$$);
               a: {
-                for (var $i__36087$$inline_1478$$ = 0;;) {
-                  if ($i__36087$$inline_1478$$ < $size__7800__auto__$$27$$) {
-                    var $kp$$inline_1479_x2$$inline_1993$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$, $i__36087$$inline_1478$$), $JSCompiler_temp_const$$1618$$ = $b__36088_x1$$inline_1995$$, $x1$$inline_1992$$ = $cljs$core$first$$($kp$$inline_1479_x2$$inline_1993$$).call(null, $wt$$), $kp$$inline_1479_x2$$inline_1993$$ = $cljs$core$last$$($kp$$inline_1479_x2$$inline_1993$$).call(null, $wt$$);
+                for (var $i__36527$$inline_1478$$ = 0;;) {
+                  if ($i__36527$$inline_1478$$ < $size__7800__auto__$$27$$) {
+                    var $kp$$inline_1479_x2$$inline_1993$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$, $i__36527$$inline_1478$$), $JSCompiler_temp_const$$1618$$ = $b__36528_x1$$inline_1995$$, $x1$$inline_1992$$ = $cljs$core$first$$($kp$$inline_1479_x2$$inline_1993$$).call(null, $wt$$), $kp$$inline_1479_x2$$inline_1993$$ = $cljs$core$last$$($kp$$inline_1479_x2$$inline_1993$$).call(null, $wt$$);
                     $JSCompiler_temp_const$$1618$$.add(.01 > Math.abs($x1$$inline_1992$$ - $kp$$inline_1479_x2$$inline_1993$$));
-                    $i__36087$$inline_1478$$ += 1;
+                    $i__36527$$inline_1478$$ += 1;
                   } else {
                     $JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$ = !0;
                     break a;
                   }
                 }
               }
-              return $JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36088_x1$$inline_1995$$), $winglue_well$utils$common$wtest_is_calibrated_$_iter__36085$$($cljs$core$_chunked_rest$$($s__36086__$2_temp__6753__auto__$$149$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36088_x1$$inline_1995$$), null);
+              return $JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36528_x1$$inline_1995$$), $winglue_well$utils$common$wtest_is_calibrated_$_iter__36525$$($cljs$core$_chunked_rest$$($s__36526__$2_temp__6753__auto__$$149$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36528_x1$$inline_1995$$), null);
             }
-            $JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$ = $cljs$core$first$$($s__36086__$2_temp__6753__auto__$$149$$);
-            $b__36088_x1$$inline_1995$$ = $cljs$core$first$$($JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$).call(null, $wt$$);
+            $JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$ = $cljs$core$first$$($s__36526__$2_temp__6753__auto__$$149$$);
+            $b__36528_x1$$inline_1995$$ = $cljs$core$first$$($JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$).call(null, $wt$$);
             $JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$ = $cljs$core$last$$($JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$).call(null, $wt$$);
-            return $cljs$core$cons$$(.01 > Math.abs($b__36088_x1$$inline_1995$$ - $JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$), $winglue_well$utils$common$wtest_is_calibrated_$_iter__36085$$($cljs$core$rest$$($s__36086__$2_temp__6753__auto__$$149$$)));
+            return $cljs$core$cons$$(.01 > Math.abs($b__36528_x1$$inline_1995$$ - $JSCompiler_inline_result$$277_c__7799__auto__$$27_kp_x2$$inline_1996$$), $winglue_well$utils$common$wtest_is_calibrated_$_iter__36525$$($cljs$core$rest$$($s__36526__$2_temp__6753__auto__$$149$$)));
           }
           return null;
         }
@@ -25759,17 +25762,17 @@ function $winglue_well$components$tubingpipe$get_valves_from_dp$$($depth_profile
   $depth_profile$$2_v_table$$ = $winglue_well$utils$common$parse_tao2_table$$($cljs$core$cst$0kw$0valves_DASH_status_DASH_map$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$2_v_table$$));
   return $cljs$core$vec$$($cljs$core$map$$.$cljs$core$IFn$_invoke$arity$2$($winglue_well$components$tubingpipe$fixup_valve_map$$, $depth_profile$$2_v_table$$));
 }
-function $winglue_well$components$tubingpipe$consolidate_regimes$$($G__36119_fixed_list_fr$$1_regimes$$) {
-  var $r$$65_rest_r_vec__36115$$ = $G__36119_fixed_list_fr$$1_regimes$$;
-  for ($G__36119_fixed_list_fr$$1_regimes$$ = $cljs$core$PersistentVector$EMPTY$$;;) {
-    var $curr_regime_fixed_regime_identical_regimes$$ = $cljs$core$second$$($cljs$core$first$$($r$$65_rest_r_vec__36115$$)), $r$$65_rest_r_vec__36115$$ = $cljs$core$split_with$$(function($G__36119_fixed_list_fr$$1_regimes$$, $r$$65_rest_r_vec__36115$$, $curr_regime_fixed_regime_identical_regimes$$) {
-      return function($G__36119_fixed_list_fr$$1_regimes$$) {
-        return $cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$($curr_regime_fixed_regime_identical_regimes$$, $cljs$core$second$$($G__36119_fixed_list_fr$$1_regimes$$));
+function $winglue_well$components$tubingpipe$consolidate_regimes$$($G__36663_fixed_list_fr$$1_regimes$$) {
+  var $r$$65_rest_r_vec__36659$$ = $G__36663_fixed_list_fr$$1_regimes$$;
+  for ($G__36663_fixed_list_fr$$1_regimes$$ = $cljs$core$PersistentVector$EMPTY$$;;) {
+    var $curr_regime_fixed_regime_identical_regimes$$ = $cljs$core$second$$($cljs$core$first$$($r$$65_rest_r_vec__36659$$)), $r$$65_rest_r_vec__36659$$ = $cljs$core$split_with$$(function($G__36663_fixed_list_fr$$1_regimes$$, $r$$65_rest_r_vec__36659$$, $curr_regime_fixed_regime_identical_regimes$$) {
+      return function($G__36663_fixed_list_fr$$1_regimes$$) {
+        return $cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$($curr_regime_fixed_regime_identical_regimes$$, $cljs$core$second$$($G__36663_fixed_list_fr$$1_regimes$$));
       };
-    }($r$$65_rest_r_vec__36115$$, $G__36119_fixed_list_fr$$1_regimes$$, $curr_regime_fixed_regime_identical_regimes$$), $r$$65_rest_r_vec__36115$$), $curr_regime_fixed_regime_identical_regimes$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($r$$65_rest_r_vec__36115$$, 0, null), $r$$65_rest_r_vec__36115$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($r$$65_rest_r_vec__36115$$, 1, null), $curr_regime_fixed_regime_identical_regimes$$ = $cljs$core$last$$($curr_regime_fixed_regime_identical_regimes$$);
-    $G__36119_fixed_list_fr$$1_regimes$$ = $cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$03$$($cljs$core$conj$$, $G__36119_fixed_list_fr$$1_regimes$$, new $cljs$core$PersistentVector$$(null, 1, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$curr_regime_fixed_regime_identical_regimes$$], null));
-    if ($cljs$core$empty_QMARK_$$($r$$65_rest_r_vec__36115$$)) {
-      return $G__36119_fixed_list_fr$$1_regimes$$;
+    }($r$$65_rest_r_vec__36659$$, $G__36663_fixed_list_fr$$1_regimes$$, $curr_regime_fixed_regime_identical_regimes$$), $r$$65_rest_r_vec__36659$$), $curr_regime_fixed_regime_identical_regimes$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($r$$65_rest_r_vec__36659$$, 0, null), $r$$65_rest_r_vec__36659$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$03$$($r$$65_rest_r_vec__36659$$, 1, null), $curr_regime_fixed_regime_identical_regimes$$ = $cljs$core$last$$($curr_regime_fixed_regime_identical_regimes$$);
+    $G__36663_fixed_list_fr$$1_regimes$$ = $cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$03$$($cljs$core$conj$$, $G__36663_fixed_list_fr$$1_regimes$$, new $cljs$core$PersistentVector$$(null, 1, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$curr_regime_fixed_regime_identical_regimes$$], null));
+    if ($cljs$core$empty_QMARK_$$($r$$65_rest_r_vec__36659$$)) {
+      return $G__36663_fixed_list_fr$$1_regimes$$;
     }
   }
 }
@@ -25777,33 +25780,33 @@ function $winglue_well$components$tubingpipe$get_flow_regimes_from_dp$$($depth_p
   var $production_string_map$$ = $cljs$core$cst$0kw$0production_DASH_string_DASH_depth_DASH_profile_DASH_map$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$3$$);
   return $cljs$core$vec$$(function() {
     return function($depth_profile$$3$$) {
-      return function $winglue_well$components$tubingpipe$get_flow_regimes_from_dp_$_iter__36126$$($production_string_map$$) {
+      return function $winglue_well$components$tubingpipe$get_flow_regimes_from_dp_$_iter__36670$$($production_string_map$$) {
         return new $cljs$core$LazySeq$$(null, function($depth_profile$$3$$) {
           return function() {
             for (;;) {
               var $production_string_map$$1$$ = $cljs$core$seq$$($production_string_map$$);
               if ($production_string_map$$1$$) {
                 if ($cljs$core$chunked_seq_QMARK_$$($production_string_map$$1$$)) {
-                  var $JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$ = $cljs$core$_chunked_first$$($production_string_map$$1$$), $size__7800__auto__$$28$$ = $cljs$core$count$$($JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$), $b__36129_depth$$3$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$28$$);
+                  var $JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$ = $cljs$core$_chunked_first$$($production_string_map$$1$$), $size__7800__auto__$$28$$ = $cljs$core$count$$($JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$), $b__36673_depth$$3$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$28$$);
                   a: {
-                    for (var $i__36128$$inline_1481$$ = 0;;) {
-                      if ($i__36128$$inline_1481$$ < $size__7800__auto__$$28$$) {
-                        var $flow_regime$$inline_1484_idx$$inline_1482$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$, $i__36128$$inline_1481$$), $depth$$inline_1483$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$cst$0kw$0vert_DASH_depth_DASH_list$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$3$$), $flow_regime$$inline_1484_idx$$inline_1482$$), $flow_regime$$inline_1484_idx$$inline_1482$$ = $winglue_well$utils$common$decode_flow_regime$$($cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$cst$0kw$0regime_DASH_list$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$3$$), 
+                    for (var $i__36672$$inline_1481$$ = 0;;) {
+                      if ($i__36672$$inline_1481$$ < $size__7800__auto__$$28$$) {
+                        var $flow_regime$$inline_1484_idx$$inline_1482$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$, $i__36672$$inline_1481$$), $depth$$inline_1483$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$cst$0kw$0vert_DASH_depth_DASH_list$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$3$$), $flow_regime$$inline_1484_idx$$inline_1482$$), $flow_regime$$inline_1484_idx$$inline_1482$$ = $winglue_well$utils$common$decode_flow_regime$$($cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$cst$0kw$0regime_DASH_list$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$3$$), 
                         $flow_regime$$inline_1484_idx$$inline_1482$$));
-                        $b__36129_depth$$3$$.add(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$depth$$inline_1483$$, $flow_regime$$inline_1484_idx$$inline_1482$$], null));
-                        $i__36128$$inline_1481$$ += 1;
+                        $b__36673_depth$$3$$.add(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$depth$$inline_1483$$, $flow_regime$$inline_1484_idx$$inline_1482$$], null));
+                        $i__36672$$inline_1481$$ += 1;
                       } else {
                         $JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$ = !0;
                         break a;
                       }
                     }
                   }
-                  return $JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36129_depth$$3$$), $winglue_well$components$tubingpipe$get_flow_regimes_from_dp_$_iter__36126$$($cljs$core$_chunked_rest$$($production_string_map$$1$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36129_depth$$3$$), null);
+                  return $JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36673_depth$$3$$), $winglue_well$components$tubingpipe$get_flow_regimes_from_dp_$_iter__36670$$($cljs$core$_chunked_rest$$($production_string_map$$1$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36673_depth$$3$$), null);
                 }
                 $JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$ = $cljs$core$first$$($production_string_map$$1$$);
-                $b__36129_depth$$3$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$cst$0kw$0vert_DASH_depth_DASH_list$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$3$$), $JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$);
+                $b__36673_depth$$3$$ = $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$cst$0kw$0vert_DASH_depth_DASH_list$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$3$$), $JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$);
                 $JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$ = $winglue_well$utils$common$decode_flow_regime$$($cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$cst$0kw$0regime_DASH_list$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$3$$), $JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$));
-                return $cljs$core$cons$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$b__36129_depth$$3$$, $JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$], null), $winglue_well$components$tubingpipe$get_flow_regimes_from_dp_$_iter__36126$$($cljs$core$rest$$($production_string_map$$1$$)));
+                return $cljs$core$cons$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$b__36673_depth$$3$$, $JSCompiler_inline_result$$278_c__7799__auto__$$28_flow_regime_idx$$63$$], null), $winglue_well$components$tubingpipe$get_flow_regimes_from_dp_$_iter__36670$$($cljs$core$rest$$($production_string_map$$1$$)));
               }
               return null;
             }
@@ -25852,44 +25855,44 @@ function $winglue_well$components$glvtable$format_status$$($status$$2$$, $vpc_pc
   $status$$2$$) : $cljs$core$_EQ_$$.call(null, $cljs$core$cst$0kw$0open$$, $status$$2$$)) ? "Open" : $cljs$core$truth_$$($cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$ ? $cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$($cljs$core$cst$0kw$0transition$$, $status$$2$$) : $cljs$core$_EQ_$$.call(null, $cljs$core$cst$0kw$0transition$$, $status$$2$$)) ? "Transition" : $cljs$core$name$$($status$$2$$);
 }
 function $winglue_well$components$glvtable$format_dec$$($num$$19$$, $dec_places$$1$$) {
-  var $G__36171$$ = [$cljs$core$str$$("%."), $cljs$core$str$$($dec_places$$1$$), $cljs$core$str$$("f")].join("");
-  return $goog$string$format$$($G__36171$$, $num$$19$$);
+  var $G__36717$$ = [$cljs$core$str$$("%."), $cljs$core$str$$($dec_places$$1$$), $cljs$core$str$$("f")].join("");
+  return $goog$string$format$$($G__36717$$, $num$$19$$);
 }
 function $winglue_well$components$glvtable$get_bottom_open_valve$$($valves_map$$) {
   return $cljs$core$reduce$$.$cljs$core$IFn$_invoke$arity$2$($cljs$core$max$$, function() {
-    return function $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36179$$($s__36180$$) {
+    return function $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36725$$($s__36726$$) {
       return new $cljs$core$LazySeq$$(null, function() {
-        for (var $s__36180__$1$$ = $s__36180$$;;) {
-          var $temp__6753__auto__$$151$$ = $cljs$core$seq$$($s__36180__$1$$);
+        for (var $s__36726__$1$$ = $s__36726$$;;) {
+          var $temp__6753__auto__$$151$$ = $cljs$core$seq$$($s__36726__$1$$);
           if ($temp__6753__auto__$$151$$) {
-            var $s__36180__$2$$ = $temp__6753__auto__$$151$$;
-            if ($cljs$core$chunked_seq_QMARK_$$($s__36180__$2$$)) {
-              var $c__7799__auto__$$29$$ = $cljs$core$_chunked_first$$($s__36180__$2$$), $size__7800__auto__$$29$$ = $cljs$core$count$$($c__7799__auto__$$29$$), $b__36182$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$29$$);
+            var $s__36726__$2$$ = $temp__6753__auto__$$151$$;
+            if ($cljs$core$chunked_seq_QMARK_$$($s__36726__$2$$)) {
+              var $c__7799__auto__$$29$$ = $cljs$core$_chunked_first$$($s__36726__$2$$), $size__7800__auto__$$29$$ = $cljs$core$count$$($c__7799__auto__$$29$$), $b__36728$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$29$$);
               return function() {
-                for (var $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36179$$ = 0;;) {
-                  if ($winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36179$$ < $size__7800__auto__$$29$$) {
-                    var $s__36180$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($c__7799__auto__$$29$$, $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36179$$), $idx$$65$$ = $winglue_well$utils$common$decode_valve_status$$(function() {
-                      return function($winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36179$$, $s__36180$$) {
-                        return $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($s__36180$$.$cljs$core$IFn$_invoke$arity$1$ ? $s__36180$$.$cljs$core$IFn$_invoke$arity$1$($valves_map$$) : $s__36180$$.call(null, $valves_map$$), $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36179$$);
+                for (var $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36725$$ = 0;;) {
+                  if ($winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36725$$ < $size__7800__auto__$$29$$) {
+                    var $s__36726$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($c__7799__auto__$$29$$, $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36725$$), $idx$$65$$ = $winglue_well$utils$common$decode_valve_status$$(function() {
+                      return function($winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36725$$, $s__36726$$) {
+                        return $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($s__36726$$.$cljs$core$IFn$_invoke$arity$1$ ? $s__36726$$.$cljs$core$IFn$_invoke$arity$1$($valves_map$$) : $s__36726$$.call(null, $valves_map$$), $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36725$$);
                       };
-                    }($winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36179$$, $s__36180__$1$$, $s__36180$$, $c__7799__auto__$$29$$, $size__7800__auto__$$29$$, $b__36182$$, $s__36180__$2$$, $temp__6753__auto__$$151$$)($s__36180$$, $cljs$core$cst$0kw$0status_DASH_list$$));
-                    ($cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$($idx$$65$$, $cljs$core$cst$0kw$0open$$) || $cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$($idx$$65$$, $cljs$core$cst$0kw$0transition$$)) && $b__36182$$.add($s__36180$$);
-                    $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36179$$ += 1;
+                    }($winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36725$$, $s__36726__$1$$, $s__36726$$, $c__7799__auto__$$29$$, $size__7800__auto__$$29$$, $b__36728$$, $s__36726__$2$$, $temp__6753__auto__$$151$$)($s__36726$$, $cljs$core$cst$0kw$0status_DASH_list$$));
+                    ($cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$($idx$$65$$, $cljs$core$cst$0kw$0open$$) || $cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$($idx$$65$$, $cljs$core$cst$0kw$0transition$$)) && $b__36728$$.add($s__36726$$);
+                    $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36725$$ += 1;
                   } else {
                     return !0;
                   }
                 }
-              }() ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36182$$), $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36179$$($cljs$core$_chunked_rest$$($s__36180__$2$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36182$$), null);
+              }() ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36728$$), $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36725$$($cljs$core$_chunked_rest$$($s__36726__$2$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36728$$), null);
             }
-            var $idx$$65$$ = $cljs$core$first$$($s__36180__$2$$), $status$$3$$ = $winglue_well$utils$common$decode_valve_status$$(function() {
-              return function($winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36179$$, $s__36180$$) {
-                return $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($s__36180$$.$cljs$core$IFn$_invoke$arity$1$ ? $s__36180$$.$cljs$core$IFn$_invoke$arity$1$($valves_map$$) : $s__36180$$.call(null, $valves_map$$), $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36179$$);
+            var $idx$$65$$ = $cljs$core$first$$($s__36726__$2$$), $status$$3$$ = $winglue_well$utils$common$decode_valve_status$$(function() {
+              return function($winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36725$$, $s__36726$$) {
+                return $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($s__36726$$.$cljs$core$IFn$_invoke$arity$1$ ? $s__36726$$.$cljs$core$IFn$_invoke$arity$1$($valves_map$$) : $s__36726$$.call(null, $valves_map$$), $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36725$$);
               };
-            }($s__36180__$1$$, $idx$$65$$, $s__36180__$2$$, $temp__6753__auto__$$151$$)($idx$$65$$, $cljs$core$cst$0kw$0status_DASH_list$$));
+            }($s__36726__$1$$, $idx$$65$$, $s__36726__$2$$, $temp__6753__auto__$$151$$)($idx$$65$$, $cljs$core$cst$0kw$0status_DASH_list$$));
             if ($cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$($status$$3$$, $cljs$core$cst$0kw$0open$$) || $cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$($status$$3$$, $cljs$core$cst$0kw$0transition$$)) {
-              return $cljs$core$cons$$($idx$$65$$, $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36179$$($cljs$core$rest$$($s__36180__$2$$)));
+              return $cljs$core$cons$$($idx$$65$$, $winglue_well$components$glvtable$get_bottom_open_valve_$_iter__36725$$($cljs$core$rest$$($s__36726__$2$$)));
             }
-            $s__36180__$1$$ = $cljs$core$rest$$($s__36180__$2$$);
+            $s__36726__$1$$ = $cljs$core$rest$$($s__36726__$2$$);
           } else {
             return null;
           }
@@ -25902,11 +25905,11 @@ function $winglue_well$components$glvtable$GLVTable$$() {
   var $data_source__$1$$ = $winglue_well$pages$welloverview$subs$get_selected_datasource$$(), $well__$1$$ = $winglue_well$pages$welloverview$subs$get_selected_well$$(), $depth_profile$$6$$ = $winglue_well$data$subs$get_depth_profile$$(), $mandrel_survey$$ = $winglue_well$data$subs$get_mandrel_survey$$(), $valves_map$$1$$ = $cljs$core$cst$0kw$0valves_DASH_status_DASH_map$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$6$$);
   return null != $depth_profile$$6$$ && null != $mandrel_survey$$ && null != $valves_map$$1$$ ? new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0table$0table$$, new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0thead$$, $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0tr$$, $cljs$core$doall$cljs$0core$0IFn$0_invoke$0arity$01$$(function() {
     return function($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$) {
-      return function $winglue_well$components$glvtable$GLVTable_$_iter__36206$$($s__36207$$) {
+      return function $winglue_well$components$glvtable$GLVTable_$_iter__36752$$($s__36753$$) {
         return new $cljs$core$LazySeq$$(null, function() {
           return function() {
             for (;;) {
-              var $data_source__$1$$ = $cljs$core$seq$$($s__36207$$);
+              var $data_source__$1$$ = $cljs$core$seq$$($s__36753$$);
               if ($data_source__$1$$) {
                 if ($cljs$core$chunked_seq_QMARK_$$($data_source__$1$$)) {
                   var $well__$1$$ = $cljs$core$_chunked_first$$($data_source__$1$$), $depth_profile$$6$$ = $cljs$core$count$$($well__$1$$), $mandrel_survey$$ = $cljs$core$chunk_buffer$$($depth_profile$$6$$);
@@ -25924,12 +25927,12 @@ function $winglue_well$components$glvtable$GLVTable$$() {
                       }
                     }
                   }
-                  return $well__$1$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($mandrel_survey$$), $winglue_well$components$glvtable$GLVTable_$_iter__36206$$($cljs$core$_chunked_rest$$($data_source__$1$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($mandrel_survey$$), null);
+                  return $well__$1$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($mandrel_survey$$), $winglue_well$components$glvtable$GLVTable_$_iter__36752$$($cljs$core$_chunked_rest$$($data_source__$1$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($mandrel_survey$$), null);
                 }
                 $mandrel_survey$$ = $cljs$core$first$$($data_source__$1$$);
                 $well__$1$$ = $mandrel_survey$$.$cljs$core$IFn$_invoke$arity$1$ ? $mandrel_survey$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$components$glvtable$key_mapping$$) : $mandrel_survey$$.call(null, $winglue_well$components$glvtable$key_mapping$$);
                 return $cljs$core$cons$$($cljs$core$contains_QMARK_$$($well__$1$$, $cljs$core$cst$0kw$0full_DASH_label$$) ? $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0data_DASH_toggle$$, "tooltip", $cljs$core$cst$0kw$0title$$, $cljs$core$cst$0kw$0full_DASH_label$$.$cljs$core$IFn$_invoke$arity$1$($well__$1$$)], null), $cljs$core$cst$0kw$0label$$.$cljs$core$IFn$_invoke$arity$1$($well__$1$$)], 
-                null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $mandrel_survey$$], null)) : $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, $cljs$core$cst$0kw$0label$$.$cljs$core$IFn$_invoke$arity$1$($well__$1$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $mandrel_survey$$], null)), $winglue_well$components$glvtable$GLVTable_$_iter__36206$$($cljs$core$rest$$($data_source__$1$$)));
+                null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $mandrel_survey$$], null)) : $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, $cljs$core$cst$0kw$0label$$.$cljs$core$IFn$_invoke$arity$1$($well__$1$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $mandrel_survey$$], null)), $winglue_well$components$glvtable$GLVTable_$_iter__36752$$($cljs$core$rest$$($data_source__$1$$)));
               }
               return null;
             }
@@ -25939,11 +25942,11 @@ function $winglue_well$components$glvtable$GLVTable$$() {
     }($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$)($winglue_well$components$glvtable$cols$$);
   }())], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, "headers"], null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0tr$$, function() {
     return function($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$) {
-      return function $winglue_well$components$glvtable$GLVTable_$_iter__36212$$($s__36213$$) {
+      return function $winglue_well$components$glvtable$GLVTable_$_iter__36758$$($s__36759$$) {
         return new $cljs$core$LazySeq$$(null, function() {
           return function() {
             for (;;) {
-              var $data_source__$1$$ = $cljs$core$seq$$($s__36213$$);
+              var $data_source__$1$$ = $cljs$core$seq$$($s__36759$$);
               if ($data_source__$1$$) {
                 if ($cljs$core$chunked_seq_QMARK_$$($data_source__$1$$)) {
                   var $well__$1$$ = $cljs$core$_chunked_first$$($data_source__$1$$), $depth_profile$$6$$ = $cljs$core$count$$($well__$1$$), $mandrel_survey$$ = $cljs$core$chunk_buffer$$($depth_profile$$6$$);
@@ -25960,11 +25963,11 @@ function $winglue_well$components$glvtable$GLVTable$$() {
                       }
                     }
                   }
-                  return $well__$1$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($mandrel_survey$$), $winglue_well$components$glvtable$GLVTable_$_iter__36212$$($cljs$core$_chunked_rest$$($data_source__$1$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($mandrel_survey$$), null);
+                  return $well__$1$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($mandrel_survey$$), $winglue_well$components$glvtable$GLVTable_$_iter__36758$$($cljs$core$_chunked_rest$$($data_source__$1$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($mandrel_survey$$), null);
                 }
                 $mandrel_survey$$ = $cljs$core$first$$($data_source__$1$$);
                 $well__$1$$ = $mandrel_survey$$.$cljs$core$IFn$_invoke$arity$1$ ? $mandrel_survey$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$components$glvtable$key_mapping$$) : $mandrel_survey$$.call(null, $winglue_well$components$glvtable$key_mapping$$);
-                return $cljs$core$cons$$($cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, $cljs$core$cst$0kw$0units$$.$cljs$core$IFn$_invoke$arity$1$($well__$1$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $mandrel_survey$$], null)), $winglue_well$components$glvtable$GLVTable_$_iter__36212$$($cljs$core$rest$$($data_source__$1$$)));
+                return $cljs$core$cons$$($cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, $cljs$core$cst$0kw$0units$$.$cljs$core$IFn$_invoke$arity$1$($well__$1$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $mandrel_survey$$], null)), $winglue_well$components$glvtable$GLVTable_$_iter__36758$$($cljs$core$rest$$($data_source__$1$$)));
               }
               return null;
             }
@@ -25974,60 +25977,60 @@ function $winglue_well$components$glvtable$GLVTable$$() {
     }($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$)($winglue_well$components$glvtable$cols$$);
   }()], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, "units"], null))], null), new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0tbody$$, $cljs$core$doall$cljs$0core$0IFn$0_invoke$0arity$01$$(function() {
     return function($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$) {
-      return function $winglue_well$components$glvtable$GLVTable_$_iter__36218$$($s__36219$$) {
+      return function $winglue_well$components$glvtable$GLVTable_$_iter__36764$$($s__36765$$) {
         return new $cljs$core$LazySeq$$(null, function($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$) {
           return function() {
             for (;;) {
-              var $data_source__$1$$5$$ = $cljs$core$seq$$($s__36219$$);
+              var $data_source__$1$$5$$ = $cljs$core$seq$$($s__36765$$);
               if ($data_source__$1$$5$$) {
                 var $well__$1$$5$$ = $data_source__$1$$5$$;
                 if ($cljs$core$chunked_seq_QMARK_$$($well__$1$$5$$)) {
                   var $depth_profile$$11$$ = $cljs$core$_chunked_first$$($well__$1$$5$$), $mandrel_survey$$5$$ = $cljs$core$count$$($depth_profile$$11$$), $valves_map$$6$$ = $cljs$core$chunk_buffer$$($mandrel_survey$$5$$);
                   return function() {
-                    for (var $winglue_well$components$glvtable$GLVTable_$_iter__36218$$ = 0;;) {
-                      if ($winglue_well$components$glvtable$GLVTable_$_iter__36218$$ < $mandrel_survey$$5$$) {
-                        var $s__36219$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($depth_profile$$11$$, $winglue_well$components$glvtable$GLVTable_$_iter__36218$$), $get_cell$$2$$ = function($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$, $data_source__$1$$5$$, $well__$1$$5$$, $depth_profile$$11$$, $mandrel_survey$$5$$, $valves_map$$6$$, $winglue_well$components$glvtable$GLVTable_$_iter__36218$$, $s__36219$$) {
+                    for (var $winglue_well$components$glvtable$GLVTable_$_iter__36764$$ = 0;;) {
+                      if ($winglue_well$components$glvtable$GLVTable_$_iter__36764$$ < $mandrel_survey$$5$$) {
+                        var $s__36765$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($depth_profile$$11$$, $winglue_well$components$glvtable$GLVTable_$_iter__36764$$), $get_cell$$2$$ = function($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$, $data_source__$1$$5$$, $well__$1$$5$$, $depth_profile$$11$$, $mandrel_survey$$5$$, $valves_map$$6$$, $winglue_well$components$glvtable$GLVTable_$_iter__36764$$, $s__36765$$) {
                           return function($data_source__$1$$, $well__$1$$) {
-                            return $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($well__$1$$.$cljs$core$IFn$_invoke$arity$1$ ? $well__$1$$.$cljs$core$IFn$_invoke$arity$1$($s__36219$$) : $well__$1$$.call(null, $s__36219$$), $data_source__$1$$);
+                            return $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($well__$1$$.$cljs$core$IFn$_invoke$arity$1$ ? $well__$1$$.$cljs$core$IFn$_invoke$arity$1$($s__36765$$) : $well__$1$$.call(null, $s__36765$$), $data_source__$1$$);
                           };
-                        }($winglue_well$components$glvtable$GLVTable_$_iter__36218$$, $s__36219$$, $depth_profile$$11$$, $mandrel_survey$$5$$, $valves_map$$6$$, $well__$1$$5$$, $data_source__$1$$5$$, $data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$), $get_cell_mand$$ = function($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$, $data_source__$1$$5$$, $well__$1$$5$$, $depth_profile$$11$$, $mandrel_survey$$5$$, $valves_map$$6$$, 
-                        $winglue_well$components$glvtable$GLVTable_$_iter__36218$$, $s__36219$$) {
+                        }($winglue_well$components$glvtable$GLVTable_$_iter__36764$$, $s__36765$$, $depth_profile$$11$$, $mandrel_survey$$5$$, $valves_map$$6$$, $well__$1$$5$$, $data_source__$1$$5$$, $data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$), $get_cell_mand$$ = function($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$, $data_source__$1$$5$$, $well__$1$$5$$, $depth_profile$$11$$, $mandrel_survey$$5$$, $valves_map$$6$$, 
+                        $winglue_well$components$glvtable$GLVTable_$_iter__36764$$, $s__36765$$) {
                           return function($data_source__$1$$, $well__$1$$) {
-                            return $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($well__$1$$.$cljs$core$IFn$_invoke$arity$1$ ? $well__$1$$.$cljs$core$IFn$_invoke$arity$1$($s__36219$$) : $well__$1$$.call(null, $s__36219$$), $data_source__$1$$);
+                            return $cljs$core$nth$cljs$0core$0IFn$0_invoke$0arity$02$$($well__$1$$.$cljs$core$IFn$_invoke$arity$1$ ? $well__$1$$.$cljs$core$IFn$_invoke$arity$1$($s__36765$$) : $well__$1$$.call(null, $s__36765$$), $data_source__$1$$);
                           };
-                        }($winglue_well$components$glvtable$GLVTable_$_iter__36218$$, $get_cell$$2$$, $s__36219$$, $depth_profile$$11$$, $mandrel_survey$$5$$, $valves_map$$6$$, $well__$1$$5$$, $data_source__$1$$5$$, $data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$), $idx$$69$$ = function($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$) {
+                        }($winglue_well$components$glvtable$GLVTable_$_iter__36764$$, $get_cell$$2$$, $s__36765$$, $depth_profile$$11$$, $mandrel_survey$$5$$, $valves_map$$6$$, $well__$1$$5$$, $data_source__$1$$5$$, $data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$), $idx$$69$$ = function($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$) {
                           return function($data_source__$1$$, $depth_profile$$6$$) {
                             return $winglue_well$components$glvtable$format_dec$$($well__$1$$($mandrel_survey$$, $data_source__$1$$), $depth_profile$$6$$);
                           };
-                        }($winglue_well$components$glvtable$GLVTable_$_iter__36218$$, $get_cell$$2$$, $get_cell_mand$$, $s__36219$$, $depth_profile$$11$$, $mandrel_survey$$5$$, $valves_map$$6$$, $well__$1$$5$$, $data_source__$1$$5$$, $data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$), $dec_cell$$ = $winglue_well$components$glvtable$get_bottom_open_valve$$($valves_map$$1$$), $bot_idx$$ = $cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$($s__36219$$, $dec_cell$$) ? 
+                        }($winglue_well$components$glvtable$GLVTable_$_iter__36764$$, $get_cell$$2$$, $get_cell_mand$$, $s__36765$$, $depth_profile$$11$$, $mandrel_survey$$5$$, $valves_map$$6$$, $well__$1$$5$$, $data_source__$1$$5$$, $data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$), $dec_cell$$ = $winglue_well$components$glvtable$get_bottom_open_valve$$($valves_map$$1$$), $bot_idx$$ = $cljs$core$_EQ_$$.$cljs$core$IFn$_invoke$arity$2$($s__36765$$, $dec_cell$$) ? 
                         "LightGreen" : "White";
                         $cljs$core$chunk_append$$($valves_map$$6$$, $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 12, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0tr$$, new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0style$$, new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0text_DASH_align$$, "right", $cljs$core$cst$0kw$0background_DASH_color$$, $bot_idx$$], null)], null), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 
                         2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, $idx$$69$$($cljs$core$cst$0kw$0meas_DASH_depth_DASH_list$$, 1)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0meas_DASH_depth_DASH_list$$], null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, $idx$$69$$($cljs$core$cst$0kw$0vert_DASH_depth_DASH_list$$, 1)], 
-                        null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0vert_DASH_depth_DASH_list$$], null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, $get_cell_mand$$($s__36219$$, $cljs$core$cst$0kw$0glv_DASH_desc_DASH_list$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0glv_DASH_desc_DASH_list$$], 
+                        null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0vert_DASH_depth_DASH_list$$], null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, $get_cell_mand$$($s__36765$$, $cljs$core$cst$0kw$0glv_DASH_desc_DASH_list$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0glv_DASH_desc_DASH_list$$], 
                         null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, function() {
-                          var $data_source__$1$$ = $winglue_well$utils$common$decode_tro$$($get_cell_mand$$($s__36219$$, $cljs$core$cst$0kw$0glv_DASH_category_DASH_list$$), $get_cell_mand$$($s__36219$$, $cljs$core$cst$0kw$0tro_DASH_list$$));
+                          var $data_source__$1$$ = $winglue_well$utils$common$decode_tro$$($get_cell_mand$$($s__36765$$, $cljs$core$cst$0kw$0glv_DASH_category_DASH_list$$), $get_cell_mand$$($s__36765$$, $cljs$core$cst$0kw$0tro_DASH_list$$));
                           return "string" === typeof $data_source__$1$$ ? $data_source__$1$$ : $winglue_well$components$glvtable$format_dec$$($data_source__$1$$, 0);
-                        }()], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0tro_DASH_list$$], null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, $get_cell_mand$$($s__36219$$, $cljs$core$cst$0kw$0choke_DASH_list$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0choke_DASH_list$$], null)), $cljs$core$doall$cljs$0core$0IFn$0_invoke$0arity$01$$($cljs$core$map$$.$cljs$core$IFn$_invoke$arity$2$(function($data_source__$1$$, 
+                        }()], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0tro_DASH_list$$], null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, $get_cell_mand$$($s__36765$$, $cljs$core$cst$0kw$0choke_DASH_list$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0choke_DASH_list$$], null)), $cljs$core$doall$cljs$0core$0IFn$0_invoke$0arity$01$$($cljs$core$map$$.$cljs$core$IFn$_invoke$arity$2$(function($data_source__$1$$, 
                         $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$) {
                           return function($data_source__$1$$) {
                             return $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, $mandrel_survey$$($data_source__$1$$, 2)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $data_source__$1$$], null));
                           };
-                        }($winglue_well$components$glvtable$GLVTable_$_iter__36218$$, $get_cell$$2$$, $get_cell_mand$$, $idx$$69$$, $dec_cell$$, $bot_idx$$, $s__36219$$, $depth_profile$$11$$, $mandrel_survey$$5$$, $valves_map$$6$$, $well__$1$$5$$, $data_source__$1$$5$$, $data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$), new $cljs$core$PersistentVector$$(null, 6, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0inj_DASH_press_DASH_list$$, $cljs$core$cst$0kw$0prod_DASH_press_DASH_list$$, 
+                        }($winglue_well$components$glvtable$GLVTable_$_iter__36764$$, $get_cell$$2$$, $get_cell_mand$$, $idx$$69$$, $dec_cell$$, $bot_idx$$, $s__36765$$, $depth_profile$$11$$, $mandrel_survey$$5$$, $valves_map$$6$$, $well__$1$$5$$, $data_source__$1$$5$$, $data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$), new $cljs$core$PersistentVector$$(null, 6, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0inj_DASH_press_DASH_list$$, $cljs$core$cst$0kw$0prod_DASH_press_DASH_list$$, 
                         $cljs$core$cst$0kw$0temperature_DASH_list$$, $cljs$core$cst$0kw$0open_DASH_press_DASH_list$$, $cljs$core$cst$0kw$0close_DASH_press_DASH_list$$, $cljs$core$cst$0kw$0vpc_DASH_begin_DASH_flow_DASH_list$$], null))), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, function() {
-                          var $data_source__$1$$ = $winglue_well$utils$common$decode_surf_open$$($get_cell_mand$$($s__36219$$, $cljs$core$cst$0kw$0glv_DASH_category_DASH_list$$), $get_cell$$2$$($s__36219$$, $cljs$core$cst$0kw$0surface_DASH_open_DASH_press_DASH_list$$));
+                          var $data_source__$1$$ = $winglue_well$utils$common$decode_surf_open$$($get_cell_mand$$($s__36765$$, $cljs$core$cst$0kw$0glv_DASH_category_DASH_list$$), $get_cell$$2$$($s__36765$$, $cljs$core$cst$0kw$0surface_DASH_open_DASH_press_DASH_list$$));
                           return "string" === typeof $data_source__$1$$ ? $data_source__$1$$ : $winglue_well$components$glvtable$format_dec$$($data_source__$1$$, 2);
                         }()], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0surface_DASH_open_DASH_press_DASH_list$$], null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, function() {
-                          var $data_source__$1$$ = $winglue_well$utils$common$decode_surf_close$$($get_cell_mand$$($s__36219$$, $cljs$core$cst$0kw$0glv_DASH_category_DASH_list$$), $get_cell$$2$$($s__36219$$, $cljs$core$cst$0kw$0surface_DASH_close_DASH_press_DASH_list$$));
+                          var $data_source__$1$$ = $winglue_well$utils$common$decode_surf_close$$($get_cell_mand$$($s__36765$$, $cljs$core$cst$0kw$0glv_DASH_category_DASH_list$$), $get_cell$$2$$($s__36765$$, $cljs$core$cst$0kw$0surface_DASH_close_DASH_press_DASH_list$$));
                           return "string" === typeof $data_source__$1$$ ? $data_source__$1$$ : $winglue_well$components$glvtable$format_dec$$($data_source__$1$$, 2);
                         }()], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0surface_DASH_close_DASH_press_DASH_list$$], null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, $idx$$69$$($cljs$core$cst$0kw$0gas_DASH_flow_DASH_rate_DASH_list$$, 3)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0gas_DASH_flow_DASH_rate_DASH_list$$], 
-                        null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, $winglue_well$components$glvtable$format_status$$($winglue_well$utils$common$decode_valve_status$$($get_cell$$2$$($s__36219$$, $cljs$core$cst$0kw$0status_DASH_list$$)), $get_cell$$2$$($s__36219$$, $cljs$core$cst$0kw$0vpc_DASH_pct_DASH_open_DASH_list$$))], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, 
-                        $cljs$core$cst$0kw$0status$$], null))], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $s__36219$$], null)));
-                        $winglue_well$components$glvtable$GLVTable_$_iter__36218$$ += 1;
+                        null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, $winglue_well$components$glvtable$format_status$$($winglue_well$utils$common$decode_valve_status$$($get_cell$$2$$($s__36765$$, $cljs$core$cst$0kw$0status_DASH_list$$)), $get_cell$$2$$($s__36765$$, $cljs$core$cst$0kw$0vpc_DASH_pct_DASH_open_DASH_list$$))], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, 
+                        $cljs$core$cst$0kw$0status$$], null))], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $s__36765$$], null)));
+                        $winglue_well$components$glvtable$GLVTable_$_iter__36764$$ += 1;
                       } else {
                         return !0;
                       }
                     }
-                  }() ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($valves_map$$6$$), $winglue_well$components$glvtable$GLVTable_$_iter__36218$$($cljs$core$_chunked_rest$$($well__$1$$5$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($valves_map$$6$$), null);
+                  }() ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($valves_map$$6$$), $winglue_well$components$glvtable$GLVTable_$_iter__36764$$($cljs$core$_chunked_rest$$($well__$1$$5$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($valves_map$$6$$), null);
                 }
                 var $idx$$69$$ = $cljs$core$first$$($well__$1$$5$$), $get_cell$$2$$ = function($data_source__$1$$, $well__$1$$, $depth_profile$$6$$, $mandrel_survey$$, $valves_map$$1$$, $data_source__$1$$5$$, $well__$1$$5$$, $depth_profile$$11$$) {
                   return function($data_source__$1$$, $well__$1$$) {
@@ -26062,7 +26065,7 @@ function $winglue_well$components$glvtable$GLVTable$$() {
                   return "string" === typeof $data_source__$1$$ ? $data_source__$1$$ : $winglue_well$components$glvtable$format_dec$$($data_source__$1$$, 2);
                 }()], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0surface_DASH_close_DASH_press_DASH_list$$], null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, $dec_cell$$($cljs$core$cst$0kw$0gas_DASH_flow_DASH_rate_DASH_list$$, 3)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0gas_DASH_flow_DASH_rate_DASH_list$$], 
                 null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0td$$, $winglue_well$components$glvtable$format_status$$($winglue_well$utils$common$decode_valve_status$$($get_cell$$2$$($idx$$69$$, $cljs$core$cst$0kw$0status_DASH_list$$)), $get_cell$$2$$($idx$$69$$, $cljs$core$cst$0kw$0vpc_DASH_pct_DASH_open_DASH_list$$))], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $cljs$core$cst$0kw$0status$$], 
-                null))], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $idx$$69$$], null)), $winglue_well$components$glvtable$GLVTable_$_iter__36218$$($cljs$core$rest$$($well__$1$$5$$)));
+                null))], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $idx$$69$$], null)), $winglue_well$components$glvtable$GLVTable_$_iter__36764$$($cljs$core$rest$$($well__$1$$5$$)));
               }
               return null;
             }
@@ -26120,66 +26123,66 @@ null), new $cljs$core$PersistentArrayMap$$(null, 3, [$cljs$core$cst$0kw$0label$$
 $cljs$core$cst$0kw$0calib_DASH_total_DASH_glr$$, $cljs$core$cst$0kw$0calib_DASH_formation_DASH_gas_DASH_rate$$], null);
 function $winglue_well$components$welltesttable$WellTestTable$$($well_test$$) {
   return new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0table$0table$$, new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0thead$$, $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0tr$$, $cljs$core$doall$cljs$0core$0IFn$0_invoke$0arity$01$$(function() {
-    return function $winglue_well$components$welltesttable$WellTestTable_$_iter__35366$$($well_test$$) {
+    return function $winglue_well$components$welltesttable$WellTestTable_$_iter__36787$$($well_test$$) {
       return new $cljs$core$LazySeq$$(null, function() {
         for (;;) {
-          var $s__35367__$2_temp__6753__auto__$$165$$ = $cljs$core$seq$$($well_test$$);
-          if ($s__35367__$2_temp__6753__auto__$$165$$) {
-            if ($cljs$core$chunked_seq_QMARK_$$($s__35367__$2_temp__6753__auto__$$165$$)) {
-              var $JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$ = $cljs$core$_chunked_first$$($s__35367__$2_temp__6753__auto__$$165$$), $size__7800__auto__$$38$$ = $cljs$core$count$$($JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$), $b__35369_col$$56$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$38$$);
+          var $s__36788__$2_temp__6753__auto__$$165$$ = $cljs$core$seq$$($well_test$$);
+          if ($s__36788__$2_temp__6753__auto__$$165$$) {
+            if ($cljs$core$chunked_seq_QMARK_$$($s__36788__$2_temp__6753__auto__$$165$$)) {
+              var $JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$ = $cljs$core$_chunked_first$$($s__36788__$2_temp__6753__auto__$$165$$), $size__7800__auto__$$38$$ = $cljs$core$count$$($JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$), $b__36790_col$$56$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$38$$);
               a: {
-                for (var $i__35368$$inline_1494$$ = 0;;) {
-                  if ($i__35368$$inline_1494$$ < $size__7800__auto__$$38$$) {
-                    var $col$$inline_1495_x$$inline_2178$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$, $i__35368$$inline_1494$$), $options$$inline_1496$$ = $col$$inline_1495_x$$inline_2178$$.$cljs$core$IFn$_invoke$arity$1$ ? $col$$inline_1495_x$$inline_2178$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$components$welltesttable$key_mapping$$) : $col$$inline_1495_x$$inline_2178$$.call(null, $winglue_well$components$welltesttable$key_mapping$$), 
+                for (var $i__36789$$inline_1494$$ = 0;;) {
+                  if ($i__36789$$inline_1494$$ < $size__7800__auto__$$38$$) {
+                    var $col$$inline_1495_x$$inline_2178$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$, $i__36789$$inline_1494$$), $options$$inline_1496$$ = $col$$inline_1495_x$$inline_2178$$.$cljs$core$IFn$_invoke$arity$1$ ? $col$$inline_1495_x$$inline_2178$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$components$welltesttable$key_mapping$$) : $col$$inline_1495_x$$inline_2178$$.call(null, $winglue_well$components$welltesttable$key_mapping$$), 
                     $col$$inline_1495_x$$inline_2178$$ = $cljs$core$contains_QMARK_$$($options$$inline_1496$$, $cljs$core$cst$0kw$0full_DASH_label$$) ? $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0data_DASH_toggle$$, "tooltip", $cljs$core$cst$0kw$0title$$, $cljs$core$cst$0kw$0full_DASH_label$$.$cljs$core$IFn$_invoke$arity$1$($options$$inline_1496$$)], 
                     null), $cljs$core$cst$0kw$0label$$.$cljs$core$IFn$_invoke$arity$1$($options$$inline_1496$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $col$$inline_1495_x$$inline_2178$$], null)) : $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, $cljs$core$cst$0kw$0label$$.$cljs$core$IFn$_invoke$arity$1$($options$$inline_1496$$)], null), new $cljs$core$PersistentArrayMap$$(null, 
                     1, [$cljs$core$cst$0kw$0key$$, $col$$inline_1495_x$$inline_2178$$], null));
-                    $b__35369_col$$56$$.add($col$$inline_1495_x$$inline_2178$$);
-                    $i__35368$$inline_1494$$ += 1;
+                    $b__36790_col$$56$$.add($col$$inline_1495_x$$inline_2178$$);
+                    $i__36789$$inline_1494$$ += 1;
                   } else {
                     $JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$ = !0;
                     break a;
                   }
                 }
               }
-              return $JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__35369_col$$56$$), $winglue_well$components$welltesttable$WellTestTable_$_iter__35366$$($cljs$core$_chunked_rest$$($s__35367__$2_temp__6753__auto__$$165$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__35369_col$$56$$), null);
+              return $JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36790_col$$56$$), $winglue_well$components$welltesttable$WellTestTable_$_iter__36787$$($cljs$core$_chunked_rest$$($s__36788__$2_temp__6753__auto__$$165$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36790_col$$56$$), null);
             }
-            $b__35369_col$$56$$ = $cljs$core$first$$($s__35367__$2_temp__6753__auto__$$165$$);
-            $JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$ = $b__35369_col$$56$$.$cljs$core$IFn$_invoke$arity$1$ ? $b__35369_col$$56$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$components$welltesttable$key_mapping$$) : $b__35369_col$$56$$.call(null, $winglue_well$components$welltesttable$key_mapping$$);
+            $b__36790_col$$56$$ = $cljs$core$first$$($s__36788__$2_temp__6753__auto__$$165$$);
+            $JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$ = $b__36790_col$$56$$.$cljs$core$IFn$_invoke$arity$1$ ? $b__36790_col$$56$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$components$welltesttable$key_mapping$$) : $b__36790_col$$56$$.call(null, $winglue_well$components$welltesttable$key_mapping$$);
             return $cljs$core$cons$$($cljs$core$contains_QMARK_$$($JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$, $cljs$core$cst$0kw$0full_DASH_label$$) ? $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0data_DASH_toggle$$, "tooltip", $cljs$core$cst$0kw$0title$$, $cljs$core$cst$0kw$0full_DASH_label$$.$cljs$core$IFn$_invoke$arity$1$($JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$)], 
-            null), $cljs$core$cst$0kw$0label$$.$cljs$core$IFn$_invoke$arity$1$($JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $b__35369_col$$56$$], null)) : $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, $cljs$core$cst$0kw$0label$$.$cljs$core$IFn$_invoke$arity$1$($JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$)], 
-            null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $b__35369_col$$56$$], null)), $winglue_well$components$welltesttable$WellTestTable_$_iter__35366$$($cljs$core$rest$$($s__35367__$2_temp__6753__auto__$$165$$)));
+            null), $cljs$core$cst$0kw$0label$$.$cljs$core$IFn$_invoke$arity$1$($JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $b__36790_col$$56$$], null)) : $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, $cljs$core$cst$0kw$0label$$.$cljs$core$IFn$_invoke$arity$1$($JSCompiler_inline_result$$281_c__7799__auto__$$38_options$$19$$)], 
+            null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $b__36790_col$$56$$], null)), $winglue_well$components$welltesttable$WellTestTable_$_iter__36787$$($cljs$core$rest$$($s__36788__$2_temp__6753__auto__$$165$$)));
           }
           return null;
         }
       }, null, null);
     }($winglue_well$components$welltesttable$cols$$);
   }())], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, "headers"], null)), $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0tr$$, function() {
-    return function $winglue_well$components$welltesttable$WellTestTable_$_iter__35372$$($well_test$$) {
+    return function $winglue_well$components$welltesttable$WellTestTable_$_iter__36793$$($well_test$$) {
       return new $cljs$core$LazySeq$$(null, function() {
         for (;;) {
-          var $s__35373__$2_temp__6753__auto__$$166$$ = $cljs$core$seq$$($well_test$$);
-          if ($s__35373__$2_temp__6753__auto__$$166$$) {
-            if ($cljs$core$chunked_seq_QMARK_$$($s__35373__$2_temp__6753__auto__$$166$$)) {
-              var $JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$ = $cljs$core$_chunked_first$$($s__35373__$2_temp__6753__auto__$$166$$), $size__7800__auto__$$39$$ = $cljs$core$count$$($JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$), $b__35375_col$$58$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$39$$);
+          var $s__36794__$2_temp__6753__auto__$$166$$ = $cljs$core$seq$$($well_test$$);
+          if ($s__36794__$2_temp__6753__auto__$$166$$) {
+            if ($cljs$core$chunked_seq_QMARK_$$($s__36794__$2_temp__6753__auto__$$166$$)) {
+              var $JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$ = $cljs$core$_chunked_first$$($s__36794__$2_temp__6753__auto__$$166$$), $size__7800__auto__$$39$$ = $cljs$core$count$$($JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$), $b__36796_col$$58$$ = $cljs$core$chunk_buffer$$($size__7800__auto__$$39$$);
               a: {
-                for (var $i__35374$$inline_1498$$ = 0;;) {
-                  if ($i__35374$$inline_1498$$ < $size__7800__auto__$$39$$) {
-                    var $col$$inline_1499_x$$inline_2181$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$, $i__35374$$inline_1498$$), $options$$inline_1500$$ = $col$$inline_1499_x$$inline_2181$$.$cljs$core$IFn$_invoke$arity$1$ ? $col$$inline_1499_x$$inline_2181$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$components$welltesttable$key_mapping$$) : $col$$inline_1499_x$$inline_2181$$.call(null, $winglue_well$components$welltesttable$key_mapping$$), 
+                for (var $i__36795$$inline_1498$$ = 0;;) {
+                  if ($i__36795$$inline_1498$$ < $size__7800__auto__$$39$$) {
+                    var $col$$inline_1499_x$$inline_2181$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$, $i__36795$$inline_1498$$), $options$$inline_1500$$ = $col$$inline_1499_x$$inline_2181$$.$cljs$core$IFn$_invoke$arity$1$ ? $col$$inline_1499_x$$inline_2181$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$components$welltesttable$key_mapping$$) : $col$$inline_1499_x$$inline_2181$$.call(null, $winglue_well$components$welltesttable$key_mapping$$), 
                     $col$$inline_1499_x$$inline_2181$$ = $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, $cljs$core$cst$0kw$0units$$.$cljs$core$IFn$_invoke$arity$1$($options$$inline_1500$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $col$$inline_1499_x$$inline_2181$$], null));
-                    $b__35375_col$$58$$.add($col$$inline_1499_x$$inline_2181$$);
-                    $i__35374$$inline_1498$$ += 1;
+                    $b__36796_col$$58$$.add($col$$inline_1499_x$$inline_2181$$);
+                    $i__36795$$inline_1498$$ += 1;
                   } else {
                     $JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$ = !0;
                     break a;
                   }
                 }
               }
-              return $JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__35375_col$$58$$), $winglue_well$components$welltesttable$WellTestTable_$_iter__35372$$($cljs$core$_chunked_rest$$($s__35373__$2_temp__6753__auto__$$166$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__35375_col$$58$$), null);
+              return $JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36796_col$$58$$), $winglue_well$components$welltesttable$WellTestTable_$_iter__36793$$($cljs$core$_chunked_rest$$($s__36794__$2_temp__6753__auto__$$166$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($b__36796_col$$58$$), null);
             }
-            $b__35375_col$$58$$ = $cljs$core$first$$($s__35373__$2_temp__6753__auto__$$166$$);
-            $JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$ = $b__35375_col$$58$$.$cljs$core$IFn$_invoke$arity$1$ ? $b__35375_col$$58$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$components$welltesttable$key_mapping$$) : $b__35375_col$$58$$.call(null, $winglue_well$components$welltesttable$key_mapping$$);
-            return $cljs$core$cons$$($cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, $cljs$core$cst$0kw$0units$$.$cljs$core$IFn$_invoke$arity$1$($JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $b__35375_col$$58$$], null)), $winglue_well$components$welltesttable$WellTestTable_$_iter__35372$$($cljs$core$rest$$($s__35373__$2_temp__6753__auto__$$166$$)));
+            $b__36796_col$$58$$ = $cljs$core$first$$($s__36794__$2_temp__6753__auto__$$166$$);
+            $JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$ = $b__36796_col$$58$$.$cljs$core$IFn$_invoke$arity$1$ ? $b__36796_col$$58$$.$cljs$core$IFn$_invoke$arity$1$($winglue_well$components$welltesttable$key_mapping$$) : $b__36796_col$$58$$.call(null, $winglue_well$components$welltesttable$key_mapping$$);
+            return $cljs$core$cons$$($cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0th$$, $cljs$core$cst$0kw$0units$$.$cljs$core$IFn$_invoke$arity$1$($JSCompiler_inline_result$$282_c__7799__auto__$$39_options$$21$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $b__36796_col$$58$$], null)), $winglue_well$components$welltesttable$WellTestTable_$_iter__36793$$($cljs$core$rest$$($s__36794__$2_temp__6753__auto__$$166$$)));
           }
           return null;
         }
@@ -26274,7 +26277,7 @@ function $winglue_well$pages$welloverview$welloverview$DVSPChart$$($data_source$
   var $depth_profile$$21$$ = $winglue_well$data$subs$get_depth_profile$$(), $equilibrium_profile$$ = $winglue_well$data$subs$get_equilibrium_profile$$(), $ppm_curve$$ = $cljs$core$cst$0kw$0production_DASH_string_DASH_depth_DASH_profile_DASH_map$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$21$$), $ipm_curve$$ = $cljs$core$cst$0kw$0injection_DASH_string_DASH_depth_DASH_profile_DASH_map$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$21$$), $valve_map$$3$$ = $cljs$core$cst$0kw$0valves_DASH_status_DASH_map$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$21$$), 
   $mandrel_survey$$15$$ = $winglue_well$data$subs$get_mandrel_survey$$(), $vert_depth_list$$ = $cljs$core$cst$0kw$0vert_DASH_depth_DASH_list$$.$cljs$core$IFn$_invoke$arity$1$($ppm_curve$$), $max_depth$$ = 1E3 * (($cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$max$$, $vert_depth_list$$) / 1E3 | 0) + 1), $plot_lines$$ = $cljs$core$vec$$(function() {
     return function($data_source$$3$$, $well$$5$$, $chart_config$$1_dvsp_config$$, $depth_profile$$21$$, $equilibrium_profile$$, $ppm_curve$$, $ipm_curve$$, $valve_map$$3$$) {
-      return function $winglue_well$pages$welloverview$welloverview$DVSPChart_$_iter__36246$$($mandrel_survey$$15$$) {
+      return function $winglue_well$pages$welloverview$welloverview$DVSPChart_$_iter__36820$$($mandrel_survey$$15$$) {
         return new $cljs$core$LazySeq$$(null, function() {
           return function() {
             for (;;) {
@@ -26296,11 +26299,11 @@ function $winglue_well$pages$welloverview$welloverview$DVSPChart$$($data_source$
                       }
                     }
                   }
-                  return $well$$5$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($depth_profile$$21$$), $winglue_well$pages$welloverview$welloverview$DVSPChart_$_iter__36246$$($cljs$core$_chunked_rest$$($data_source$$3$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($depth_profile$$21$$), null);
+                  return $well$$5$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($depth_profile$$21$$), $winglue_well$pages$welloverview$welloverview$DVSPChart_$_iter__36820$$($cljs$core$_chunked_rest$$($data_source$$3$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($depth_profile$$21$$), null);
                 }
                 $depth_profile$$21$$ = $cljs$core$first$$($data_source$$3$$);
                 return $cljs$core$cons$$(new $cljs$core$PersistentArrayMap$$(null, 7, [$cljs$core$cst$0kw$0color$$, "#000000", $cljs$core$cst$0kw$0value$$, $depth_profile$$21$$, $cljs$core$cst$0kw$0marker$$, new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0enabled$$, !1], null), $cljs$core$cst$0kw$0zIndex$$, 1, $cljs$core$cst$0kw$0width$$, 2, $cljs$core$cst$0kw$0label$$, new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0text$$, [$cljs$core$str$$("Mandrel Line: "), 
-                $cljs$core$str$$($winglue_well$utils$format$format_dec$$($depth_profile$$21$$)), $cljs$core$str$$(" ft")].join("")], null), $cljs$core$cst$0kw$0tooltip$$, new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0headerFormat$$, "" + $cljs$core$str$$('\x3cspan style\x3d"font-size: 10px"\x3eMandrel\x3c/span\x3e\x3cbr/\x3e'), $cljs$core$cst$0kw$0pointFormatter$$, $winglue_well$utils$common$mandrel_point_formatter$$], null)], null), $winglue_well$pages$welloverview$welloverview$DVSPChart_$_iter__36246$$($cljs$core$rest$$($data_source$$3$$)));
+                $cljs$core$str$$($winglue_well$utils$format$format_dec$$($depth_profile$$21$$)), $cljs$core$str$$(" ft")].join("")], null), $cljs$core$cst$0kw$0tooltip$$, new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0headerFormat$$, "" + $cljs$core$str$$('\x3cspan style\x3d"font-size: 10px"\x3eMandrel\x3c/span\x3e\x3cbr/\x3e'), $cljs$core$cst$0kw$0pointFormatter$$, $winglue_well$utils$common$mandrel_point_formatter$$], null)], null), $winglue_well$pages$welloverview$welloverview$DVSPChart_$_iter__36820$$($cljs$core$rest$$($data_source$$3$$)));
               }
               return null;
             }
@@ -26328,7 +26331,7 @@ function $winglue_well$pages$welloverview$welloverview$DVSPChart$$($data_source$
       var $plot_lines$$ = $max_depth$$.target.chart.yAxis[0].plotLinesAndBands;
       return $cljs$core$doall$cljs$0core$0IFn$0_invoke$0arity$01$$(function() {
         return function($data_source$$3$$, $well$$5$$, $chart_config$$1_dvsp_config$$, $depth_profile$$21$$, $equilibrium_profile$$, $ppm_curve$$, $ipm_curve$$, $valve_map$$3$$, $mandrel_survey$$15$$, $vert_depth_list$$, $max_depth$$) {
-          return function $winglue_well$pages$welloverview$welloverview$DVSPChart_$_iter__36252$$($plot_lines$$) {
+          return function $winglue_well$pages$welloverview$welloverview$DVSPChart_$_iter__36826$$($plot_lines$$) {
             return new $cljs$core$LazySeq$$(null, function($data_source$$3$$) {
               return function() {
                 for (;;) {
@@ -26348,10 +26351,10 @@ function $winglue_well$pages$welloverview$welloverview$DVSPChart$$($data_source$
                           }
                         }
                       }
-                      return $chart_config$$1_dvsp_config$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($equilibrium_profile$$), $winglue_well$pages$welloverview$welloverview$DVSPChart_$_iter__36252$$($cljs$core$_chunked_rest$$($well$$5$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($equilibrium_profile$$), null);
+                      return $chart_config$$1_dvsp_config$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($equilibrium_profile$$), $winglue_well$pages$welloverview$welloverview$DVSPChart_$_iter__36826$$($cljs$core$_chunked_rest$$($well$$5$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($equilibrium_profile$$), null);
                     }
                     $equilibrium_profile$$ = $cljs$core$first$$($well$$5$$);
-                    return $cljs$core$cons$$($data_source$$3$$[$equilibrium_profile$$].destroy(), $winglue_well$pages$welloverview$welloverview$DVSPChart_$_iter__36252$$($cljs$core$rest$$($well$$5$$)));
+                    return $cljs$core$cons$$($data_source$$3$$[$equilibrium_profile$$].destroy(), $winglue_well$pages$welloverview$welloverview$DVSPChart_$_iter__36826$$($cljs$core$rest$$($well$$5$$)));
                   }
                   return null;
                 }
@@ -26382,7 +26385,7 @@ function $winglue_well$pages$welloverview$welloverview$PVSQChart$$($chart_config
   $chart_config$$2_datasource$$ = $winglue_well$widgets$highchart$prep_chart_config$cljs$0core$0IFn$0_invoke$0arity$0variadic$$($pvsq_config$$, $cljs$core$array_seq$$([new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0meas_inflow_liquid_rate$$, $winglue_well$utils$table$map_table_to_array$cljs$0core$0IFn$0_invoke$0arity$0variadic$$($inflow_curve$$, $cljs$core$array_seq$$([$cljs$core$cst$0kw$0liquid_DASH_rate_DASH_list$$, $cljs$core$cst$0kw$0fbhp_DASH_list$$], 0))], null), new $cljs$core$PersistentArrayMap$$(null, 
   1, [$cljs$core$cst$0kw$0meas_outflow_liquid_rate$$, $cljs$core$sort_by$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$first$$, $winglue_well$utils$table$map_table_to_array$cljs$0core$0IFn$0_invoke$0arity$0variadic$$($outflow_curve$$, $cljs$core$array_seq$$([$cljs$core$cst$0kw$0liquid_DASH_rate_DASH_list$$, $cljs$core$cst$0kw$0fbhp_DASH_list$$], 0)))], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0well_DASH_tests$$, $cljs$core$vec$$(function() {
     return function($chart_config$$2_datasource$$, $well$$6$$, $pvsq_config$$, $inflow_curve$$, $outflow_curve$$, $welltest_hist_map$$, $welltest_list$$) {
-      return function $winglue_well$pages$welloverview$welloverview$PVSQChart_$_iter__36274$$($cal_wt$$) {
+      return function $winglue_well$pages$welloverview$welloverview$PVSQChart_$_iter__36848$$($cal_wt$$) {
         return new $cljs$core$LazySeq$$(null, function() {
           return function() {
             for (;;) {
@@ -26403,11 +26406,11 @@ function $winglue_well$pages$welloverview$welloverview$PVSQChart$$($chart_config
                       }
                     }
                   }
-                  return $well$$6$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($inflow_curve$$), $winglue_well$pages$welloverview$welloverview$PVSQChart_$_iter__36274$$($cljs$core$_chunked_rest$$($chart_config$$2_datasource$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($inflow_curve$$), null);
+                  return $well$$6$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($inflow_curve$$), $winglue_well$pages$welloverview$welloverview$PVSQChart_$_iter__36848$$($cljs$core$_chunked_rest$$($chart_config$$2_datasource$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($inflow_curve$$), null);
                 }
                 $inflow_curve$$ = $cljs$core$first$$($chart_config$$2_datasource$$);
                 return $cljs$core$cons$$($clojure$set$rename_keys$$($cljs$core$update_in$$.$cljs$core$IFn$_invoke$arity$3$($cljs$core$select_keys$$($inflow_curve$$, new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0calib_DASH_liquid_DASH_rate$$, $cljs$core$cst$0kw$0est_DASH_fbhp$$, $cljs$core$cst$0kw$0welltest_DASH_date$$], null)), new $cljs$core$PersistentVector$$(null, 1, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0welltest_DASH_date$$], 
-                null), $winglue_well$utils$format$format_iso_date$$), new $cljs$core$PersistentArrayMap$$(null, 3, [$cljs$core$cst$0kw$0calib_DASH_liquid_DASH_rate$$, $cljs$core$cst$0kw$0x$$, $cljs$core$cst$0kw$0est_DASH_fbhp$$, $cljs$core$cst$0kw$0y$$, $cljs$core$cst$0kw$0welltest_DASH_date$$, $cljs$core$cst$0kw$0name$$], null)), $winglue_well$pages$welloverview$welloverview$PVSQChart_$_iter__36274$$($cljs$core$rest$$($chart_config$$2_datasource$$)));
+                null), $winglue_well$utils$format$format_iso_date$$), new $cljs$core$PersistentArrayMap$$(null, 3, [$cljs$core$cst$0kw$0calib_DASH_liquid_DASH_rate$$, $cljs$core$cst$0kw$0x$$, $cljs$core$cst$0kw$0est_DASH_fbhp$$, $cljs$core$cst$0kw$0y$$, $cljs$core$cst$0kw$0welltest_DASH_date$$, $cljs$core$cst$0kw$0name$$], null)), $winglue_well$pages$welloverview$welloverview$PVSQChart_$_iter__36848$$($cljs$core$rest$$($chart_config$$2_datasource$$)));
               }
               return null;
             }
@@ -26417,7 +26420,7 @@ function $winglue_well$pages$welloverview$welloverview$PVSQChart$$($chart_config
     }($inflow_curve$$, $outflow_curve$$, $welltest_hist_map$$, $welltest_list$$, $cal_wt$$, $Ncalwt$$, $uncal_wt$$)($cal_wt$$);
   }())], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0uncal_DASH_well_DASH_tests$$, $cljs$core$vec$$(function() {
     return function($chart_config$$2_datasource$$, $well$$6$$, $pvsq_config$$, $inflow_curve$$, $outflow_curve$$, $welltest_hist_map$$, $welltest_list$$) {
-      return function $winglue_well$pages$welloverview$welloverview$PVSQChart_$_iter__36280$$($cal_wt$$) {
+      return function $winglue_well$pages$welloverview$welloverview$PVSQChart_$_iter__36854$$($cal_wt$$) {
         return new $cljs$core$LazySeq$$(null, function() {
           return function() {
             for (;;) {
@@ -26438,11 +26441,11 @@ function $winglue_well$pages$welloverview$welloverview$PVSQChart$$($chart_config
                       }
                     }
                   }
-                  return $well$$6$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($inflow_curve$$), $winglue_well$pages$welloverview$welloverview$PVSQChart_$_iter__36280$$($cljs$core$_chunked_rest$$($chart_config$$2_datasource$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($inflow_curve$$), null);
+                  return $well$$6$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($inflow_curve$$), $winglue_well$pages$welloverview$welloverview$PVSQChart_$_iter__36854$$($cljs$core$_chunked_rest$$($chart_config$$2_datasource$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($inflow_curve$$), null);
                 }
                 $inflow_curve$$ = $cljs$core$first$$($chart_config$$2_datasource$$);
                 return $cljs$core$cons$$($clojure$set$rename_keys$$($cljs$core$update_in$$.$cljs$core$IFn$_invoke$arity$3$($cljs$core$select_keys$$($inflow_curve$$, new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0calib_DASH_liquid_DASH_rate$$, $cljs$core$cst$0kw$0est_DASH_fbhp$$, $cljs$core$cst$0kw$0welltest_DASH_date$$], null)), new $cljs$core$PersistentVector$$(null, 1, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0welltest_DASH_date$$], 
-                null), $winglue_well$utils$format$format_iso_date$$), new $cljs$core$PersistentArrayMap$$(null, 3, [$cljs$core$cst$0kw$0calib_DASH_liquid_DASH_rate$$, $cljs$core$cst$0kw$0x$$, $cljs$core$cst$0kw$0est_DASH_fbhp$$, $cljs$core$cst$0kw$0y$$, $cljs$core$cst$0kw$0welltest_DASH_date$$, $cljs$core$cst$0kw$0name$$], null)), $winglue_well$pages$welloverview$welloverview$PVSQChart_$_iter__36280$$($cljs$core$rest$$($chart_config$$2_datasource$$)));
+                null), $winglue_well$utils$format$format_iso_date$$), new $cljs$core$PersistentArrayMap$$(null, 3, [$cljs$core$cst$0kw$0calib_DASH_liquid_DASH_rate$$, $cljs$core$cst$0kw$0x$$, $cljs$core$cst$0kw$0est_DASH_fbhp$$, $cljs$core$cst$0kw$0y$$, $cljs$core$cst$0kw$0welltest_DASH_date$$, $cljs$core$cst$0kw$0name$$], null)), $winglue_well$pages$welloverview$welloverview$PVSQChart_$_iter__36854$$($cljs$core$rest$$($chart_config$$2_datasource$$)));
               }
               return null;
             }
@@ -26468,7 +26471,7 @@ function $winglue_well$pages$welloverview$welloverview$QVSIChart$$($chart_config
   $chart_config$$3_datasource$$1$$ = $winglue_well$widgets$highchart$prep_chart_config$cljs$0core$0IFn$0_invoke$0arity$0variadic$$($qvsi_config$$, $cljs$core$array_seq$$([new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0lg_DASH_resp$$, $winglue_well$utils$table$map_table_to_array$cljs$0core$0IFn$0_invoke$0arity$0variadic$$($lg_response$$, $cljs$core$array_seq$$([$cljs$core$cst$0kw$0lift_DASH_gas_DASH_rate_DASH_list$$, $cljs$core$cst$0kw$0calib_DASH_oil_DASH_rate_DASH_list$$], 0))], 
   null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0wellotests$$, $cljs$core$vec$$(function() {
     return function($chart_config$$3_datasource$$1$$, $well$$7$$, $qvsi_config$$, $lg_response$$, $welltest_hist_map$$7$$, $welltest_list$$7$$) {
-      return function $winglue_well$pages$welloverview$welloverview$QVSIChart_$_iter__36302$$($cal_wt$$6$$) {
+      return function $winglue_well$pages$welloverview$welloverview$QVSIChart_$_iter__36876$$($cal_wt$$6$$) {
         return new $cljs$core$LazySeq$$(null, function() {
           return function() {
             for (;;) {
@@ -26489,11 +26492,11 @@ function $winglue_well$pages$welloverview$welloverview$QVSIChart$$($chart_config
                       }
                     }
                   }
-                  return $well$$7$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($lg_response$$), $winglue_well$pages$welloverview$welloverview$QVSIChart_$_iter__36302$$($cljs$core$_chunked_rest$$($chart_config$$3_datasource$$1$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($lg_response$$), null);
+                  return $well$$7$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($lg_response$$), $winglue_well$pages$welloverview$welloverview$QVSIChart_$_iter__36876$$($cljs$core$_chunked_rest$$($chart_config$$3_datasource$$1$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($lg_response$$), null);
                 }
                 $lg_response$$ = $cljs$core$first$$($chart_config$$3_datasource$$1$$);
                 return $cljs$core$cons$$($clojure$set$rename_keys$$($cljs$core$update_in$$.$cljs$core$IFn$_invoke$arity$3$($cljs$core$select_keys$$($lg_response$$, new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0calib_DASH_lift_DASH_gas_DASH_rate$$, $cljs$core$cst$0kw$0calib_DASH_oil_DASH_rate$$, $cljs$core$cst$0kw$0welltest_DASH_date$$], null)), new $cljs$core$PersistentVector$$(null, 1, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0welltest_DASH_date$$], 
-                null), $winglue_well$utils$format$format_iso_date$$), new $cljs$core$PersistentArrayMap$$(null, 3, [$cljs$core$cst$0kw$0calib_DASH_oil_DASH_rate$$, $cljs$core$cst$0kw$0y$$, $cljs$core$cst$0kw$0calib_DASH_lift_DASH_gas_DASH_rate$$, $cljs$core$cst$0kw$0x$$, $cljs$core$cst$0kw$0welltest_DASH_date$$, $cljs$core$cst$0kw$0name$$], null)), $winglue_well$pages$welloverview$welloverview$QVSIChart_$_iter__36302$$($cljs$core$rest$$($chart_config$$3_datasource$$1$$)));
+                null), $winglue_well$utils$format$format_iso_date$$), new $cljs$core$PersistentArrayMap$$(null, 3, [$cljs$core$cst$0kw$0calib_DASH_oil_DASH_rate$$, $cljs$core$cst$0kw$0y$$, $cljs$core$cst$0kw$0calib_DASH_lift_DASH_gas_DASH_rate$$, $cljs$core$cst$0kw$0x$$, $cljs$core$cst$0kw$0welltest_DASH_date$$, $cljs$core$cst$0kw$0name$$], null)), $winglue_well$pages$welloverview$welloverview$QVSIChart_$_iter__36876$$($cljs$core$rest$$($chart_config$$3_datasource$$1$$)));
               }
               return null;
             }
@@ -26503,7 +26506,7 @@ function $winglue_well$pages$welloverview$welloverview$QVSIChart$$($chart_config
     }($lg_response$$, $welltest_hist_map$$7$$, $welltest_list$$7$$, $cal_wt$$6$$, $Ncalwt$$6$$, $uncal_wt$$5$$)($cal_wt$$6$$);
   }())], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0uncal_DASH_wellotests$$, $cljs$core$vec$$(function() {
     return function($chart_config$$3_datasource$$1$$, $well$$7$$, $qvsi_config$$, $lg_response$$, $welltest_hist_map$$7$$, $welltest_list$$7$$) {
-      return function $winglue_well$pages$welloverview$welloverview$QVSIChart_$_iter__36308$$($cal_wt$$6$$) {
+      return function $winglue_well$pages$welloverview$welloverview$QVSIChart_$_iter__36882$$($cal_wt$$6$$) {
         return new $cljs$core$LazySeq$$(null, function() {
           return function() {
             for (;;) {
@@ -26524,11 +26527,11 @@ function $winglue_well$pages$welloverview$welloverview$QVSIChart$$($chart_config
                       }
                     }
                   }
-                  return $well$$7$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($lg_response$$), $winglue_well$pages$welloverview$welloverview$QVSIChart_$_iter__36308$$($cljs$core$_chunked_rest$$($chart_config$$3_datasource$$1$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($lg_response$$), null);
+                  return $well$$7$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($lg_response$$), $winglue_well$pages$welloverview$welloverview$QVSIChart_$_iter__36882$$($cljs$core$_chunked_rest$$($chart_config$$3_datasource$$1$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($lg_response$$), null);
                 }
                 $lg_response$$ = $cljs$core$first$$($chart_config$$3_datasource$$1$$);
                 return $cljs$core$cons$$($clojure$set$rename_keys$$($cljs$core$update_in$$.$cljs$core$IFn$_invoke$arity$3$($cljs$core$select_keys$$($lg_response$$, new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0calib_DASH_lift_DASH_gas_DASH_rate$$, $cljs$core$cst$0kw$0calib_DASH_oil_DASH_rate$$, $cljs$core$cst$0kw$0welltest_DASH_date$$], null)), new $cljs$core$PersistentVector$$(null, 1, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0welltest_DASH_date$$], 
-                null), $winglue_well$utils$format$format_iso_date$$), new $cljs$core$PersistentArrayMap$$(null, 3, [$cljs$core$cst$0kw$0calib_DASH_oil_DASH_rate$$, $cljs$core$cst$0kw$0y$$, $cljs$core$cst$0kw$0calib_DASH_lift_DASH_gas_DASH_rate$$, $cljs$core$cst$0kw$0x$$, $cljs$core$cst$0kw$0welltest_DASH_date$$, $cljs$core$cst$0kw$0name$$], null)), $winglue_well$pages$welloverview$welloverview$QVSIChart_$_iter__36308$$($cljs$core$rest$$($chart_config$$3_datasource$$1$$)));
+                null), $winglue_well$utils$format$format_iso_date$$), new $cljs$core$PersistentArrayMap$$(null, 3, [$cljs$core$cst$0kw$0calib_DASH_oil_DASH_rate$$, $cljs$core$cst$0kw$0y$$, $cljs$core$cst$0kw$0calib_DASH_lift_DASH_gas_DASH_rate$$, $cljs$core$cst$0kw$0x$$, $cljs$core$cst$0kw$0welltest_DASH_date$$, $cljs$core$cst$0kw$0name$$], null)), $winglue_well$pages$welloverview$welloverview$QVSIChart_$_iter__36882$$($cljs$core$rest$$($chart_config$$3_datasource$$1$$)));
               }
               return null;
             }
@@ -26544,31 +26547,31 @@ function $winglue_well$pages$welloverview$welloverview$WellTableDate$$() {
   var $current_wt$$ = $winglue_well$data$subs$get_welltest$$(), $wt_history$$ = $winglue_well$data$subs$get_welltest_hist$$();
   return null != $current_wt$$ && null != $wt_history$$ && null != $cljs$core$cst$0kw$0welltest_DASH_date$$.$cljs$core$IFn$_invoke$arity$1$($current_wt$$) ? new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0select$$, new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0value$$, $cljs$core$cst$0kw$0welltest_DASH_date$$.$cljs$core$IFn$_invoke$arity$1$($current_wt$$), $cljs$core$cst$0kw$0class$$, "form-control"], null), function() {
     return function($current_wt$$, $wt_history$$) {
-      return function $winglue_well$pages$welloverview$welloverview$WellTableDate_$_iter__36322$$($s__36323$$) {
+      return function $winglue_well$pages$welloverview$welloverview$WellTableDate_$_iter__36896$$($s__36897$$) {
         return new $cljs$core$LazySeq$$(null, function() {
           return function() {
             for (;;) {
-              var $current_wt$$ = $cljs$core$seq$$($s__36323$$);
+              var $current_wt$$ = $cljs$core$seq$$($s__36897$$);
               if ($current_wt$$) {
                 if ($cljs$core$chunked_seq_QMARK_$$($current_wt$$)) {
                   var $wt_history$$ = $cljs$core$_chunked_first$$($current_wt$$), $current_wt$$1$$ = $cljs$core$count$$($wt_history$$), $wt_history$$1$$ = $cljs$core$chunk_buffer$$($current_wt$$1$$);
                   a: {
-                    for (var $i__36324$$inline_1522$$ = 0;;) {
-                      if ($i__36324$$inline_1522$$ < $current_wt$$1$$) {
-                        var $date$$inline_1523_x$$inline_2202$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($wt_history$$, $i__36324$$inline_1522$$), $date$$inline_1523_x$$inline_2202$$ = $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0option$$, new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0value$$, $date$$inline_1523_x$$inline_2202$$], null), $winglue_well$utils$format$format_iso_date$$($date$$inline_1523_x$$inline_2202$$)], 
+                    for (var $i__36898$$inline_1522$$ = 0;;) {
+                      if ($i__36898$$inline_1522$$ < $current_wt$$1$$) {
+                        var $date$$inline_1523_x$$inline_2202$$ = $cljs$core$_nth$$.$cljs$core$IFn$_invoke$arity$2$($wt_history$$, $i__36898$$inline_1522$$), $date$$inline_1523_x$$inline_2202$$ = $cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0option$$, new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0value$$, $date$$inline_1523_x$$inline_2202$$], null), $winglue_well$utils$format$format_iso_date$$($date$$inline_1523_x$$inline_2202$$)], 
                         null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $date$$inline_1523_x$$inline_2202$$], null));
                         $wt_history$$1$$.add($date$$inline_1523_x$$inline_2202$$);
-                        $i__36324$$inline_1522$$ += 1;
+                        $i__36898$$inline_1522$$ += 1;
                       } else {
                         $wt_history$$ = !0;
                         break a;
                       }
                     }
                   }
-                  return $wt_history$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($wt_history$$1$$), $winglue_well$pages$welloverview$welloverview$WellTableDate_$_iter__36322$$($cljs$core$_chunked_rest$$($current_wt$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($wt_history$$1$$), null);
+                  return $wt_history$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($wt_history$$1$$), $winglue_well$pages$welloverview$welloverview$WellTableDate_$_iter__36896$$($cljs$core$_chunked_rest$$($current_wt$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($wt_history$$1$$), null);
                 }
                 $wt_history$$1$$ = $cljs$core$first$$($current_wt$$);
-                return $cljs$core$cons$$($cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0option$$, new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0value$$, $wt_history$$1$$], null), $winglue_well$utils$format$format_iso_date$$($wt_history$$1$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $wt_history$$1$$], null)), $winglue_well$pages$welloverview$welloverview$WellTableDate_$_iter__36322$$($cljs$core$rest$$($current_wt$$)));
+                return $cljs$core$cons$$($cljs$core$with_meta$$(new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0option$$, new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0value$$, $wt_history$$1$$], null), $winglue_well$utils$format$format_iso_date$$($wt_history$$1$$)], null), new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0key$$, $wt_history$$1$$], null)), $winglue_well$pages$welloverview$welloverview$WellTableDate_$_iter__36896$$($cljs$core$rest$$($current_wt$$)));
               }
               return null;
             }
@@ -26726,7 +26729,7 @@ function $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart$$() {
   $ipm_curve$$8$$ = $cljs$core$cst$0kw$0injection_DASH_string_DASH_depth_DASH_profile_DASH_map$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$29$$), $valve_map$$14$$ = $cljs$core$cst$0kw$0valves_DASH_status_DASH_map$$.$cljs$core$IFn$_invoke$arity$1$($depth_profile$$29$$), $mandrel_survey$$23$$ = $winglue_well$data$subs$get_mandrel_survey$$(), $vert_depth_list$$8$$ = $cljs$core$cst$0kw$0vert_DASH_depth_DASH_list$$.$cljs$core$IFn$_invoke$arity$1$($ppm_curve$$8$$), $max_depth$$8$$ = 1E3 * (($cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$max$$, 
   $vert_depth_list$$8$$) / 1E3 | 0) + 1), $chart_config$$4_plot_lines$$6$$ = $cljs$core$vec$$(function() {
     return function($data_source$$7$$, $well$$13$$, $dvsp_config$$2$$, $depth_profile$$29$$, $equilibrium_profile$$8$$, $ppm_curve$$8$$, $ipm_curve$$8$$, $valve_map$$14$$, $mandrel_survey$$23$$, $vert_depth_list$$8$$, $max_depth$$8$$) {
-      return function $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart_$_iter__36352$$($chart_config$$4_plot_lines$$6$$) {
+      return function $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart_$_iter__36929$$($chart_config$$4_plot_lines$$6$$) {
         return new $cljs$core$LazySeq$$(null, function() {
           return function() {
             for (;;) {
@@ -26748,11 +26751,11 @@ function $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart$$() {
                       }
                     }
                   }
-                  return $well$$13$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($depth_profile$$29$$), $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart_$_iter__36352$$($cljs$core$_chunked_rest$$($data_source$$7$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($depth_profile$$29$$), null);
+                  return $well$$13$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($depth_profile$$29$$), $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart_$_iter__36929$$($cljs$core$_chunked_rest$$($data_source$$7$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($depth_profile$$29$$), null);
                 }
                 $depth_profile$$29$$ = $cljs$core$first$$($data_source$$7$$);
                 return $cljs$core$cons$$(new $cljs$core$PersistentArrayMap$$(null, 7, [$cljs$core$cst$0kw$0color$$, "#000000", $cljs$core$cst$0kw$0value$$, $depth_profile$$29$$, $cljs$core$cst$0kw$0marker$$, new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0enabled$$, !1], null), $cljs$core$cst$0kw$0zIndex$$, 1, $cljs$core$cst$0kw$0width$$, 2, $cljs$core$cst$0kw$0label$$, new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0text$$, [$cljs$core$str$$("Mandrel Line: "), 
-                $cljs$core$str$$($winglue_well$utils$format$format_dec$$($depth_profile$$29$$)), $cljs$core$str$$(" ft")].join("")], null), $cljs$core$cst$0kw$0tooltip$$, new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0headerFormat$$, "" + $cljs$core$str$$('\x3cspan style\x3d"font-size: 10px"\x3eMandrel\x3c/span\x3e\x3cbr/\x3e'), $cljs$core$cst$0kw$0pointFormatter$$, $winglue_well$utils$common$mandrel_point_formatter$$], null)], null), $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart_$_iter__36352$$($cljs$core$rest$$($data_source$$7$$)));
+                $cljs$core$str$$($winglue_well$utils$format$format_dec$$($depth_profile$$29$$)), $cljs$core$str$$(" ft")].join("")], null), $cljs$core$cst$0kw$0tooltip$$, new $cljs$core$PersistentArrayMap$$(null, 2, [$cljs$core$cst$0kw$0headerFormat$$, "" + $cljs$core$str$$('\x3cspan style\x3d"font-size: 10px"\x3eMandrel\x3c/span\x3e\x3cbr/\x3e'), $cljs$core$cst$0kw$0pointFormatter$$, $winglue_well$utils$common$mandrel_point_formatter$$], null)], null), $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart_$_iter__36929$$($cljs$core$rest$$($data_source$$7$$)));
               }
               return null;
             }
@@ -26776,11 +26779,11 @@ function $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart$$() {
     };
   }($data_source$$7$$, $well$$13$$, $dvsp_config$$2$$, $depth_profile$$29$$, $equilibrium_profile$$8$$, $ppm_curve$$8$$, $ipm_curve$$8$$, $valve_map$$14$$, $mandrel_survey$$23$$, $vert_depth_list$$8$$, $max_depth$$8$$, $chart_config$$4_plot_lines$$6$$, $filtered_valve_map$$6$$), $cljs$core$cst$0kw$0hide$$, function($data_source$$7$$, $well$$13$$, $dvsp_config$$2$$, $depth_profile$$29$$, $equilibrium_profile$$8$$, $ppm_curve$$8$$, $ipm_curve$$8$$, $valve_map$$14$$, $mandrel_survey$$23$$, $vert_depth_list$$8$$, 
   $max_depth$$8$$, $chart_config$$4_plot_lines$$6$$, $filtered_valve_map$$6$$) {
-    return function($p1__36339_SHARP_$$) {
-      var $chart_plot_lines$$3$$ = $p1__36339_SHARP_$$.target.chart.yAxis[0].plotLinesAndBands;
+    return function($p1__36916_SHARP_$$) {
+      var $chart_plot_lines$$3$$ = $p1__36916_SHARP_$$.target.chart.yAxis[0].plotLinesAndBands;
       return $cljs$core$doall$cljs$0core$0IFn$0_invoke$0arity$01$$(function() {
         return function($data_source$$7$$, $well$$13$$, $dvsp_config$$2$$, $depth_profile$$29$$, $equilibrium_profile$$8$$, $ppm_curve$$8$$, $ipm_curve$$8$$, $valve_map$$14$$, $mandrel_survey$$23$$, $vert_depth_list$$8$$, $max_depth$$8$$, $chart_config$$4_plot_lines$$6$$, $filtered_valve_map$$6$$, $data_source$$12$$) {
-          return function $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart_$_iter__36358$$($well$$18$$) {
+          return function $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart_$_iter__36935$$($well$$18$$) {
             return new $cljs$core$LazySeq$$(null, function($data_source$$7$$) {
               return function() {
                 for (;;) {
@@ -26800,10 +26803,10 @@ function $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart$$() {
                           }
                         }
                       }
-                      return $dvsp_config$$2$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($equilibrium_profile$$8$$), $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart_$_iter__36358$$($cljs$core$_chunked_rest$$($well$$13$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($equilibrium_profile$$8$$), null);
+                      return $dvsp_config$$2$$ ? $cljs$core$chunk_cons$$($cljs$core$chunk$$($equilibrium_profile$$8$$), $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart_$_iter__36935$$($cljs$core$_chunked_rest$$($well$$13$$))) : $cljs$core$chunk_cons$$($cljs$core$chunk$$($equilibrium_profile$$8$$), null);
                     }
                     $equilibrium_profile$$8$$ = $cljs$core$first$$($well$$13$$);
-                    return $cljs$core$cons$$($data_source$$7$$[$equilibrium_profile$$8$$].destroy(), $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart_$_iter__36358$$($cljs$core$rest$$($well$$13$$)));
+                    return $cljs$core$cons$$($data_source$$7$$[$equilibrium_profile$$8$$].destroy(), $winglue_well$pages$dataanalysis$dataanalysis$DVSPChart_$_iter__36935$$($cljs$core$rest$$($well$$13$$)));
                   }
                   return null;
                 }
@@ -26900,9 +26903,9 @@ function $winglue_well$pages$mainpage$mainpage$LeftSidebar$$() {
 function $winglue_well$pages$mainpage$mainpage$RightSidebar$$() {
   return new $cljs$core$PersistentVector$$(null, 3, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0div$$, new $cljs$core$PersistentVector$$(null, 1, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0aside$0control_DASH_sidebar$0control_DASH_sidebar_DASH_dark$$], null), new $cljs$core$PersistentVector$$(null, 1, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0div$0control_DASH_sidebar_DASH_bg$$], null)], null);
 }
-function $winglue_well$pages$mainpage$mainpage$Footer$$($map__36373__$1_p__36370$$) {
-  $map__36373__$1_p__36370$$ = null != $map__36373__$1_p__36370$$ && ($map__36373__$1_p__36370$$.$cljs$lang$protocol_mask$partition0$$ & 64 || $map__36373__$1_p__36370$$.$cljs$core$ISeq$$) ? $cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$hash_map$$, $map__36373__$1_p__36370$$) : $map__36373__$1_p__36370$$;
-  $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__36373__$1_p__36370$$, $cljs$core$cst$0kw$0left_DASH_sidebar$$);
+function $winglue_well$pages$mainpage$mainpage$Footer$$($map__36950__$1_p__36947$$) {
+  $map__36950__$1_p__36947$$ = null != $map__36950__$1_p__36947$$ && ($map__36950__$1_p__36947$$.$cljs$lang$protocol_mask$partition0$$ & 64 || $map__36950__$1_p__36947$$.$cljs$core$ISeq$$) ? $cljs$core$apply$cljs$0core$0IFn$0_invoke$0arity$02$$($cljs$core$hash_map$$, $map__36950__$1_p__36947$$) : $map__36950__$1_p__36947$$;
+  $cljs$core$get$$.$cljs$core$IFn$_invoke$arity$2$($map__36950__$1_p__36947$$, $cljs$core$cst$0kw$0left_DASH_sidebar$$);
   return new $cljs$core$PersistentVector$$(null, 4, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0a$0logo$$, new $cljs$core$PersistentArrayMap$$(null, 1, [$cljs$core$cst$0kw$0href$$, "index2.hhtml"], null), new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0span$0logo_DASH_mini$$, new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0b$$, "AS"], null)], null), new $cljs$core$PersistentVector$$(null, 
   2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0span$0logo_DASH_lg$$, new $cljs$core$PersistentVector$$(null, 2, 5, $cljs$core$PersistentVector$EMPTY_NODE$$, [$cljs$core$cst$0kw$0b$$, "AppSmiths GLOS"], null)], null)], null);
 }

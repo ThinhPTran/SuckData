@@ -29,4 +29,6 @@
 (defn- format-dec
   "Formats a number to have the specified number of decimal places"
   [num dec-places]
-  (gstring/format (str "%." dec-places "f") num))
+  (if (nil? num)
+    "No data"
+    (gstring/format (str "%." dec-places "f") num)))
