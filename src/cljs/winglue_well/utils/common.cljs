@@ -63,7 +63,7 @@
 
 ;;---------
 ; Equality test for welltest values - they just need to be "close"
-(defn is-welltest-close [x1 x2] (< (Math/abs (- x1 x2)) 0.001))
+(defn is-welltest-close [x1 x2] (< (Math/abs (- x1 x2)) 0.01))
 
 (def wt-key-pairs
   [[:calib-oil-rate             :meas-oil-rate]
@@ -71,8 +71,8 @@
    [:calib-formation-gas-rate   :meas-form-gas-rate]
    [:calib-flowing-tubing-press :meas-flowing-tubing-press]
    [:calib-lift-gas-rate        :meas-lift-gas-rate]
-   [:calib-casing-head-press    :meas-casing-head-press]
-   [:calib-wellhead-choke-id    :meas-wellhead-choke-id]])
+   [:calib-casing-head-press    :meas-casing-head-press]])
+   ;[:calib-wellhead-choke-id    :meas-wellhead-choke-id]])
 
 
 (defn wtest-is-calibrated [wt]

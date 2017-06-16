@@ -18,6 +18,14 @@
          (gstring/format "%02d" (.getDate date)) " "
          (.toUsTimeString date))))
 
+(defn format-date
+  "transforms iso date string to human readable date string"
+  [date]
+  (let [date (gdate/fromIsoString date)]
+    (str (.getFullYear date) "-"
+         (gstring/format "%02d" (.getMonth date) "-")
+         (gstring/format "%02d" (.getDate date)))))
+
 (defn- format-dec
   "Formats a number to have the specified number of decimal places"
   [num dec-places]

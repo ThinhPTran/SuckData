@@ -183,18 +183,26 @@
 (defn WellTestInfos []
   (let [welltest-hist-map (datasubs/get-welltest-hist)
         welltest-list (vals welltest-hist-map)
-        indata (map (fn [in] {:welltest-date (rformat/format-iso-date (:welltest-date in))
+        indata (map (fn [in] {:welltest-date (rformat/format-date (:welltest-date in))
                               :calib-oil-rate (rformat/format-dec (:calib-oil-rate in) 2)
+                              :meas-oil-rate (rformat/format-dec (:meas-oil-rate in) 2)
                               :calib-water-rate (rformat/format-dec (:calib-water-rate in) 2)
+                              :meas-water-rate (rformat/format-dec (:meas-water-rate in) 2)
                               :calib-liquid-rate (rformat/format-dec (:calib-liquid-rate in) 2)
+                              :meas-liquid-rate (rformat/format-dec (:meas-liquid-rate in) 2)
+                              :calib-flowing-tubing-press (rformat/format-dec (:calib-flowing-tubing-press in) 2)
+                              :meas-flowing-tubing-press (rformat/format-dec (:meas-flowing-tubing-press in) 2)
+                              :calib-casing-head-press (rformat/format-dec (:calib-casing-head-press in) 2)
+                              :meas-casing-head-press (rformat/format-dec (:meas-casing-head-press in) 2)
+                              :calib-lift-gas-rate (rformat/format-dec (:calib-lift-gas-rate in) 2)
+                              :meas-lift-gas-rate (rformat/format-dec (:meas-lift-gas-rate in) 2)
+                              :calib-formation-gas-rate (rformat/format-dec (:calib-formation-gas-rate in) 2)
+                              :meas-form-gas-rate (rformat/format-dec (:meas-form-gas-rate in) 2)
                               :calib-wc (rformat/format-dec (:calib-wc in) 2)
                               :calib-total-gas (rformat/format-dec (:calib-total-gas in) 2)
-                              :calib-flowing-tubing-press (rformat/format-dec (:calib-flowing-tubing-press in) 2)
-                              :calib-casing-head-press (rformat/format-dec (:calib-casing-head-press in) 2)
                               :est-fbhp (rformat/format-dec (:est-fbhp in) 2)
-                              :calib-lift-gas-rate (rformat/format-dec (:calib-lift-gas-rate in) 2)
-                              :calib-total-glr (rformat/format-dec (:calib-total-glr in) 2)
-                              :calib-formation-gas-rate (:calib-formation-gas-rate in) })(sort-by :welltest-date > welltest-list))]
+                              :calib-total-glr (rformat/format-dec (:calib-total-glr in) 2)}) (sort-by :welltest-date > welltest-list))]
+
     [:div
      [BoxContainer
       {:header
@@ -205,27 +213,42 @@
          {:data indata
           :columns [{:title "Date"
                      :data :welltest-date}
-                    {:title "Oil (bbl/day)"
+                    {:title "Calib. Oil (bbl/day)"
                      :data :calib-oil-rate}
-                    {:title "Water (bbl/day)"
+                    {:title "Meas. Oil (bbl/day)"
+                     :data :meas-oil-rate}
+                    {:title "Calib. Water (bbl/day)"
                      :data :calib-water-rate}
-                    {:title "Total liquid (bbl/day)"
-                     :data :calib-liquid-rate}
-                    {:title "Watercut (%)"
-                     :data :calib-wc}
-                    {:title "Total Gas (MCF/data)"
-                     :data :calib-total-gas}
-                    {:title "Tubing Press. (psig)"
-                     :data :calib-flowing-tubing-press}
-                    {:title "Casing Press. (psig)"
+                    {:title "Meas. Water (bbl/day)"
+                     :data :meas-water-rate}
+                    {:title "Calib. Casing Press. (psig)"
                      :data :calib-casing-head-press}
-                    {:title "Stored FBHP (psig)"
-                     :data :est-fbhp}
-                    {:title "Gas LG (MCF/data)"
+                    {:title "Meas. Casing Press. (psig)"
+                     :data :meas-casing-head-press}
+                    {:title "Calib. Tubing Press. (psig)"
+                     :data :calib-flowing-tubing-press}
+                    {:title "Meas. Tubing Press. (psig)"
+                     :data :meas-flowing-tubing-press}
+                    {:title "Calib. Gas LG (MCF/data)"
                      :data :calib-lift-gas-rate}
-                    {:title "Total GL Rate (MCF/day)"
+                    {:title "Meas. Gas LG (MCF/data)"
+                     :data :meas-lift-gas-rate}
+                    {:title "Calib. Form. GR"
+                     :data :calib-formation-gas-rate}
+                    {:title "Meas. Form. GR"
+                     :data :meas-form-gas-rate}
+                    {:title "Calib. Watercut (%)"
+                     :data :calib-wc}
+                    {:title "Calib. Total liquid (bbl/day)"
+                     :data :calib-liquid-rate}
+                    {:title "Calib. Total Gas (MCF/data)"
+                     :data :calib-total-gas}
+                    {:title "Calib. Stored FBHP (psig)"
+                     :data :est-fbhp}
+                    {:title "Calib. Total GL Rate (MCF/day)"
                      :data :calib-total-glr}]
           :deferRender true
+          :scrollX true
           :select "single"}
          {:select (fn [e dt type index])}]
         [LoadingOverlay])]]))
