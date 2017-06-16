@@ -202,7 +202,6 @@
                               :calib-total-gas (rformat/format-dec (:calib-total-gas in) 2)
                               :est-fbhp (rformat/format-dec (:est-fbhp in) 2)
                               :calib-total-glr (rformat/format-dec (:calib-total-glr in) 2)}) (sort-by :welltest-date > welltest-list))]
-
     [:div
      [BoxContainer
       {:header
@@ -247,6 +246,7 @@
                      :data :est-fbhp}
                     {:title "Calib. Total GL Rate (MCF/day)"
                      :data :calib-total-glr}]
+          :order [[0, "desc"]]
           :deferRender true
           :scrollX true
           :select "single"}

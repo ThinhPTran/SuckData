@@ -10,7 +10,6 @@
                       (filter #(= cleanwell (:well %))))
         welldoc (:welldoc (first welldata))]
     (.log js/console (str "well: " cleanwell))
-    ;(.log js/console (str "welldoc: " welldoc))
     (swap! mydb/well-state assoc :current-well cleanwell)
     (if (and (some? welldoc)
              (some? (:welltest-hist-map welldoc)))

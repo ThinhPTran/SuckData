@@ -23,7 +23,7 @@
   [date]
   (let [date (gdate/fromIsoString date)]
     (str (.getFullYear date) "-"
-         (gstring/format "%02d" (.getMonth date) "-")
+         (gstring/format "%02d" (.getMonth date)) "-"
          (gstring/format "%02d" (.getDate date)))))
 
 (defn- format-dec

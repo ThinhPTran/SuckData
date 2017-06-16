@@ -44,7 +44,7 @@
        (fn []
          [:table.display {:width "100%"}])})))
 
-(defn NewDataTable [options callback]
+(defn NewDataTable [options callbacks]
   "DataTable widget. options is a map conforming to the possible options of
    DataTables. Read: https://datatables.net/reference/option/
 
@@ -53,18 +53,41 @@
    events are maped to keywords, e.g. :select is the select event.
    callbacks will be called with the args specified in the DataTables reference
    and the data-table object as the first arg. e.g. (fn data-table ...)"
-  (let [data-table (atom {:table nil})]
-    [:table.display {:width "100%"
-                     :ref (fn [mydiv]
-                            (if (some? mydiv)
-                              (let [mytable (setup-table mydiv options)]
-                                (bind-callbacks mytable callback)
-                                (swap! data-table assoc :table mytable))
-                              (let [mytable (:table @data-table)]
-                                (if (some? mytable)
-                                  (do (unbind-callbacks mytable callback)
-                                      (.destroy mytable)
-                                      (swap! data-table assoc :table nil))))))}]))
+  ;(let [data-table (atom {:table nil})]
+  ;  [:table.display {:width "100%"
+  ;                   :ref (fn [mydiv]
+  ;                          (if (some? mydiv)
+  ;                            (let [mytable (setup-table mydiv options)]
+  ;                              ;(bind-callbacks mytable callbacks)
+  ;                              (swap! data-table assoc :table mytable))
+  ;                            (let [mytable (:table @data-table)]
+  ;                              (if (some? mytable)
+  ;                                (do ;(unbind-callbacks mytable callbacks)
+  ;                                    (.destroy mytable)
+  ;                                    (swap! data-table assoc :table nil))))))}]))
+  (let [data-table (atom nil)]
+    (reagent/create-class
+      {:component-did-mount
+       (fn [this]
+         (reset! data-table (setup-table (reagent/dom-node this) options))
+         (bind-callbacks @data-table callbacks))
+
+       :component-will-update
+       (fn [this [old-options new-options new-callbacks]]
+         (if (not= old-options new-options)
+           (do
+             (reset! data-table (setup-table (reagent/dom-node this) (merge new-options
+                                                                            {:destroy true})))
+             (bind-callbacks @data-table new-callbacks)
+             true)
+           false))
+       :component-did-update
+       (fn [this [_ _ old-callbacks]]
+         (unbind-callbacks @data-table old-callbacks))
+
+       :reagent-render
+       (fn []
+         [:table.display {:width "100%"}])})))
 
 
 ;; Implement this among other stuff eventually
