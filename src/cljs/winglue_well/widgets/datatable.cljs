@@ -71,16 +71,20 @@
        (fn [this]
          (reset! data-table (setup-table (reagent/dom-node this) options))
          (bind-callbacks @data-table callbacks))
-
        :component-will-update
        (fn [this [old-options new-options new-callbacks]]
          (if (not= old-options new-options)
            (do
+             ;(.log js/console "different!!!")
+             ;(.log js/console (str "old-option: " old-options))
+             ;(.log js/console (str "new-option: " new-options))
              (reset! data-table (setup-table (reagent/dom-node this) (merge new-options
                                                                             {:destroy true})))
              (bind-callbacks @data-table new-callbacks)
              true)
-           false))
+           (do
+             ;(.log js/console "the same!")
+             false)))
        :component-did-update
        (fn [this [_ _ old-callbacks]]
          (unbind-callbacks @data-table old-callbacks))

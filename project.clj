@@ -100,7 +100,7 @@
                               "src/cljs/js/externs/adminlte.ext.js"
                               "src/cljs/js/externs/tubingpipe.ext.js"]
                     :closure-defines {goog.DEBUG false}
-                    :pretty-print    true}}]}
+                    }}]}
 
   :sass {:source-paths ["src/cljs/css"]
          :target-path "target/css"
