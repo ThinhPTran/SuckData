@@ -6,7 +6,7 @@
             [winglue-well.pages.welloverview.handlers :as overviewhandlers]
             [winglue-well.pages.dataanalysis.handlers :as dataanalhandlers]
             [winglue-well.data.subs :as datasubs]
-            [winglue-well.widgets.datatable :refer [DataTable]]
+            [winglue-well.widgets.datatable :refer [DataTable NewDataTable]]
             [winglue-well.widgets.loadingoverlay :refer [LoadingOverlay]]
             [winglue-well.components.glvtable :refer [GLVTable]]
             [winglue-well.widgets.highchart :as highchart :refer [HighChart]]
@@ -57,7 +57,7 @@
   (let [well-list (dataanalsubs/get-all-well-status)]
     [:div
      (if (some? well-list)
-       [DataTable
+       [NewDataTable
         {:data well-list
          :columns [{:title "Well"
                     :data :well}

@@ -44,5 +44,28 @@
        (fn []
          [:table.display {:width "100%"}])})))
 
+(defn NewDataTable [options callback]
+  "DataTable widget. options is a map conforming to the possible options of
+   DataTables. Read: https://datatables.net/reference/option/
+
+   Callbacks arg is a map of :event callback_fn. refer to
+   https://datatables.net/reference/event/ for a list of all events.
+   events are maped to keywords, e.g. :select is the select event.
+   callbacks will be called with the args specified in the DataTables reference
+   and the data-table object as the first arg. e.g. (fn data-table ...)"
+  (let [data-table (atom {:table nil})]
+    [:table.display {:width "100%"
+                     :ref (fn [mydiv]
+                            (if (some? mydiv)
+                              (let [mytable (setup-table mydiv options)]
+                                (bind-callbacks mytable callback)
+                                (swap! data-table assoc :table mytable))
+                              (let [mytable (:table @data-table)]
+                                (if (some? mytable)
+                                  (do (unbind-callbacks mytable callback)
+                                      (.destroy mytable)
+                                      (swap! data-table assoc :table nil))))))}]))
+
+
 ;; Implement this among other stuff eventually
 ;; https://datatables.net/examples/api/multi_filter_select.html

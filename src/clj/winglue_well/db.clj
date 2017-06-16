@@ -38,11 +38,13 @@
                      (filter #(= (first (keys (:dsn %))) dsn))
                      (map #(:well %))
                      (vec))
-        fielddata (->> @persist-atom
-                       (:wells)
-                       (mapv (fn [in] {:dsn (:dsn in)
-                                       :well (:well in)
-                                       :welldoc {:depth-profile-map (:depth-profile-map (:welldoc in))}})))
+        ;fielddatatmp (->> @persist-atom
+        ;               (:wells)
+        ;               (mapv (fn [in] {:dsn (:dsn in)
+        ;                               :well (:well in)
+        ;                               :welldoc {:depth-profile-map (:depth-profile-map (:welldoc in))}})))
+        fielddata  (->> @persist-atom
+                        (:wells))
         currentdata (first fielddata)
         currentwell (:well currentdata)
         currentwelldoc (:welldoc currentdata)]
