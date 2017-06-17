@@ -228,9 +228,9 @@
                      :data :calib-flowing-tubing-press}
                     {:title "Meas. Tubing Press. (psig)"
                      :data :meas-flowing-tubing-press}
-                    {:title "Calib. Gas LG (MCF/data)"
+                    {:title "Calib. Gas LG (MCF/day)"
                      :data :calib-lift-gas-rate}
-                    {:title "Meas. Gas LG (MCF/data)"
+                    {:title "Meas. Gas LG (MCF/day)"
                      :data :meas-lift-gas-rate}
                     {:title "Calib. Form. GR"
                      :data :calib-formation-gas-rate}
@@ -240,7 +240,7 @@
                      :data :calib-wc}
                     {:title "Calib. Total liquid (bbl/day)"
                      :data :calib-liquid-rate}
-                    {:title "Calib. Total Gas (MCF/data)"
+                    {:title "Calib. Total Gas (MCF/day)"
                      :data :calib-total-gas}
                     {:title "Calib. Stored FBHP (psig)"
                      :data :est-fbhp}
@@ -256,20 +256,78 @@
 (defn OilrateInf []
   (let [welltest-hist-map (datasubs/get-welltest-hist)
         welltest-list (vals welltest-hist-map)
-        indata (vec (map (fn [in] [(com-utils/getUTCtime (:welltest-date in)) (js/parseFloat (rformat/format-dec (:calib-oil-rate in) 2))])
-                         (sort-by :welltest-date > welltest-list)))
+        indata1 (vec (map (fn [in] [(com-utils/getUTCtime (:welltest-date in)) (js/parseFloat (rformat/format-dec (:calib-oil-rate in) 2))])
+                          (sort-by :welltest-date > welltest-list)))
+        indata2 (vec (map (fn [in] [(com-utils/getUTCtime (:welltest-date in)) (js/parseFloat (rformat/format-dec (:calib-water-rate in) 2))])
+                          (sort-by :welltest-date > welltest-list)))
+        indata3 (vec (map (fn [in] [(com-utils/getUTCtime (:welltest-date in)) (js/parseFloat (rformat/format-dec (:calib-liquid-rate in) 2))])
+                          (sort-by :welltest-date > welltest-list)))
         chart-config {:chart {:type "spline"}
-                      :title {:text "Oil rate vs. time"}
+                      :title {:text "Liquid rate vs. time"}
                       :xAxis {:type "datetime"
                               :labels {:format "{value:%Y-%m-%d}"}
                               :title {:text "Date"}}
                       :yAxis {:title {:text "Oil rate (bbq/day)"}}
                       :series [{:name "Oil rate"
-                                :data indata}]}]
+                                :data indata1}
+                               {:name "Water rate"
+                                :data indata2}
+                               {:name "Liquid rate"
+                                :data indata3}]}]
     [:div 
      [BoxContainer
       {:header
        {:title "Oil rate vs. time"
+        :with-border true}}
+      [HighChart chart-config]]]))
+
+(defn PressureInf []
+  (let [welltest-hist-map (datasubs/get-welltest-hist)
+        welltest-list (vals welltest-hist-map)
+        indata1 (vec (map (fn [in] [(com-utils/getUTCtime (:welltest-date in)) (js/parseFloat (rformat/format-dec (:calib-casing-head-press in) 2))])
+                          (sort-by :welltest-date > welltest-list)))
+        indata2 (vec (map (fn [in] [(com-utils/getUTCtime (:welltest-date in)) (js/parseFloat (rformat/format-dec (:calib-flowing-tubing-press in) 2))])
+                          (sort-by :welltest-date > welltest-list)))
+        chart-config {:chart {:type "spline"}
+                      :title {:text "Press. vs. time"}
+                      :xAxis {:type "datetime"
+                              :labels {:format "{value:%Y-%m-%d}"}
+                              :title {:text "Date"}}
+                      :yAxis {:title {:text "Pressure (psig)"}}
+                      :series [{:name "Casing Head Pressure"
+                                :data indata1}
+                               {:name "Flowing Tubing Pressure"
+                                :data indata2}]}]
+    [:div
+     [BoxContainer
+      {:header
+       {:title "Pressure vs. time"
+        :with-border true}}
+      [HighChart chart-config]]]))
+
+(defn GasInf []
+  (let [welltest-hist-map (datasubs/get-welltest-hist)
+        welltest-list (vals welltest-hist-map)
+        indata1 (vec (map (fn [in] [(com-utils/getUTCtime (:welltest-date in)) (js/parseFloat (rformat/format-dec (:calib-lift-gas-rate in) 2))])
+                          (sort-by :welltest-date > welltest-list)))
+        indata2 (vec (map (fn [in] [(com-utils/getUTCtime (:welltest-date in)) (js/parseFloat (rformat/format-dec (:calib-formation-gas-rate in) 2))])
+                          (sort-by :welltest-date > welltest-list)))
+        indata3 (vec (map (fn [in] [(com-utils/getUTCtime (:welltest-date in)) (js/parseFloat (rformat/format-dec (:calib-total-gas in) 2))])
+                          (sort-by :welltest-date > welltest-list)))
+        chart-config {:chart {:type "spline"}
+                      :title {:text "Gas vs. time"}
+                      :xAxis {:type "datetime"
+                              :labels {:format "{value:%Y-%m-%d}"}
+                              :title {:text "Date"}}
+                      :yAxis {:title {:text "Gas rate (MCF/day)"}}
+                      :series [{:name "GL rate"
+                                :data indata1}
+                               {:name "Formation gas rate"
+                                :data indata2}]}]
+    [:div
+     [BoxContainer
+      {:header
+       {:title "Gas vs. time"
         :with-border true}}
       [HighChart chart-config]]]))
 
@@ -296,6 +354,12 @@
        [:div.row
         [:div.col-sm-12.col-md-12
          [OilrateInf]]]
+       [:div.row
+        [:div.col-sm-12.col-md-12
+         [PressureInf]]]
+       [:div.row
+        [:div.col-sm-12.col-md-12
+         [GasInf]]]
        [:div.row
         [:div.col-sm-12.col-md-12
          [WellTestInfos]]]
