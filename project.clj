@@ -99,8 +99,9 @@
                     :externs ["src/cljs/js/externs/datatables.ext.js"
                               "src/cljs/js/externs/adminlte.ext.js"
                               "src/cljs/js/externs/tubingpipe.ext.js"]
-                    :closure-defines {goog.DEBUG false}
-                    }}]}
+                    :pretty-print true
+                    :closure-defines {goog.DEBUG false}}}]}
+
 
   :sass {:source-paths ["src/cljs/css"]
          :target-path "target/css"

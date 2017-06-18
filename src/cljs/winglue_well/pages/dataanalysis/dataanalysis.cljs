@@ -53,7 +53,7 @@
            #(overviewhandlers/set-selected-datasource %)]]])
       [LoadingOverlay])))
 
-(defn WellSelector [data-source on-select-fn]
+(defn WellSelector [data-source currentwell on-select-fn]
   (let [well-list (dataanalsubs/get-all-well-status)]
     [:div
      (if (some? well-list)
@@ -91,21 +91,54 @@
     [:div
      [:p (str " Field: " field " Lease: " lease " Well: " well " Cmpl: " cmpl)]]))
 
+(defn WellTable [data-source well]
+  [:table.table {:style {:margin-bottom "0px"}}
+   [:thead
+    [:tr
+     [:th "Field"]
+     [:th "Lease"]
+     [:th "Well"]
+     [:th "Cmpl"]]]
+   [:tbody
+    [:tr
+     [:td (:field well)]
+     [:td (:lease well)]
+     [:td (:well well)]
+     [:td (:cmpl well)]]]])
+
 (defn WellPicker []
-  (let [selected-data-source (overviewsubs/get-selected-datasource)]
+  (let [selected-well (overviewsubs/get-selected-well)
+        selected-data-source (overviewsubs/get-selected-datasource)
+        open-well-selector (overviewsubs/get-is-open-wellselector)]
     [:div
      [DataSourceDropdown]
      (if (nil? selected-data-source)
        [ContentMsg "Select a Data Source"]
        [:div
         ;; Well Selector
-        [BoxContainer
-         {:header
-          {:title "Select Well"
-           :with-border true}}
-         [WellSelector selected-data-source
-          #(do
-             (dataanalhandlers/set-selected-well %))]]])]))
+        (if open-well-selector
+          [BoxContainer
+           {:header
+            {:title "Select Well"
+             :with-border true
+             :box-tools [:button.btn.butn-block.btn-primary
+                         {:on-click #(overviewhandlers/set-open-well-selector false)}
+                         [:i.fa.fa-close]]}}
+           [WellSelector selected-data-source selected-well
+            #(do
+               (dataanalhandlers/set-selected-well %)
+               (overviewhandlers/set-open-well-selector false))]]
+          [:div.row
+           [:div.col-sm-2
+            [:button.btn.butn-block.btn-primary
+             {:on-click #(overviewhandlers/set-open-well-selector true)}
+             "Select Well"
+             " " ;; Spacing between well-name and change button
+             [:i.fa.fa-exchange]]]
+           (if (some? selected-well)
+             [:div.col-sm-10
+              [WellTable selected-data-source selected-well]]
+             [ContentMsg "Select a Well"])])])]))
 
 (defn DVSPChart []
   (let [data-source (overviewsubs/get-selected-datasource)
@@ -323,7 +356,9 @@
                       :series [{:name "GL rate"
                                 :data indata1}
                                {:name "Formation gas rate"
-                                :data indata2}]}]
+                                :data indata2}
+                               {:name "Total gas rate"
+                                :data indata3}]}]
     [:div
      [BoxContainer
       {:header
@@ -331,44 +366,68 @@
         :with-border true}}
       [HighChart chart-config]]]))
 
+(defn WaterCutInf []
+  (let [welltest-hist-map (datasubs/get-welltest-hist)
+        welltest-list (vals welltest-hist-map)
+        indata1 (vec (map (fn [in] [(com-utils/getUTCtime (:welltest-date in)) (js/parseFloat (rformat/format-dec (:calib-wc in) 2))])
+                          (sort-by :welltest-date > welltest-list)))
+        chart-config {:chart {:type "spline"}
+                      :title {:text "Water Cut vs. time"}
+                      :xAxis {:type "datetime"
+                              :labels {:format "{value:%Y-%m-%d}"}
+                              :title {:text "Date"}}
+                      :yAxis {:title {:text "Percentage (%)"}}
+                      :series [{:name "Water Cut"
+                                :data indata1}]}]
+    [:div
+     [BoxContainer
+      {:header
+       {:title "Gas vs. time"
+        :with-border true}}
+      [HighChart chart-config]]]))
+
+(defn Content []
+  [:div
+   [:div.row
+    [:div.col-sm-12.col-md-8
+     [BoxContainer
+      [DVSPChart]]]]
+    ;[:div.col-sm-12.col-md-4
+    ; [BoxContainer
+    ;  [PVSQChart datasource well pvsq-config]]
+    ; [BoxContainer
+    ;  [QVSIChart datasource well qvsi-config]]]]
+   [:div.row
+    [:div.col-sm-12.col-md-12
+     [OilrateInf]]]
+   [:div.row
+    [:div.col-sm-12.col-md-12
+     [WaterCutInf]]]
+   [:div.row
+    [:div.col-sm-12.col-md-12
+     [PressureInf]]]
+   [:div.row
+    [:div.col-sm-12.col-md-12
+     [GasInf]]]
+   [:div.row
+    [:div.col-sm-12.col-md-12
+     [WellTestInfos]]]
+   [:div.row
+    [:div.col-md-12
+     [BoxContainer {:header {:title "Gas Lift Valves"}
+                    :table-responsive true}
+      [GLVTable]]]]])
+
 (defn DataAnalysis
   "Data Analysis Page"
   []
-  (let []
-    (.log js/console "Data Analysis Page!!!")
+  (let [selected-data-source (overviewsubs/get-selected-datasource)
+        selected-well (overviewsubs/get-selected-well)]
     [:div
      [BoxContainer {:solidBox true}
       [:div
        [Header]
-       [:div.row
-        [:div.col-md-6
-         [WellPicker]]
-        [:div.col-sm-6.col-md-6
-         [BoxContainer
-          {:header
-           {:title "Selected Well"
-            :with-border true}}
-          [SelectedWellInf]]
-         [BoxContainer
-          [DVSPChart]]]]
-       [:div.row
-        [:div.col-sm-12.col-md-12
-         [OilrateInf]]]
-       [:div.row
-        [:div.col-sm-12.col-md-12
-         [PressureInf]]]
-       [:div.row
-        [:div.col-sm-12.col-md-12
-         [GasInf]]]
-       [:div.row
-        [:div.col-sm-12.col-md-12
-         [WellTestInfos]]]
-       ;[:div.row
-       ; [:div.col-md-12
-       ;  [BoxContainer {:table-responsive true}
-       ;   [WellTestInfo]]]]
-       [:div.row
-        [:div.col-md-12
-         [BoxContainer {:header {:title "Gas Lift Valves"}
-                        :table-responsive true}
-          [GLVTable]]]]]]]))
+       [WellPicker]]]
+     [:section.content
+      (if (every? some? [selected-data-source selected-well])
+        [Content selected-data-source selected-well])]]))

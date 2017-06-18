@@ -58,11 +58,11 @@
   ;                   :ref (fn [mydiv]
   ;                          (if (some? mydiv)
   ;                            (let [mytable (setup-table mydiv options)]
-  ;                              ;(bind-callbacks mytable callbacks)
+  ;                              (bind-callbacks mytable callbacks)
   ;                              (swap! data-table assoc :table mytable))
   ;                            (let [mytable (:table @data-table)]
   ;                              (if (some? mytable)
-  ;                                (do ;(unbind-callbacks mytable callbacks)
+  ;                                (do (unbind-callbacks mytable callbacks)
   ;                                    (.destroy mytable)
   ;                                    (swap! data-table assoc :table nil))))))}]))
   (let [data-table (atom nil)]
