@@ -4,6 +4,16 @@
 (defn get-welltest []
   (get-in @mydb/well-state [:welldoc :welltest-map]))
 
+(defn get-welltest-of-well [inwell]
+  (let [welldata (->> @mydb/field-state
+                      (:wells)
+                      (filter #(and (= (:field inwell) (:field (:well %)))
+                                    (= (:lease inwell) (:lease (:well %)))
+                                    (= (:well inwell) (:well (:well %)))
+                                    (= (:cmpl inwell) (:cmpl (:well %))))))
+        welltest (get-in (first welldata) [:welldoc :welltest-map])]
+    welltest))
+
 (defn get-welltest-hist []
   (get-in @mydb/well-state [:welldoc :welltest-hist-map]))
 

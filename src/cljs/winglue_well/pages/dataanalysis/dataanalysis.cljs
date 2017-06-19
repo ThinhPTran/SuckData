@@ -92,19 +92,31 @@
      [:p (str " Field: " field " Lease: " lease " Well: " well " Cmpl: " cmpl)]]))
 
 (defn WellTable [data-source well]
-  [:table.table {:style {:margin-bottom "0px"}}
-   [:thead
-    [:tr
-     [:th "Field"]
-     [:th "Lease"]
-     [:th "Well"]
-     [:th "Cmpl"]]]
-   [:tbody
-    [:tr
-     [:td (:field well)]
-     [:td (:lease well)]
-     [:td (:well well)]
-     [:td (:cmpl well)]]]])
+  (let [well-list (dataanalsubs/get-all-well-status)
+        currentwell (->> well-list
+                         (filter #(and (= (:field well) (:field %))
+                                       (= (:lease well) (:lease %))
+                                       (= (:well well) (:well %))
+                                       (= (:cmpl well) (:cmpl %))))
+                         (first))]
+    ;(.log js/console (str "currentwell: " currentwell))
+    [:table.table {:style {:margin-bottom "0px"}}
+     [:thead
+      [:tr
+       [:th "Field"]
+       [:th "Lease"]
+       [:th "Well"]
+       [:th "Cmpl"]
+       ;[:th "Oil rate (bbq/day)"]
+       [:th "GL status"]]]
+     [:tbody
+      [:tr
+       [:td (:field currentwell)]
+       [:td (:lease currentwell)]
+       [:td (:well currentwell)]
+       [:td (:cmpl currentwell)]
+       ;[:td (:calib-oil-rate currentwell)]
+       [:td (dataanalsubs/glstatustoimg (:glstatus currentwell))]]]]))
 
 (defn WellPicker []
   (let [selected-well (overviewsubs/get-selected-well)
@@ -389,7 +401,7 @@
 (defn Content []
   [:div
    [:div.row
-    [:div.col-sm-12.col-md-8
+    [:div.col-sm-12.col-md-12
      [BoxContainer
       [DVSPChart]]]]
     ;[:div.col-sm-12.col-md-4

@@ -20,11 +20,31 @@
            (> Nopen 1)) (assoc inwell :glstatus 1)
       :else (assoc inwell :glstatus 0))))
 
+(defn get-oil-rate [inwell]
+  (let [welltest (datasubs/get-welltest-of-well inwell)]
+    (assoc inwell :calib-oil-rate (:calib-oil-rate welltest))))
+
 (defn get-all-well-status
   []
   (let [in-welllist (get-in @mydb/well-state [:all-well])
-        out-welllist (map #(cal-glstatus %) in-welllist)]
+        out-welllist (->> in-welllist
+                          (map #(cal-glstatus %)))]
+                          ;(map #(get-oil-rate %)))]
     out-welllist))
+
+(defn glstatustoimg [data]
+  (cond
+    (= 0 data) [:div {:style {:height "20px" :width "20px"}}
+                [:img {:src "images/DataTables/redcircle20x20.png"
+                       :style {:height "100%" :width "100%"}}]]
+    (= 1 data) [:div {:style {:height "20px" :width "20px"}}
+                [:img {:src "images/DataTables/yellowcircle20x20.png"
+                       :style {:height "100%" :width "100%"}}]]
+    (= 2 data) [:div {:style {:height "20px" :width "20px"}}
+                [:img {:src "images/DataTables/greencircle20x20.png"
+                       :style {:height "100%" :width "100%"}}]]
+    :else [:div {:style {:height "20px" :width "20px"}}
+           "No data"]))
 
 (defn render-GL-status [data type row]
   (cond
@@ -40,4 +60,5 @@
                  [:div {:style {:height "32px" :width "32px"}}
                   [:img {:src "images/DataTables/greencircle20x20.png"
                          :style {:height "100%" :width "100%"}}]])))
+
 
