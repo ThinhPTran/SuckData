@@ -79,7 +79,8 @@
                                                    "lease" :lease
                                                    "well" :well
                                                    "cmpl" :cmpl
-                                                   "glstatus" :glstatus}))))}]
+                                                   "glstatus" :glstatus
+                                                   "calib-oil-rate" :calib-oil-rate}))))}]
        [LoadingOverlay])]))
 
 (defn SelectedWellInf []
@@ -107,7 +108,7 @@
        [:th "Lease"]
        [:th "Well"]
        [:th "Cmpl"]
-       ;[:th "Oil rate (bbq/day)"]
+       [:th "Oil rate (bbq/day)"]
        [:th "GL status"]]]
      [:tbody
       [:tr
@@ -115,7 +116,7 @@
        [:td (:lease currentwell)]
        [:td (:well currentwell)]
        [:td (:cmpl currentwell)]
-       ;[:td (:calib-oil-rate currentwell)]
+       [:td (:calib-oil-rate currentwell)]
        [:td (dataanalsubs/glstatustoimg (:glstatus currentwell))]]]]))
 
 (defn WellPicker []

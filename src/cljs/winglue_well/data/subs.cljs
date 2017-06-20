@@ -37,6 +37,13 @@
         valve-map (:valves-status-map depth-profile)]
     valve-map))
 
+(defn get-welldoc-of-well [well]
+  (let [welldata (->> @mydb/field-state
+                      (:wells)
+                      (filter #(= well (:well %))))
+        welldoc (:welldoc (first welldata))]
+    welldoc))
+
 (defn get-equilibrium-profile []
   (get-in @mydb/well-state [:welldoc :equilibrium-map]))
 

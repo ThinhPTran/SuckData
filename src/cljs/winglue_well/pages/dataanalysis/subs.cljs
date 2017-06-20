@@ -1,24 +1,25 @@
 (ns winglue-well.pages.dataanalysis.subs
   (:require [winglue-well.db :as mydb]
             [winglue-well.utils.common :as com-utils]
+            [winglue-well.utils.format :as rformat]
             [winglue-well.data.subs :as datasubs])
   (:require-macros [hiccups.core :as hiccups :refer [html]]))
 
-(defn cal-glstatus [inwell]
-  (let [valve-map (datasubs/get-valve-map-of-well inwell)
+(defn cal-morewelldata [inwell]
+  (let [welldoc (datasubs/get-welldoc-of-well inwell)
+        valve-map (get-in welldoc [:depth-profile-map :valves-status-map])
+        calib-oil-rate (rformat/format-dec (get-in welldoc [:welltest-map :calib-oil-rate]) 2)
         status-list (mapv #(com-utils/decode-valve-status %) (:status-list valve-map))
         islastopen (= :open (last status-list))
         listopen (filterv #(= :open %) status-list)
-        Nopen (count listopen)]
-    ;(.log js/console (str "status-list: " status-list))
-    ;(.log js/console (str "islastopen: " islastopen))
-    ;(.log js/console (str "listopen: " listopen))
+        Nopen (count listopen)
+        outwell (assoc inwell :calib-oil-rate calib-oil-rate)]
     (cond
       (and (= true islastopen)
-           (= 1 Nopen)) (assoc inwell :glstatus 2)
+           (= 1 Nopen)) (assoc outwell :glstatus 2)
       (and (= true islastopen)
-           (> Nopen 1)) (assoc inwell :glstatus 1)
-      :else (assoc inwell :glstatus 0))))
+           (> Nopen 1)) (assoc outwell :glstatus 1)
+      :else (assoc outwell :glstatus 0))))
 
 (defn get-oil-rate [inwell]
   (let [welltest (datasubs/get-welltest-of-well inwell)]
@@ -27,9 +28,7 @@
 (defn get-all-well-status
   []
   (let [in-welllist (get-in @mydb/well-state [:all-well])
-        out-welllist (->> in-welllist
-                          (map #(cal-glstatus %)))]
-                          ;(map #(get-oil-rate %)))]
+        out-welllist (map #(cal-morewelldata %) in-welllist)]
     out-welllist))
 
 (defn glstatustoimg [data]

@@ -1,10 +1,10 @@
 (ns winglue-well.pages.dataanalysis.handlers
   (:require [winglue-well.serverevents :as se]
+            [winglue-well.utils.format :as rformat]
             [winglue-well.db :as mydb]))
 
 (defn set-selected-well [well]
-  (let [rawwell well
-        cleanwell (dissoc rawwell :glstatus)
+  (let [cleanwell (dissoc well :glstatus :calib-oil-rate)
         welldata (->> @mydb/field-state
                       (:wells)
                       (filter #(= cleanwell (:well %))))
