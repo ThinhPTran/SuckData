@@ -1,6 +1,7 @@
 (defproject com.AppSmiths/winglue-well "0.2.1"
   :description "Library for loading bits of WinGLUE well from database"
   :main winglue-well.ringmaster
+  :aot [winglue-well.ringmaster]
   :url "http://appsmiths.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
@@ -45,6 +46,8 @@
 
   :min-lein-version "2.5.3"
 
+  :source-paths ["src/clj" "src/cljs"]
+
   :plugins [[lein-protobuf "0.5.0"]
             [lein-ring "0.9.7"]
             [lein-ancient "0.6.10"]
@@ -70,7 +73,7 @@
   ;;:resource-paths ["resources"
   ;;                 "/usr/share/java/protobuf.jar"]
 
-  :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
+  :clean-targets ^{:protect false} ["target"]
 
   :profiles
   {:dev
