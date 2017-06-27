@@ -10,7 +10,7 @@
 
 (ns winglue-well.ringmaster
   (:gen-class)
-  (:use     [ring.util.response :only [response resource-response]]
+  (:use     [ring.util.response :only [redirect response resource-response]]
             [ring.middleware.transit :only
              [wrap-transit-response wrap-transit-body]])
   (:require [jdbc.core :as jdbc]
@@ -22,6 +22,7 @@
             [compojure.core :refer [defroutes POST GET]]
             [compojure.route :as route]
             [compojure.handler :as handler]
+            [winglue-well.oauth :as oauth]
             [ring.middleware.cors :refer [wrap-cors]]
             [ring.middleware.reload :refer [wrap-reload]]
             [org.httpkit.server :refer [run-server]]
@@ -29,16 +30,20 @@
 
 ;; routes for the application
 (defroutes app
+  (GET "/" []
+    (redirect (:uri oauth/auth-request)))
+  (GET "/google-oauth" []
+    (redirect (:uri oauth/auth-request)))
+  (GET "/oauth2callback" []
+    oauth/verifed-appsmiths)
 
   ;; this here to serve web content, if any
-  (GET  "/" [] (resource-response "public/index.html"))
+  ;(GET  "/" [] (resource-response "public/index.html"))
   (GET  "/chsk" req (sys/ring-ws-handoff req))
   (POST "/chsk" req (sys/ring-ws-post req))
   (POST "/login" req (sys/login-handler req))
   (route/resources "/")
   (route/not-found "<h1>Page not found</h1>"))
-
-  ;; defroute
 
 (defn- format-exception
   "creates a string describing exception"

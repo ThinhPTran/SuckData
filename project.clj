@@ -33,6 +33,7 @@
                  [environ "1.1.0"]
                  [reagent "0.6.1"]
                  [hiccups "0.3.0"]
+                 [stuarth/clj-oauth2 "0.3.2"]
                  [cheshire "5.7.1"]
                  [cljsjs/d3 "3.5.16-0"]
                  [secretary "1.2.3"]
